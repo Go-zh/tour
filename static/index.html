@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-<title>A Tour of Go</title>
+<title>Go 指南</title>
 
 <!-- jQuery -->
 <script src="static/jquery.js"></script>
@@ -28,13 +28,13 @@
 <!-- Top bar -->
 <h2 id="slidenum"></h2>
 <div id="topnav" class="nav">
-	<button id="tocbtn">INDEX</button>
+	<button id="tocbtn">目录</button>
 </div>
-<h1>A Tour of Go</h1>
+<h1>Go 指南</h1>
 
 <!-- Loading message -->
 <div id="loading">
-	Loading slides...
+	加载幻灯……
 </div>
 
 <!-- Table of Contents -->
@@ -42,31 +42,23 @@
 
 <div id="slides" class="slides"><!-- begin slides -->
 
-<div class="toc">Welcome</div>
+<div class="toc">欢迎</div>
 
 <div class="slide">
 	<h2>Hello, 世界</h2>
 	<p>
-	Welcome to a tour of the
-	<a target="_blank" href="http://golang.org/">Go programming language</a>.
+	欢迎来到<a target="_blank" href="http://golang.org/">Go 编程语言</a>指南.
+        <p>
+        该指南被分为三节。在每节的末尾有若干个练习需要读者完成。
 	<p>
-	The tour is divided into three sections. At the end of each section
-	is a series of exercises for you to complete.
+        该指南可以进行交互。点击“Run”按钮（或按 Shift + Enter）可以在<span class="appengineMode">远程服务器上</span><span class="localMode">你的电脑上</span>编译并执行程序。
+        结果展示在代码的下面。
 	<p>
-	The tour is interactive. Click the Run button now (or type
-	Shift-Enter) to compile and run the program on
-	<span class="appengineMode">a remote server.</span>
-	<span class="localMode">your computer.</span>
-	The result is displayed below the code.
+        这些例子程序展示了 Go 的各个方面。在指南中的程序可以成为你积累经验的开始。
 	<p>
-	These example programs demonstrate different aspects of Go.  The
-	programs in the tour are meant to be starting points for your own
-	experimentation.
-	<p>
-	Edit the program and run it again.
-	<p>
-	Whenever you're ready to move on, click the Next button or type the
-	PageDown key.
+	编辑程序并且再次执行它。
+        <p>
+        当你准备好继续了，点击“Next”按钮或按 PageDown 键。
 <div>
 package main
 
@@ -79,29 +71,26 @@ func main() {
 </div>
 
 <div class="slide nocode appengineMode">
-	<h2>Go offline</h2>
+	<h2>离线 Go</h2>
+        <p>
+        该指南同样可以作为独立的程序用在没有互联网接入的情况下。
 	<p>
-	This tour is also available as a stand-alone program that you can use
-	without access to the internet.
+        独立运行的指南更快，同时它在你本地的设备上构建和编译代码。它同时包括了一些在沙盒版本中没有的增强体验。
 	<p>
-	The stand-alone tour is faster, as it builds and runs the code samples
-	on your own machine. It also includes additional exercises not
-	available in this sandboxed version.
-	<p>
-	To run the tour locally first
-	<a target="_blank" href="http://golang.org/doc/install.html">install Go</a> (the latest stable release, <code>release.r60</code>),
-	then use
+        为了在本地运行指南首先要<a target="_blank" href="http://golang.org/doc/install.html">安装 Go</a>（最后的稳定版本，<code>release.r60</code>），然后使用
 	<a target="_blank" href="http://golang.org/cmd/goinstall/">goinstall</a>
-	to install
-	<a target="_blank" href="http://code.google.com/p/go-tour/">gotour</a>:
-	<pre>    goinstall go-tour.googlecode.com/hg/gotour</pre>
+	安装
+	<a target="_blank" href="http://code.google.com/p/go-tour/">gotour</a>：
+        <pre>    goinstall go-tour.googlecode.com/hg/gotour</pre>
+        <p>
+        也可以安装<a target="_blank" href="http://bitbucket.org/mikespook/go-tour-zh/">中文版本</a>：
+        <pre>    goinstall bitbucket.org/mikespook/go-tour-zh/gotour</pre>
 	<p>
-	and run the resultant <code>gotour</code> executable.
+	最后执行安装产生的 <code>gotour</code> 执行文件。
+        <p>
+        如果不安装本地版本，点击“Next”按钮或者按 PageDown 继续。
 	<p>
-	Otherwise, click the "next" button or type PageDown to continue.
-	<p>
-	<i>(You may return to these instructions at any time by clicking the
-	"index" button.)</i>
+        <i>（可以在任何时候点击“目录”按钮返回这个介绍。）</i>
 </div>
 
 <div class="slide nocode appengineMode">
