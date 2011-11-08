@@ -71,7 +71,7 @@ func main() {
 </div>
 
 <div class="slide nocode appengineMode">
-	<h2>离线 Go</h2>
+	<h2>离线 Go 指南</h2>
         <p>
         该指南同样可以作为独立的程序用在没有互联网接入的情况下。
 	<p>
@@ -94,36 +94,30 @@ func main() {
 </div>
 
 <div class="slide nocode appengineMode">
-	<h2>Go local</h2>
+	<h2>本地化 Go 指南</h2>
 	<p>
-	The tour is available in other languages:
+        该指南也有其他语言版本：
 	<ul>
-	<li><a href="http://go-tour-jp.appspot.com/">Japanese &mdash; 日本語</a></li>
-	<li><a href="http://go-tour-kr.appspot.com/">Korean &mdash; 한국어</a></li>
+        <li><a href="http://tour.golang.org/">English &mdash; 英语</a></li>
+        <li><a href="http://go-tour-jp.appspot.com/">Japanese &mdash; 日語</a></li>
+	<li><a href="http://go-tour-kr.appspot.com/">Korean &mdash; 韩语</a></li>
 	</ul>
-	<p>
-	(If you would like to translate the tour to another language, check
-	out the source from <code>https://go-tour.googlecode.com/hg</code>,
-	translate <code>static/index.html</code>, and then deploy it to App
-	Engine using the instructions in <code>appengine/README</code>.)
-	<p>
-	Click the "next" button or type PageDown to continue.
+	点击“Next”按钮或者按 PageDown 继续。
 </div>
 
-<div class="toc">Introduction</div>
+<div class="toc">简介</div>
 
 <div class="slide">
-	<h2>Packages</h2>
+	<h2>包</h2>
+        <p>
+        每个 Go 程序都是由包组成的。
 	<p>
-	Every Go program is made up of packages.
-	<p>
-	Programs start running in package <code>main</code>.
-	<p>
-	This program is using the packages with import paths
-	<code>"fmt"</code> and <code>"math"</code>.
-	<p>
-	By convention, the package name is the same as the
-	last element of the import path.
+	程序运行的入口是包 <code>main</code>。
+        <p>
+        这个程序使用并导入了包
+	<code>"fmt"</code> 和 <code>"math"</code>。
+        <p>
+        按照惯例，包名与导入路径的最后一个目录一致。
 <div>
 package main
 
@@ -139,15 +133,14 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Imports</h2>
+	<h2>导入</h2>
 	<p>
-	This code groups the imports into a parenthesized, "factored" import
-	statement.  You can also write multiple import statements, like:
+        这个代码用园括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
 	<pre>
 	import "fmt"
 	import "math"
 	</pre>
-	but it's common to use the factored form to eliminate clutter.
+        不过通常都会用 factored 格式来使代码工整。
 <div>
 package main
 
@@ -164,17 +157,16 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exported names</h2>
+	<h2>导出名</h2>
+        <p>
+        在导入了一个包之后，就可以用其导出的名称来调用它。
 	<p>
-	After importing a package, you can refer to the names it exports.
+        在 Go 中，首字母大写的名称是被导出的。
 	<p>
-	In Go, a name is exported if it begins with a capital letter.
+	<code>Foo</code> 和 <code>FOO</code> 都是被导出的名称。
+	名称 <code>foo</code> 是不会被导出的。
 	<p>
-	<code>Foo</code> is an exported name, as is <code>FOO</code>.
-	The name <code>foo</code> is not exported.
-	<p>
-	Run the code. Then rename <code>math.pi</code> to <code>math.Pi</code>
-	and try it again.
+	执行代码。然后将 <code>math.pi</code> 改名为 <code>math.Pi</code> 再试着执行一下。
 <div>
 package main
 
