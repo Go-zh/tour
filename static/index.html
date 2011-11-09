@@ -182,15 +182,15 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
+	<h2>函数</h2>
 	<p>
-	A function can take zero or more arguments.
+	函数可以没有参数或接受多个参数。
 	<p>
-	In this example, <code>add</code> takes two parameters of type <code>int</code>.
+	在这个例子中，<code>add</code> 接受两个 <code>int</code> 类型的参数。
 	<p>
-	Notice that the type comes <i>after</i> the variable name.
-	<p>
-	(For more about why types look the way they do, see <a target="_blank" href="http://blog.golang.org/2010/07/gos-declaration-syntax.html">this blog post</a>.)
+        注意类型在变量名<i>之后</i>。
+        <p>
+	（参考<a target="_blank" href="http://blog.golang.org/2010/07/gos-declaration-syntax.html">这篇博文</a>了解类型为何以这种形式出现的原因。）
 <div>
 package main
 
@@ -207,15 +207,15 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
+	<h2>函数</h2>
+        <p>
+        当两个或多个连续的函数命名参数是同一类型，则除了最后一个类型之外，其他都可以省略。
 	<p>
-	When two or more consecutive named function parameters share a type,
-	you can omit the type from all but the last.
+	在这个例子中 ，
+        <pre>x int, y int</pre>
+        <p>
+        被缩写为
 	<p>
-	In this example, we shortened
-	<pre>x int, y int</pre>
-	<p>
-	to
 	<pre>x, y int</pre>
 <div>
 package main
@@ -233,11 +233,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
+	<h2>函数</h2>
 	<p>
-	A function can return any number of results.
+        函数可以返回任意数量的结果。
 	<p>
-	This function returns two strings.
+	这个函数返回了两个字符串。
 <div>
 package main
 
@@ -255,13 +255,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
+	<h2>函数</h2>
+        <p>
+        函数接受参数；在 Go 中可以像变量那样对结果进行命名；这叫做“结果参数”。
 	<p>
-	Functions take parameters; in Go results can be named and act like
-	variables; these are called "result parameters."
-	<p>
-	If the result parameters are named, a <code>return</code> statement
-	without arguments returns the current values of the results.
+	如果命名了结果参数，一个没有参数的 <code>return</code> 语句，会将当前的值作为结果返回。
 <div>
 package main
 
