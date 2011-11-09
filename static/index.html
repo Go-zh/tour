@@ -555,7 +555,7 @@ func pow(x, n, lim float64) float64 {
 	} else {
 		fmt.Printf("%g >= %g\n", v, lim)
 	}
-	// can't use v here, though
+        // 不能在这里使用 v，因此
 	return lim
 }
 
@@ -608,11 +608,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Structs</h2>
+	<h2>结构体</h2>
 	<p>
-	A <code>struct</code> is a collection of fields.
+        一个结构体（<code>struct</code>）就是一个字段的集合。
 	<p>
-	(And a <code>type</code> declaration does what you'd expect.)
+	（而 <code>type</code> 定义跟其字面意思相符。）
 <div>
 package main
 
@@ -630,9 +630,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Struct Fields</h2>
-	<p>
-	Struct fields are accessed using a dot.
+	<h2>结构体字段</h2>
+        <p>
+        结构体字段使用点号来访问。
 <div>
 package main
 
@@ -652,12 +652,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Pointers</h2>
+	<h2>指针</h2>
 	<p>
-	Go has pointers, but no pointer arithmetic.
+        Go 有指针，但是没有指针运算。
 	<p>
-	Struct fields can be accessed through a struct pointer.
-	The indirection through the pointer is transparent.
+	结构题字段可以通过结构体指针来访问。通过指针间接的访问是透明的。
 <div>
 package main
 
@@ -678,16 +677,13 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Struct Literals</h2>
+	<h2>结构体文法</h2>
+        <p>
+        结构体文法表示通过结构体字段的值作为列表来新分配一个结构体。
 	<p>
-	A struct literal denotes a newly allocated struct value by listing the
-	values of its fields.
+        使用 <code>Name:</code> 语法可以仅列出部分字段。（字段名的顺序无关。）
 	<p>
-	You can list just a subset of fields by using the <code>Name:</code>
-	syntax. (And the order of named fields is irrelevant.)
-	<p>
-	The special prefix <code>&</code> constructs a pointer to a struct
-	literal.
+        特殊的前缀 <code>&</code> 构造了指向结构体文法的指针。
 <div>
 package main
 
