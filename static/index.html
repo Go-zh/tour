@@ -278,11 +278,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Variables</h2>
+	<h2>变量</h2>
 	<p>
-	The <code>var</code> statement declares a list of variables;
-	as in function argument lists, the type is last.
-
+        <code>var</code> 语句定义了一个变量的列表；跟函数的参数列表一样，类型在最后。
 <div>
 package main
 
@@ -298,12 +296,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Variables</h2>
+	<h2>变量</h2>
 	<p>
-	A var declaration can include initializers, one per variable.
+        变量定义可以包含初始值，每个变量一个。
 	<p>
-	If an initializer is present, the type can be omitted;
-	the variable will take the type of the initializer.
+        如果初始化是表达式，则可以省略类型；变量从初始值中获得类型。
 <div>
 package main
 
@@ -319,13 +316,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Variables</h2>
+	<h2>变量</h2>
+        <p>
+        在函数中，<code>:=</code> 简洁赋值语句可以在恰当的地方用于简洁的 <code>var</code> 定义。
 	<p>
-	Inside a function, the <code>:=</code> short assignment statement
-	can be used in place of the short <code>var</code> declaration.
-	<p>
-	(Outside a function, every construct begins with a keyword and the
-	<code>:=</code> construct is not available.)
+         （<code>:=</code> 构造方法不能使用在函数外，每个构造都必须以关键字开始。）
 <div>
 package main
 
