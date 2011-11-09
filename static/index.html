@@ -320,7 +320,7 @@ func main() {
         <p>
         在函数中，<code>:=</code> 简洁赋值语句可以在恰当的地方用于简洁的 <code>var</code> 定义。
 	<p>
-         （<code>:=</code> 构造方法不能使用在函数外，每个构造都必须以关键字开始。）
+         （<code>:=</code> 结构不能使用在函数外，函数外的每个结构都必须以关键字开始。）
 <div>
 package main
 
@@ -360,13 +360,13 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Numeric Constants</h2>
+	<h2>数值常量</h2>
 	<p>
-	Numeric constants are high-precision <i>values</i>.
+        数值常量是高精度的<i>值</i>。
+        <p>
+        一个未指定类型的常量由上下文来决定其类型。
 	<p>
-	An untyped constant takes the type needed by its context.
-	<p>
-	Try printing <code>needInt(Big)</code> too.
+	也尝试一下输出 <code>needInt(Big)</code>吧。
 <div>
 package main
 
@@ -393,11 +393,9 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	Go has only one looping construct, the <code>for</code> loop.
+	Go 只有一种循环结构，<code>for</code> 循环。
 	<p>
-	The basic <code>for</code> loop looks as it does in C or Java,
-	except that the <code>( )</code> are gone (they are not even optional)
-	and the <code>{ }</code> are required.
+        基本的 <code>for</code> 循环看起来跟 C 或者 Java 中做的一样，除了没有了 <code>( )</code> 之外（它们甚至连可选都不是），而 <code>{ }</code> 是必须的。
 <div>
 package main
 
@@ -416,7 +414,7 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	As in C or Java, you can leave the pre and post statements empty.
+	跟 C 或者 Java 中一样，可以让前置、后置语句为空。
 <div>
 package main
 
@@ -435,8 +433,8 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	At that point you can drop the semicolons:
-	C's <code>while</code> is spelled <code>for</code> in Go.
+        基于此可以省略分号：
+	C 的 <code>while</code> 在 Go 中也是用 <code>for</code> 实现。
 <div>
 package main
 
@@ -455,7 +453,7 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	If you omit the loop condition, it loops forever.
+	如果省略了循环条件，它就是个死循环源。
 <div>
 package main
 
@@ -469,8 +467,7 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	And with no clauses at all, the semicolons can be omitted,
-	so an infinite loop is compactly expressed.
+	而为了避免累赘，分号可以省略，因此一个死循环可以简洁的表达。
 <div>
 package main
 
