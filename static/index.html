@@ -481,11 +481,9 @@ func main() {
 <div class="slide">
 	<h2>If</h2>
 	<p>
-	The <code>if</code> statement looks as it does in C or Java,
-	except that the <code>( )</code> are gone (they are not even optional)
-	and the <code>{ }</code> are required.
+	<code>if</code> 语句看起来跟 C 或者 Java 中的一样，除了没有了 <code>( )</code> 之外（它们甚至连可选都不是），而 <code>{ }</code> 是必须的。
 	<p>
-	(Sound familiar?)
+        （耳熟吗？）
 <div>
 package main
 
@@ -510,13 +508,11 @@ func main() {
 <div class="slide">
 	<h2>If</h2>
 	<p>
-	Like <code>for</code>, the <code>if</code> statement can start with a
-	short statement to execute before the condition.
+	跟 <code>for</code> 一样，<code>if</code> 语句可以在条件之前执行一个简单的语句。
+        <p>
+        由这个语句定义的变量的作用域仅在 <code>if</code> 范围之内。
 	<p>
-	Variables declared by the statement are only in scope until the end of
-	the <code>if</code>.
-	<p>
-	(Try using <code>v</code> in the last <code>return</code> statement.)
+        （在最后的 <code>return</code> 语句处使用 <code>v</code> 看看。）
 <div>
 package main
 
@@ -543,9 +539,8 @@ func main() {
 
 <div class="slide">
 	<h2>If</h2>
-	<p>
-	Variables declared inside an <code>if</code>'s short statement are also
-	available inside any of the <code>else</code> blocks.
+        <p>
+        在 <code>if</code> 的简单语句处定义的变量同样可以在任何对应的 <code>else</code> 块中使用。
 <div>
 package main
 
