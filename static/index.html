@@ -707,13 +707,12 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>The <code>new</code> function</h2>
+	<h2><code>new</code>  函数</h2>
 	<p>
-	The expression <code>new(T)</code> allocates a zeroed <code>T</code>
-	value and returns a pointer to it.
+	表达式 <code>new(T)</code> 分配了一个零初始化的 <code>T</code> 值，并返回指向它的指针。
 	<pre>var t *T = new(T)</pre>
 	<p>
-	or
+	或
 	<pre>t := new(T)</pre>
 <div>
 package main
@@ -736,12 +735,10 @@ func main() {
 <div class="slide">
 	<h2>Maps</h2>
 	<p>
-	A map maps keys to values.
+        map 映射键到值。
 	<p>
-	<!-- TODO: empty part not true in compilers yet -->
-	Maps must be created with <code>make</code> (not <code>new</code>)
-	before use; the <code>nil</code> map is empty and cannot be assigned
-	to.
+        <!-- TODO: empty part not true in compilers yet -->
+        map 在使用之前必须用 <code>make</code> 来创建（不是 <code>new</code>）；一个值为 <code>nil</code> 的 map 是空的，并且不能赋值。
 <div>
 package main
 
@@ -766,7 +763,7 @@ func main() {
 <div class="slide">
 	<h2>Maps</h2>
 	<p>
-	Map literals are like struct literals, but the keys are required.
+        map 的文法跟结构体文法相似，不过键是必须的。
 <div>
 package main
 
@@ -794,8 +791,7 @@ func main() {
 <div class="slide">
 	<h2>Maps</h2>
 	<p>
-	If the top-level type is just a type name, you can omit it from the
-	elements of the literal.
+        如果顶层类型就是类型名子的话，可以在文法的元素中省略它。
 <div>
 package main
 
