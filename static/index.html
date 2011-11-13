@@ -1013,7 +1013,7 @@ func main() {
 	<p>
         可以将值赋值给 <code>_</code> 来忽略键和值。
         <p>
-        例如只要索引，丢掉&ldquo;<code>值</code>&rdquo;的实体。
+        如果只需要索引值，去掉&ldquo;<code>, value</code>&rdquo;的部分即可。
 <div>
 package main
 
@@ -1034,9 +1034,9 @@ func main() {
 <div class="slide">
 	<h2>Switch</h2>
 	<p>
-	You probably knew what <code>switch</code> was going to look like.
-	<p>
-	A case body breaks automatically, unless it ends with a <code>fallthrough</code> statement.
+	你可能已经猜到 <code>switch</code> 可能的形式了。
+        <p>
+        case 体会自动终止，除非用 <code>fallthrough</code> 语句作为结尾。
 
 <div>
 package main
@@ -1065,17 +1065,16 @@ func main() {
 <div class="slide">
 	<h2>Switch</h2>
 	<p>
-	Switch cases evaluate cases from top to bottom, stopping when a
-	case succeeds.
+        switch 的条件从上到下的执行，当匹配成功的时候停止。
 	<p>
-	(For example,
+	（例如，
 	<pre>
 switch i {
 case 0:
 case f():
 }</pre>
-	<p>
-	does not call <code>f</code> if <code>i==0</code>.)
+        <p>
+        当 <code>i==0</code> 时不会调用 <code>f</code>。）
 
 <div>
 package main
@@ -1105,7 +1104,7 @@ func main() {
 <div class="slide">
 	<h2>Switch</h2>
 	<p>
-	Switch without a condition is the same as <code>switch true</code>.
+	没有条件的 switch 同 <code>switch true</code> 一样。
 
 <div>
 package main
