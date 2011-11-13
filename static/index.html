@@ -815,9 +815,9 @@ func main() {
 <div class="slide">
 	<h2>Slices</h2>
 	<p>
-	A slice points to an array of values and also includes a length.
+        slice 指向数组的值，并且同时包含了长度信息。
 	<p>
-	<code>[]T</code> is a slice with elements of type <code>T</code>.
+	<code>[]T</code> 是一个元素类型为 <code>T</code> 的 slice。
 <div>
 package main
 
@@ -837,21 +837,19 @@ func main() {
 
 <div class="slide">
 	<h2>Slices</h2>
+        <p>
+        slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
 	<p>
-	Slices can be re-sliced, creating a new slice value that points to the
-	same array.
-	<p>
-	The expression
+	表达式
 	<pre>s[lo:hi]</pre>
+        <p>
+        表示从 <code>lo</code> 到 <code>hi-1</code> 的 slice 元素，含有两端。
+        因此 <pre>s[lo:lo]</pre> 
 	<p>
-	evaluates to a slice of the elements from <code>lo</code> through
-	<code>hi-1</code>, inclusive. Thus
-	<pre>s[lo:lo]</pre>
-	<p>
-	is empty and
+	是空的，而
 	<pre>s[lo:lo+1]</pre>
-	<p>
-	has one element.
+        <p>
+        有一个元素。
 <div>
 package main
 
@@ -874,22 +872,19 @@ func main() {
 <div class="slide">
 	<h2>Slices</h2>
 	<p>
-	Slices are created with the <code>make</code> function. It works by
-	allocating a zeroed array and returning a slice that refers to that
-	array:
+        slice 由函数 <code>make</code> 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
 	<pre>
 a := make([]int, 5)  // len(a)=5
-	</pre>
-	Slices have length and capacity. A slice's capacity is the maximum
-	length the slice can grow within the underlying array.
+        </pre>
+        slice 有长度和容量。slice 的容量是底层数组可以增长的最大长度。
 	<p>
-	To specify a capacity, pass a third argument to <code>make</code>:
+        为了指定容量，可传递第三个参数到 <code>make</code>：
 	<p>
 	<pre>
 b := make([]int, 0, 5)
 // len(b)=0, cap(b)=5
-	</pre>
-	Slices can be grown by "re-slicing" (up to their capacity):
+        </pre>
+        slice 可以通过“重新切片”来扩容（增长到容量上限）：
 	<p>
 	<pre>
 b = b[:cap(b)] // len(b)=5, cap(b)=5
@@ -921,13 +916,11 @@ func printSlice(s string, x []int) {
 <div class="slide">
 	<h2>Slices</h2>
 	<p>
-	The zero value of a slice is <code>nil</code>.
+	slice 的零值是 <code>nil</code>。
+        <p>
+        一个 nil 的 slice 的长度和容量是 0。
 	<p>
-	A nil slice has a length and capacity of 0.
-	<p>
-	<i>For more detail see the 
-	"<a target="_blank" href="http://blog.golang.org/2011/01/go-slices-usage-and-internals.html">Go Slices: usage and internals</a>"
-	article.</i>
+	<i>参阅文章“<a target="_blank" href="http://blog.golang.org/2011/01/go-slices-usage-and-internals.html">Go Slices: usage and internals</a>”了解更多信息。</i>
 <div>
 package main
 
