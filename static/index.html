@@ -733,7 +733,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Maps</h2>
+	<h2>Map</h2>
 	<p>
         map 映射键到值。
 	<p>
@@ -761,7 +761,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Maps</h2>
+	<h2>Map</h2>
 	<p>
         map 的文法跟结构体文法相似，不过键是必须的。
 <div>
@@ -789,7 +789,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Maps</h2>
+	<h2>Map</h2>
 	<p>
         如果顶层类型就是类型名子的话，可以在文法的元素中省略它。
 <div>
@@ -813,7 +813,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slices</h2>
+	<h2>Slice</h2>
 	<p>
         slice 指向数组的值，并且同时包含了长度信息。
 	<p>
@@ -836,7 +836,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slices</h2>
+	<h2>Slice</h2>
         <p>
         slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
 	<p>
@@ -870,7 +870,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slices</h2>
+	<h2>Slice</h2>
 	<p>
         slice 由函数 <code>make</code> 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
 	<pre>
@@ -914,7 +914,7 @@ func printSlice(s string, x []int) {
 </div>
 
 <div class="slide">
-	<h2>Slices</h2>
+	<h2>Slice</h2>
 	<p>
 	slice 的零值是 <code>nil</code>。
         <p>
@@ -1129,27 +1129,20 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Loops and Functions</h2>
-	<p>
-	As a simple way to play with functions and loops, implement
-	the square root function using Newton's method.
-	<p>
-	In this case, Newton's method is to approximate <code>Sqrt(x)</code>
-	by picking a starting point <i>z</i> and then repeating:
+	<h2>练习：循环和函数</h2>
+        <p>
+        作为练习函数和循环的简单途径，用牛顿法实现开方函数。
+        <p>
+        在这个例子中，牛顿法是通过选择一个初始点 <i>z</i> 然后重复这一过程求 <code>Sqrt(x)</code> 的近似值：
 	<center>
 	<img src="https://chart.googleapis.com/chart?cht=tx&chl=z=z-\frac{z^2-x}{2z}">
-	</center>
-	<p>
-	To begin with, just repeat that calculation 10 times and see how close you
-	get to the answer for various values (1, 2, 3, ...).
-	<p>
-	Next, change the loop condition to stop once the value has stopped
-	changing (or only changes by a very small delta).
-	See if that's more or fewer iterations.
-	How close are you to the <a target="_blank" href="http://golang.org/pkg/math/#Sqrt">math.Sqrt</a>?
-	<p>
-	Hint: to declare and initialize a floating point value, give it
-	floating point syntax or use a conversion:
+        </center>
+        <p>
+        为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
+        <p>
+        然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 <a target="_blank" href="http://golang.org/pkg/math/#Sqrt">math.Sqrt</a> 接近吗？
+        <p>
+        提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 	<pre>
 	z := float64(0)
 	z := 0.0
@@ -1172,14 +1165,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Maps</h2>
+	<h2>练习：Map</h2>
 	<p>
-	Implement <code>WordCount</code>.  It should return a map of the
-	counts of each &ldquo;word&rdquo; in the string <code>s</code>.
-	The <code>wc.Test</code> function runs a test suite against the
-	provided function and prints success or failure.
+        实现 <code>WordCount</code>。它应当返回一个含有 <code>s</code> 中每个 &ldquo;word&rdquo; 数量的 map。函数 <code>wc.Test</code> 针对这个函数执行一个测试用例，并打印成功或者失败。
 	<p>
-	You might find <a target="_blank" href="http://golang.org/pkg/strings/#Fields">strings.Fields</a> helpful.
+        你会发现 <a target="_blank" href="http://golang.org/pkg/strings/#Fields">strings.Fields</a> 很有帮助。
 
 <div>
 package main
@@ -1199,19 +1189,13 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Slices</h2>
+	<h2>练习：Slice</h2>
 	<p>
-	Implement <code>Pic</code>. It should return a slice of length
-	<code>dy</code>, each element of which is a slice of <code>dx</code>
-	8-bit unsigned integers. When you run the program, it will display
-	your picture, interpreting the integers as grayscale (well, bluescale)
-	values.
+        实现 <code>Pic</code>。它应当接受一个 slice 的长度 <code>dy</code>，和 slice 中每个元素的长度的 8 位无符号整数 <code>dx</code>。当执行这个程序，它会将整数转换为灰度（好吧，蓝度）图片进行展示。
+        <p>
+        图片的实现已经完成。可能用到的函数包括 <code>x^y</code>，<code>(x+y)/2</code> 和 <code>x*y</code>。
 	<p>
-	The choice of image is up to you.
-	Interesting functions include <code>x^y</code>, <code>(x+y)/2</code>, and <code>x*y</code>.
-	<p>
-	(You need to use a loop to allocate each <code>[]uint8</code> inside
-	the <code>[][]uint8</code>.)
+	（需要使用循环来分配 <code>[][]uint8</code> 中的每个 <code>[]uint8</code>。）
 
 <div>
 package main
@@ -1228,13 +1212,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Fibonacci closure</h2>
+	<h2>练习：斐波纳契闭包</h2>
+        <p>
+        现在来通过函数找些乐趣。
 	<p>
-	Let's have some fun with functions.
-	<p>
-	Implement a <code>fibonacci</code> function that returns a function
-	(a closure) that returns successive fibonacci numbers.
-
+        实现一个 <code>fibonacci</code> 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数。
 <div>
 package main
 
@@ -1255,17 +1237,16 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Advanced Exercise: Complex cube roots</h2>
+	<h2>进阶练习：复数立方根</h2>
 	<p>
-	Let's explore Go's built-in support for complex numbers via the
-	<code>complex64</code> and <code>complex128</code> types.
-	For cube roots, Newton's method amounts to repeating:
+        让我们通过 <code>complex64</code> 和 <code>complex128</code> 来探索一下 Go 内建的复数。
+        对于立方根，牛顿法需要大量循环：
 	<center>
 	<img src="https://chart.googleapis.com/chart?cht=tx&chl=z=z-\frac{z^3-x}{3z^2}">
 	</center>
 	<p>
-	Find the cube root of 2, just to make sure the algorithm works.
-	There is a <a target="_blank" href="http://golang.org/pkg/cmath/#Pow">cmath.Pow</a> function.
+        找到 2 的立方根，确保算法能够工作。
+	这里有 <a target="_blank" href="http://golang.org/pkg/cmath/#Pow">cmath.Pow</a> 函数。
 
 <div>
 package main
@@ -1282,7 +1263,7 @@ func main() {
 </div>
 
 
-<div class="toc">Methods and Interfaces</div>
+<div class="toc">方法和接口</div>
 
 <div class="slide nocode">
 <h2>Methods and Interfaces</h2>
@@ -1794,7 +1775,7 @@ func main() {
 </div>
 </div>
 
-<div class="toc">Concurrency</div>
+<div class="toc">并发</div>
 
 <div class="slide nocode">
 <h2>Concurrency</h2>
