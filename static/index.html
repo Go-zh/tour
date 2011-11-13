@@ -937,9 +937,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
-	<p>
-	Functions are values too.
+	<h2>函数</h2>
+        <p>
+        函数也是值。
 <div>
 package main
 
@@ -959,12 +959,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Functions</h2>
+	<h2>函数</h2>
+        <p>
+        并且函数是完全闭包的。
 	<p>
-	And functions are full closures.
-	<p>
-	The <code>adder</code> function returns a closure.
-	Each closure is bound to its own <code>sum</code> variable.
+	函数 <code>adder</code> 返回一个闭包。每个闭包被绑定到了特定的 <code>sum</code> 变量上。
 <div>
 package main
 
@@ -993,8 +992,7 @@ func main() {
 <div class="slide">
 	<h2>Range</h2>
 	<p>
-	The <code>range</code> form of the <code>for</code>
-	loop iterates over a slice or map.
+        <code>for</code> 循环的 <code>range</code> 格式可以对 slice 或者 map 进行迭代循环。
 <div>
 package main
 
@@ -1013,10 +1011,9 @@ func main() {
 <div class="slide">
 	<h2>Range</h2>
 	<p>
-	You can skip the key or value by assigning to <code>_</code>.
-	<p>
-	If you only want the index, drop the 
-	&ldquo;<code>, value</code>&rdquo; entirely.
+        可以将值赋值给 <code>_</code> 来忽略键和值。
+        <p>
+        例如只要索引，丢掉&ldquo;<code>值</code>&rdquo;的实体。
 <div>
 package main
 
