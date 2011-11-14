@@ -1266,17 +1266,15 @@ func main() {
 <div class="toc">方法和接口</div>
 
 <div class="slide nocode">
-<h2>Methods and Interfaces</h2>
+<h2>方法和接口</h2>
 </div>
 
 <div class="slide">
-	<h2>Methods</h2>
+	<h2>方法</h2>
+        <p>
+        Go 没有类。然而，仍然可以在结构体类型上定义方法。
 	<p>
-	Go does not have classes. However, you can define methods on struct
-	types.
-	<p>
-	The <i>method receiver</i> appears in its own argument list
-	between the <code>func</code> keyword and the method name.
+        <i>方法接收者</i>出现在 <code>func</code> 关键字和方法名之间的参数中。
 <div>
 package main
 
@@ -1301,13 +1299,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Methods</h2>
-	<p>
-	In fact, you can define a method on <i>any</i> type you define in your
-	package, not just structs.
-	<p>
-	You cannot define a method on a type from another package, or on a
-	basic type.
+	<h2>方法</h2>
+        <p>
+        事实上，可以对包中的<i>任意</i>类型定义任意方法，而不仅仅是结构体。
+        <p>
+        不能对来自其他包的类型或基础类型定义方法。
 <div>
 package main
 
@@ -1333,33 +1329,20 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Methods with pointer receivers</h2>
+	<h2>接收者为指针的方法</h2>
+        <p>
+        方法可以与命名类型或命名类型的指针关联。
 	<p>
-	Methods can be associated with a named type or a pointer
-	to a named type.
-	<p>
-	We just saw two <code>Abs</code> methods. One on the
-	<code>*Vertex</code> pointer type and the other on the
-	<code>MyFloat</code> value type.
-	<p>
-	There are two reasons to use a pointer receiver.
-	First, to avoid copying the value on each method call (more efficient
-	if the value type is a large struct). Second, so that the method can
-	modify the value that its receiver points to.
+        刚刚看到的两个 <code>Abs</code> 方法。一个是在 <code>*Vertex</code> 指针类型上，而另一个在 <code>MyFloat</code> 值类型上。
+        <p>
+        有两个原因需要使用指针接收者。首先避免在每个方法调用中拷贝值（如果值类型是大的结构体的话会更有效率）。其次，方法可以修改接收者指向的值。
 	</ol>
 	<p>
-	Try changing the declarations of the <code>Abs</code> and
-	<code>Scale</code> methods to use <code>Vertex</code> as the
-	receiver, instead of <code>*Vertex</code>.
+        尝试修改 <code>Abs</code> 的定义，同时 <code>Scale</code> 方法使用 <code>Vertex</code> 代替 <code>*Vertex</code> 作为接收者。
 	<p>
-	The <code>Scale</code> method has no effect when <code>v</code> is a
-	<code>Vertex</code>. <code>Scale</code> mutates <code>v</code>. When
-	<code>v</code> is a value (non-pointer) type, the method sees a copy of
-	the <code>Vertex</code> and cannot mutate the original value.
+        当 <code>v</code> 是 <code>Vertex</code> 的时候 <code>Scale</code> 方法没有任何作用。<code>Scale</code> 修改 <code>v</code>。当 <code>v</code> 是一个值（非指针），方法看到的是 <code>Vertex</code> 的副本，并且无法修改原始值。
 	<p>
-	<code>Abs</code> works either way. It only reads <code>v</code>.
-	It doesn't matter whether it is reading the original value (through a
-	pointer) or a copy of that value.
+	<code>Abs</code> 的工作方式是一样的。只不过，仅仅读取 <code>v</code>。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
 <div>
 package main
 
