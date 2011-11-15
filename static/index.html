@@ -1373,13 +1373,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Interfaces</h2>
-	<p>
-	An interface type is defined by a set of methods.
-	<p>
-	A value of interface type can hold any value that
-	implements those methods.
-
+	<h2>接口</h2>
+        <p>
+        接口类型是由一组方法集合定义的。
+        <p>
+        接口类型的值可以存放实现这些方法的任何值。
 <div>
 package main
 
@@ -1425,20 +1423,17 @@ func (v *Vertex) Abs() float64 {
 </div>
 
 <div class="slide">
-	<h2>Interfaces</h2>
+	<h2>接口</h2>
+        <p>
+        类型通过实现那些方法来实现接口。
 	<p>
-	A type implements an interface by implementing the methods.
+        <i>没有显式声明的必要。</i>
+        <p>
+        隐式接口解藕了实现接口的包和定义接口的包：互不依赖。
+        <p>
+        明确的接口定义也是受到鼓励的，因为这样就无需找到每一个实现，并对其加上新的接口名称。
 	<p>
-	<i>There is no explicit declaration of intent.</i>
-	<p>
-	Implicit interfaces decouple implementation packages from the packages
-	that define the interfaces: neither depends on the other.
-	<p>
-	It also encourages the definition of precise interfaces, because you
-	don't have to find every implementation and tag it with the new
-	interface name.
-	<p>
-	<a target="_blank" href="http://golang.org/pkg/io/">Package io</a> defines <code>Reader</code> and <code>Writer</code>; you don't have to.
+        <a target="_blank" href="http://golang.org/pkg/io/">Package io</a> 定义了 <code>Reader</code> 和 <code>Writer</code>；不一定要这么做。
 <div>
 package main
 
@@ -1472,9 +1467,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Errors</h2>
-	<p>
-	An error is anything that can describe itself:
+	<h2>错误</h2>
+        <p>
+        错误是可以描述它自己的任何东西：
 	<pre>
 package os
 
@@ -1518,10 +1513,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Web servers</h2>
+	<h2>Web 服务器</h2>
 	<p>
-	<a target="_blank" href="http://golang.org/pkg/http/">Package http</a> serves HTTP requests using any value
-	that implements <code>http.Handler</code>:
+        <a target="_blank" href="http://golang.org/pkg/http/">Package http</a> 通过任何实现了 <code>http.Handler</code> 的值来响应 HTTP 请求：
 	<pre>
 package http
 
@@ -1531,16 +1525,13 @@ type Handler interface {
 }
 	</pre>
 	<p>
-	In this example, the type <code>MyHandler</code> implements <code>http.Handler</code>.
+        在这个例子中，类型 <code>MyHandler</code> 实现了 <code>http.Handler</code>。
 	<p>
 	<span class="localMode">
-	Visit <a href="http://localhost:4000/" target="_blank">http://localhost:4000/</a> to see the greeting.
+	访问 <a href="http://localhost:4000/" target="_blank">http://localhost:4000/</a> 会看到来自程序的问候。
 	</span>
 	<span class="appengineMode">
-	<b>Note:</b> This example won't run through the web-based tour user
-	interface. To try writing web servers you may want to
-	<a target="_blank" href="http://golang.org/doc/install.html">Install
-	Go</a>.
+            <b>注意：</b> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 web 服务器，可能需要<a target="_blank" href="http://golang.org/doc/install.html">安装 Go</a>。
 	</span>
 <div>
 package main
@@ -1566,10 +1557,9 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Images</h2>
+	<h2>图片</h2>
 	<p>
-	<a target="_blank" href="http://golang.org/pkg/image/#Image">Package image</a> defines the <code>Image</code>
-	interface:
+	<a target="_blank" href="http://golang.org/pkg/image/#Image">Package image</a> 定义了 <code>Image</code> 接口：
 	<pre>
 package image
 
@@ -1578,14 +1568,10 @@ type Image interface {
 	Bounds() Rectangle
 	At(x, y int) Color
 }</pre>
+        <p>
+        （参阅<a target="_blank" href="http://golang.org/pkg/image/#Image">文档</a>了解全部信息。）
 	<p>
-	(See <a target="_blank" href="http://golang.org/pkg/image/#Image">the
-	documentation</a> for all the details.)
-	<p>
-	<code>Color</code> and <code>ColorModel</code> are interfaces too,
-	but we'll ignore that by using the predefined implementations
-	<code>image.RGBAColor</code> and <code>image.RGBAColorModel</code>.
-
+        <code>Color</code> 和 <code>ColorModel</code> 也是接口，但是通常因为直接使用预定义的实现 <code>image.RGBAColor</code> 和 <code>image.RGBAColorModel</code> 而忽略它们。
 <div>
 package main
 
