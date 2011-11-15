@@ -1589,32 +1589,28 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Errors</h2>
+	<h2>练习：错误</h2>
+        <p>
+        从之前的练习中复制 <code>Sqrt</code> 函数，并修改使其返回 <code>os.Error</code> 值。
 	<p>
-	Copy your <code>Sqrt</code> function from the earlier exercises and
-	modify it to return an <code>os.Error</code> value.
-	<p>
-	<code>Sqrt</code> should return a non-nil error value when given a
-	negative number, as it doesn't support complex numbers.
-	<p>
-	Create a new type
+        <code>Sqrt</code> 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
+        <p>
+        创建一个新类型
 	<pre>
 type ErrNegativeSqrt float64</pre>
 	<p>
-	and make it an <code>os.Error</code> by giving it a 
+        使其成为一个 <code>os.Error</code>，通过 
 	<pre>
 func (e ErrNegativeSqrt) String() string</pre>
 	<p>
-	method such that <code>ErrNegativeSqrt(-2).String()</code> returns
-	<code>"cannot Sqrt negative number: -2"</code>.
+        方法就可以让 <code>ErrNegativeSqrt(-2).String()</code> 返回
+        <code>"cannot Sqrt negative number: -2"</code>。
 	<p>
-	<b>Note:</b> a call to <code>fmt.Print(e)</code> inside the
-	<code>String</code> method will send the program into an infinite loop.
-	You can avoid this by converting <code>e</code> first:
-	<code>fmt.Print(float64(e))</code>. Why?
+        <b>注意：</b> 在 <code>String</code> 方法内调用 <code>fmt.Print(e)</code> 将会让程序陷入死循环。
+        可以通过先转换 <code>e</code> 来避免这个：
+	<code>fmt.Print(float64(e))</code>。为什么？
 	<p>
-	Change your <code>Sqrt</code> function to return an
-	<code>ErrNegativeSqrt</code> value when given a negative number.
+	修改 <code>Sqrt</code> 函数，使其接受一个负数时，返回 <code>ErrNegativeSqrt</code> 值。
 <div>
 package main
 
@@ -1635,10 +1631,10 @@ func main() {
 </div>
 
 <div class="slide localMode">
-	<h2>Exercise: HTTP Handlers</h2>
+	<h2>练习：HTTP 处理</h2>
 	<p>
-	Implement the following types and define ServeHTTP methods on them.
-	Register them to handle specific paths in your web server.
+        实现下面的类型，并在其上定义 ServeHTTP 方法。
+        在 web 服务器中注册它们来处理指定的路径。
 <pre>type String string
 	
 type Struct struct {
@@ -1647,7 +1643,7 @@ type Struct struct {
 	Who      string
 }</pre>
 	<p>
-	For example, you should be able to register handlers using:
+        例如，可以使用如下方式注册处理方法：
 <pre>http.Handle("/string", String("I'm a frayed knot."))
 http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})</pre>
 <div>
@@ -1665,24 +1661,18 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Images</h2>
+	<h2>练习：图片</h2>
+        <p>
+        还记得之前编写的图片生成器吗？
+        现在来编写另一个，不过这次将会返回一个 <code>image.Image</code> 的实现来代替 slice 的数据。
 	<p>
-	Remember the picture generator you wrote earlier?
-	Let's write another one, but this time it will return
-	an implementation of <code>image.Image</code> instead of a slice of data.
+        自定义的 <code>Image</code> 类型，要实现<a target="_blank" href="http://golang.org/pkg/image/#Image" target="_blank">必要的方法</a>，并且调用 <code>pic.ShowImage</code>。
 	<p>
-	Define your own <code>Image</code> type, implement
-	<a target="_blank" href="http://golang.org/pkg/image/#Image" target="_blank">the necessary methods</a>,
-	and call <code>pic.ShowImage</code>.
+	<code>Bounds</code> 应当返回一个 <code>image.Rectangle</code>，例如 <code>image.Rect(0, 0, w, h)</code>。
 	<p>
-	<code>Bounds</code> should return a <code>image.Rectangle</code>, like
-	<code>image.Rect(0, 0, w, h)</code>.
+	<code>ColorModel</code> 应当返回 <code>image.RGBAColorModel</code>。
 	<p>
-	<code>ColorModel</code> should return <code>image.RGBAColorModel</code>.
-	<p>
-	<code>At</code> should return a color;
-	the value <code>v</code> in the last picture generator corresponds to
-	<code>image.RGBAColor{v, v, 255, 255}</code> in this one.
+	<code>At</code> 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 <code>v</code> 匹配 <code>image.RGBAColor{v, v, 255, 255}</code>。
 
 <div>
 package main
@@ -1702,26 +1692,19 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Rot13 Reader</h2>
+	<h2>练习：Rot13 读取器</h2>
+        <p>
+        一般的模式是 <a target="_blank" href="http://golang.org/pkg/io/#Reader">io.Reader</a> 包裹另一个 <code>io.Reader</code>，用某些途径修改特定的流。
+        <p>
+        例如，<a target="_blank" href="http://golang.org/pkg/compress/gzip/#Decompressor.NewReader">gzip.NewReader</a>
+        函数输入一个 <code>io.Reader</code>（gzip 的数据流）并且返回一个同样实现了 <code>io.Reader</code> 的
+	 <code>*gzip.Decompressor</code>（解压缩后的数据流）。
 	<p>
-	A common pattern is an
-	<a target="_blank" href="http://golang.org/pkg/io/#Reader">io.Reader</a> that wraps
-	another <code>io.Reader</code>, modifying the stream in some way.
+        实现一个实现了 <code>io.Reader</code> 的 <code>rot13Reader</code>，用
+        <a target="_blank" href="http://en.wikipedia.org/wiki/ROT13">ROT13</a>
+        修改数据流中的所有的字母进行密文替换。
 	<p>
-	For example, the
-	<a target="_blank" href="http://golang.org/pkg/compress/gzip/#Decompressor.NewReader">gzip.NewReader</a>
-	function takes an <code>io.Reader</code> (a stream of gzipped data)
-	and returns a <code>*gzip.Decompressor</code> that also implements
-	<code>io.Reader</code> (a stream of the decompressed data).
-	<p>
-	Implement a <code>rot13Reader</code> that implements
-	<code>io.Reader</code> and reads from an <code>io.Reader</code>,
-	modifying the stream by applying the
-	<a target="_blank" href="http://en.wikipedia.org/wiki/ROT13">ROT13</a>
-	substitution cipher to all alphabetical characters.
-	<p>
-	The <code>rot13Reader</code> type is provided for you.  Make it an
-	<code>io.Reader</code> by implementing its <code>Read</code> method.
+        <code>rot13Reader</code> 已经提供。通过实现其 <code>Read</code> 方法使得它匹配 <code>io.Reader</code>。
 <div>
 package main
 
