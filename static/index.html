@@ -1848,26 +1848,20 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Range and Close</h2>
+	<h2>Range 和 Close</h2>
 	<p>
-	A sender can <code>close</code> a channel to indicate that no more
-	values will be sent. Receivers can test whether a channel has been
-	closed by assigning a second parameter to the receive expression: after
+        发送者可以 <code>close</code> 一个 channel 来表示再没有值会被发送了。接收者可以通过赋值语句的第二参数来测试 
+        channel 是否被关闭：当没有值可以接收并且 channel 已经被关闭，那么
 	<pre>
 v, ok := &lt;-ch</pre>
 	<p>
-	<code>ok</code> is <code>false</code> if there are no more values to
-	receive and the channel is closed.
+        <code>ok</code> 会被设置为 <code>false</code>。
+        <p>
+        循环 <code>for i := range c</code> 会不断从 channel 接收值，直到它被关闭。
 	<p>
-	The loop <code>for i := range c</code> receives values from the
-	channel repeatedly until it is closed.
+        <b>注意：</b> 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
 	<p>
-	<b>Note:</b> Only the sender should close a channel, never the
-	receiver. Sending on a closed channel will cause a panic.
-	<p>
-	<b>Another note</b>: Channels aren't like files; you don't usually
-	need to close them. Closing is only necessary when the receiver must be
-	told there are no more values coming.
+        <b>还要注意</b>：channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭。
 <div>
 package main
 
@@ -1897,11 +1891,9 @@ func main() {
 <div class="slide">
 	<h2>Select</h2>
 	<p>
-	The <code>select</code> statement lets a goroutine wait on multiple
-	communication operations.
+        <code>select</code> 语句使得一个 goroutine 在多个通讯操作上等待。
 	<p>
-	A <code>select</code> blocks until one of its cases can run, then it
-	executes that case.  It chooses one at random if multiple are ready.
+        <code>select</code> 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会随机选择一个。
 <div>
 package main
 
@@ -1935,13 +1927,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Default Selection</h2>
+	<h2>默认选择</h2>
 	<p>
-	The <code>default</code> case in a <code>select</code> is run if no
-	other case is ready.
+        当 <code>select</code> 中的其他条件分支都没有准备好的时候，<code>default</code> 分支会被执行。
 	<p>
-	Use a <code>default</code> case to try a send or receive without
-	blocking:
+	为了非阻塞的发送或者接收，可使用 <code>default</code> 分支：
 	<pre>
 select {
 case i := <-c:
@@ -1951,12 +1941,9 @@ default:
 }</pre>
 	<p>
 	<span class="appengineMode">
-	<b>Note:</b> This example won't run through the web-based tour user
-	interface because the
-	<a target="_blank" href="http://golang.org/doc/play/">sandbox
-	environment</a> has no concept of time. You may want to
-	<a target="_blank" href="http://golang.org/doc/install.html">install
-	Go</a> to see this example in action.
+        <b>注意：</b> 这个例子无法在指南的基于 web 的用户界面中运行，因为<a target="_blank" 
+            href="http://golang.org/doc/play/">沙盒环境</a>对于时间是没有概念的。需要<a target="_blank"
+            href="http://golang.org/doc/install.html">安装 Go</a> 来了解这个例子如何运行。
 	</span>
 <div>
 package main
@@ -1986,19 +1973,15 @@ func main() {
 </div>
 
 <div class="slide nocode">
-	<h2>Exercise: Equivalent Binary Trees</h2>
-	<p>
-	There can be many different binary trees with the same sequence of
-	values stored at the leaves.
-	For example, here are two binary trees storing the sequence
-	1, 1, 2, 3, 5, 8, 13.
+	<h2>练习：等价二叉树</h2>
+        <p>
+        可以用多种不同的二叉树的叶子节点存储相同的数列值。例如，这里有两个二叉树保存了序列 1，1，2，3，5，8，13。
 	<img src="static/fig4.png">
+        <p>
+        用于检查两个二叉树是否存储了相同的序列的函数在多数语言中都是相当复杂的。这里将使用 Go 的并发和 
+        channel 来编写一个简单的解法。
 	<p>
-	A function to check whether two binary trees store the same sequence is
-	quite complex in most languages. We'll use Go's concurrency and
-	channels to write a simple solution.
-	<p>
-	This example uses the <code>tree</code> package, which defines the type:
+        这个例子使用了 <code>tree</code> 包，定义了类型：
 <pre>
 type Tree struct {
 	Left  *Tree
@@ -2009,31 +1992,28 @@ type Tree struct {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Equivalent Binary Trees</h2>
+	<h2>练习：等价二叉树</h2>
 	<p>
-	<b>1.</b> Implement the <code>Walk</code> function.
+        <b>1.</b> 实现 <code>Walk</code> 函数。
 	<p>
-	<b>2.</b> Test the <code>Walk</code> function.
+	<b>2.</b> 测试 <code>Walk</code> 函数。
 	<p>
-	The function <code>tree.New(k)</code> constructs a randomly-structured
-	binary tree holding the values <code>k</code>, <code>2k</code>, <code>3k</code>, ...,
-	<code>10k</code>.
-	<p>
-	Create a new channel <code>ch</code> and kick off the walker:
+	函数 <code>tree.New(k)</code> 构造了一个随机结构的二叉树，保存了值
+	<code>k</code>，<code>2k</code>，<code>3k</code>，...，<code>10k</code>。
+        <p>
+        创建一个新的 channel <code>ch</code> 并且对其进行步进：
 <pre>
 go Walk(tree.New(1), ch)
 </pre>
 	<p>
-	Then read and print 10 values from the channel.
-	It should be the numbers 1, 2, 3, ..., 10.
+        然后从 channel 中读取并且打印 10 个值。应当是值 1，2，3，...，10。
 	<p>
-	<b>3.</b> Implement the <code>Same</code> function using <code>Walk</code>
-	to determine whether <code>t1</code> and <code>t2</code> store the same values.
+        <b>3.</b> 用 <code>Walk</code> 实现 <code>Same</code> 函数来检测是否 <code>t1</code> 和 <code>t2</code> 存储了相同的值。
 	<p>
-	<b>4.</b> Test the <code>Same</code> function. 
+	<b>4.</b> 测试 <code>Same</code> 函数。
 	<p>
-	<code>Same(tree.New(1), tree.New(1))</code> should return true, and
-	<code>Same(tree.New(1), tree.New(2))</code> should return false.
+	<code>Same(tree.New(1), tree.New(1))</code> 应当返回 true，而
+	<code>Same(tree.New(1), tree.New(2))</code> 应当返回 false。
 
 <div>
 package main
@@ -2054,13 +2034,11 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Exercise: Web Crawler</h2>
+	<h2>练习：Web 爬虫</h2>
+        <p>
+        在这个练习中，将会使用 Go 的并发特性来并行执行 web 爬虫。
 	<p>
-	In this exercise you'll use Go's concurrency features to
-	parallelize a web crawler.
-	<p>
-	Modify the <code>Crawl</code> function to fetch URLs in parallel
-	without fetching the same URL twice.
+	修改 <code>Crawl</code> 函数来并行的抓取 URLs，并且保证不重复。
 <div>
 package main
 
@@ -2155,44 +2133,44 @@ var fetcher = &fakeFetcher{
 <div class="slide nocode">
 	<h2>Where to Go from here...</h2>
 	<p class="appengineMode">
-	You can get started by
-	<a href="http://golang.org/doc/install.html">installing Go</a> or
-	downloading the
-	<a href="http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go">Go App Engine SDK</a>.
+	可以从 <a href="http://golang.org/doc/install.html">installing Go</a> 或者下载
+	<a href="http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go">Go App Engine SDK</a>。
 	</p>
 	<p>
-	<span class="appengineMode">Once you have Go on your machine, the</span>
-	<span class="localMode">The</span>
+	<span class="appengineMode">一旦在机器上安装好了 Go，</span>
+	<span class="localMode"></span>
 	<a target="_blank" href="http://golang.org/doc/docs.html">Go Documentation</a>
-	is a great place to
-	<span class="appengineMode">continue</span>
-	<span class="localMode">start</span>.
-	It contains references, tutorials, videos, and more.
+	
+	<span class="appengineMode">是应当继续阅读的内容</span>
+	<span class="localMode">作为开始</span>。
+        它包含了参考、指南、视频等等更多资料。
 	<p>
-	If you need help with the standard library,
-	see the <a target="_blank" href="http://golang.org/pkg/">package
-	reference</a>.  For help with the language itself, you might be
-	surprised to find the
+        在标准库上需要帮助的话，参考
+	<a target="_blank" href="http://golang.org/pkg/">package
+            reference</a>。语言本身的帮助，可以阅读令人愉快的
 	<a target="_blank" href="http://golang.org/doc/go_spec.html">Language
-	Spec</a> is quite readable.
+	Spec</a>。
 	<p>
-	If you're interested in writing web applications,
-	see the
+	如果对编写 web 应用感兴趣，参阅
 	<a target="_blank" href="http://golang.org/doc/codelab/wiki/">Wiki
-	Codelab</a>.
+	Codelab</a>。
 	<p>
-	If you want to further explore Go's concurrency model, see the
+        如果希望进一步探索 Go 的并发模型，参阅
 	<a target="_blank" href="http://golang.org/doc/codewalk/sharemem/">Share Memory by Communicating</a>
-	codewalk.
+	的代码之旅。
 	<p>
-	The <a target="_blank" href="http://golang.org/doc/codewalk/functions/">First Class Functions in Go</a>
-	codewalk gives an interesting perspective on Go's function types.
+        <a target="_blank" href="http://golang.org/doc/codewalk/functions/">First Class Functions in Go</a>
+        为 Go 的函数类型提供了有趣的展示。
 	<p>
-	The <a target="_blank" href="http://blog.golang.org/">Go Blog</a> has a
-	large archive of informative Go articles.
+	<a target="_blank" href="http://blog.golang.org/">Go Blog</a> 有着众多的关于 Go 的文章信息。
 	<p>
-	Visit <a target="_blank" href="http://golang.org">golang.org</a> for
-	more.
+	访问 <a target="_blank" href="http://golang.org">golang.org</a> 了解更多内容。
+        <p>
+        对于中文读者，<a target="_blank" href="https://groups.google.com/forum/#!forum/golang-china">Golang China Group</a> 是讨论不错的去处。
+        <p>
+        还有<a target="_blank" href="http://mikespook.com">这个博客</a>有一些关于 Go 的文章和翻译。
+        <p>
+        同时，可以通过<a target="_blank" href="http://www.mikespook.com/learning-go/">《学习 Go 语言》</a> 对这个有趣的语言获得更多的细节的了解。
 </div>
 
 </div><!-- end slides -->
