@@ -1734,24 +1734,19 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Goroutines</h2>
+	<h2>Goroutine</h2>
 	<p>
-	A <i>goroutine</i> is a lightweight thread managed by the Go runtime.
+        <i>goroutine</i> 是由 Go 运行时环境管理的轻量级线程。
 	<pre>go f(x, y, z)</pre>
 	<p>
-	starts a new goroutine running
+        开启一个新的 goroutine 执行
 	<pre>f(x, y, z)</pre>
 	<p>
-	The evaluation
-        of <code>f</code>, <code>x</code>, <code>y</code>, and <code>z</code>
-        happens in the current goroutine and the execution of <code>f</code>
-	happens in the new goroutine.
+        <code>f</code>，<code>x</code>，<code>y</code> 和 <code>z</code> 是当前 
+        goroutine 中定义的，但是在新的 goroutine 中运行 <code>f</code>。
 	<p>
-	Goroutines run in the same address space, so access to shared memory
-	must be synchronized. The <code><a href="http://golang.org/pkg/sync/"
-	target="_blank">sync</a></code> package provides useful primitives,
-	although you won't need them much in Go as there are other primitives.
-	(See the next slide.)
+	goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。
+        <code><a href="http://golang.org/pkg/sync/" target="_blank">sync</a></code> 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。 （在接下来的内容中会涉及到。）
 <div>
 package main
 
@@ -1775,28 +1770,26 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Channels</h2>
+	<h2>Channel</h2>
 
-	<p>
-	Channels are a typed conduit through which you can send and receive values with the channel operator, <code>&lt;-</code>.
+        <p>
+        channel 是有类型的管道，可以用 channel 操作符 <code>&lt;-</code> 对其发送或者接收值。
 <pre>
-ch <- v    // Send v to channel ch.
-v := <-ch  // Receive from ch, and
-           // assign value to v.
+ch <- v    // 将 v 送入 channel ch。
+v := <-ch  // 从 ch 接收，并且赋值给 v。
 </pre>
 	<p>
-	(The data flows in the direction of the "arrow".)
+        （“箭头”就是数据流的方向。）
 
 	<p>
-	Like maps and slices, channels must be created before use:
+        和 map 与 slice 一样，channel 使用前必须创建：
 <pre>
 ch := make(chan int)
 </pre>
 
 	<p>
-	By default, sends and receives block until the other side is ready.
-	This allows goroutines to synchronize without explicit locks or
-	condition variables.
+        默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 
+        goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
 <div>
 package main
 
@@ -1825,21 +1818,19 @@ func main() {
 
 
 <div class="slide">
-	<h2>Buffered Channels</h2>
+	<h2>缓冲 channel</h2>
 	
 	<p>
-	Channels can be <i>buffered</i>.  Provide the buffer length as the
-	second argument to <code>make</code> to initialize a buffered channel:
+        channel 可以是<i>缓冲的</i>。为 <code>make</code> 提供第二个参数作为缓冲长度来初始化一个缓冲 channel：
 <pre>
 ch := make(chan int, 100)
 </pre>
 
 	<p>
-	Sends to a buffered channel block only when the buffer is full.
-	Receives block when the buffer is empty.
+        向缓冲 channel 发送数据的时候，只有在缓冲区满的时候才会阻塞。当缓冲区清空的时候接受阻塞。
 
-	<p>
-	Modify the example to overfill the buffer and see what happens.
+        <p>
+        修改例子使得缓冲区被填满，然后看看会发生什么。
 
 <div>
 package main
