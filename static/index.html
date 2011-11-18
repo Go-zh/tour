@@ -45,7 +45,7 @@
 <div class="toc">欢迎</div>
 
 <div class="slide">
-	<h2>Hello, 世界</h2>
+	<h2>Hello, world</h2>
 	<p>
 	欢迎来到<a target="_blank" href="http://golang.org/">Go 编程语言</a>指南.
         <p>
@@ -73,9 +73,9 @@ func main() {
 <div class="slide nocode appengineMode">
 	<h2>离线 Go 指南</h2>
         <p>
-        该指南同样可以作为独立的程序用在没有互联网接入的情况下。
+        在没有互联网接入的情况下该指南可以作为独立的程序使用。
 	<p>
-        独立运行的指南更快，同时它在你本地的设备上构建和编译代码。它同时包括了一些在沙盒版本中没有的增强体验。
+        指南独立运行会更快，同时它在本地的设备上构建和编译代码。并且包括了一些在沙盒版本中没有的增强体验。
 	<p>
         为了在本地运行指南首先要<a target="_blank" href="http://golang.org/doc/install.html">安装 Go</a>（最后的稳定版本，<code>release.r60</code>），然后使用
 	<a target="_blank" href="http://golang.org/cmd/goinstall/">goinstall</a>
@@ -2020,12 +2020,10 @@ package main
 
 import "<span class="appengineMode">tour</span><span class="localMode">go-tour.googlecode.com/hg</span>/tree"
 
-// Walk walks the tree t sending all values
-// from the tree to the channel ch.
+// Walk 步进 tree t 将所有的值从 tree 发送到 channel ch。
 func Walk(t *tree.Tree, ch chan int)
 
-// Same determines whether the trees
-// t1 and t2 contain the same values.
+// Same 检测树 t1 和 t2 是否含有相同的值。
 func Same(t1, t2 *tree.Tree) bool
 
 func main() {
@@ -2048,17 +2046,15 @@ import (
 )
 
 type Fetcher interface {
-	// Fetch returns the body of URL and
-	// a slice of URLs found on that page.
+        // Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放到一个 slice 中。
 	Fetch(url string) (body string, urls []string, err os.Error)
 }
 
-// Crawl uses fetcher to recursively crawl
-// pages starting with url, to a maximum of depth.
+// Crawl 使用 fetcher 从某个 URL 开始递归的爬取页面，直到达到最大深度。
 func Crawl(url string, depth int, fetcher Fetcher) {
-	// TODO: Fetch URLs in parallel.
-	// TODO: Don't fetch the same URL twice.
-	// This implementation doesn't do either:
+        // TODO: 并行的抓取 URL。
+        // TODO: 不重复抓取页面。
+        // 下面并没有实现上面两种情况：
 	if depth <= 0 {
 		return
 	}
@@ -2079,7 +2075,7 @@ func main() {
 }
 
 
-// fakeFetcher is Fetcher that returns canned results.
+// fakeFetcher 是返回若干结果的 Fetcher。
 type fakeFetcher map[string]*fakeResult
 
 type fakeResult struct {
@@ -2094,7 +2090,7 @@ func (f *fakeFetcher) Fetch(url string) (string, []string, os.Error) {
 	return "", nil, fmt.Errorf("not found: %s", url)
 }
 
-// fetcher is a populated fakeFetcher.
+// fetcher 是填充后的 fakeFetcher。
 var fetcher = &fakeFetcher{
 	"http://golang.org/": &fakeResult{
 		"The Go Programming Language",
