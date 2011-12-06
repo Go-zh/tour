@@ -75,7 +75,7 @@ func main() {
         <p>
         在没有互联网接入的情况下该指南可以作为独立的程序使用。
 	<p>
-        指南独立运行会更快，同时它在本地的设备上构建和编译代码。并且包括了一些在沙盒版本中没有的增强体验。
+        指南独立运行会在本地的设备上构建和编译代码，这运行得更快。并且会包括一些在沙盒版本中没有的体验上的增强。
 	<p>
         为了在本地运行指南首先要<a target="_blank" href="http://golang.org/doc/install.html">安装 Go</a>（最后的稳定版本，<code>release.r60</code>），然后使用
 	<a target="_blank" href="http://golang.org/cmd/goinstall/">goinstall</a>
@@ -100,7 +100,7 @@ func main() {
 	<ul>
         <li><a href="http://tour.golang.org/">English &mdash; 英语</a></li>
         <li><a href="http://go-tour-jp.appspot.com/">Japanese &mdash; 日語</a></li>
-	<li><a href="http://go-tour-kr.appspot.com/">Korean &mdash; 韩语</a></li>
+        <li><a href="http://go-tour-kr.appspot.com/">Korean &mdash; 韩语</a></li>
 	</ul>
 	点击“Next”按钮或者按 PageDown 继续。
 </div>
@@ -190,7 +190,7 @@ func main() {
 	<p>
         注意类型在变量名<i>之后</i>。
         <p>
-	（参考<a target="_blank" href="http://blog.golang.org/2010/07/gos-declaration-syntax.html">这篇博文</a>了解类型为何以这种形式出现的原因。）
+	（参考<a target="_blank" href="http://blog.golang.org/2010/07/gos-declaration-syntax.html">这篇博文</a>了解类型以这种形式出现的原因。）
 <div>
 package main
 
@@ -235,7 +235,7 @@ func main() {
 <div class="slide">
 	<h2>函数</h2>
 	<p>
-        函数可以返回任意数量的结果。
+        函数可以返回任意数量的返回值。
 	<p>
 	这个函数返回了两个字符串。
 <div>
@@ -257,9 +257,9 @@ func main() {
 <div class="slide">
 	<h2>函数</h2>
         <p>
-        函数接受参数；在 Go 中可以像变量那样对结果进行命名；这叫做“结果参数”。
+        函数接受参数；在 Go 中可以像变量那样对返回值进行命名；这叫做“返回值参数”。
 	<p>
-	如果命名了结果参数，一个没有参数的 <code>return</code> 语句，会将当前的值作为结果返回。
+	如果命名了返回值参数，一个没有参数的 <code>return</code> 语句，会将当前的值作为返回值返回。
 <div>
 package main
 
@@ -280,7 +280,7 @@ func main() {
 <div class="slide">
 	<h2>变量</h2>
 	<p>
-        <code>var</code> 语句定义了一个变量的列表；跟函数的参数列表一样，类型在最后。
+        <code>var</code> 语句定义了一个变量的列表；跟函数的参数列表一样，类型在后面。
 <div>
 package main
 
@@ -298,9 +298,9 @@ func main() {
 <div class="slide">
 	<h2>变量</h2>
 	<p>
-        变量定义可以包含初始值，每个变量一个。
+        变量定义可以包含初始值，每个变量对应一个。
 	<p>
-        如果初始化是表达式，则可以省略类型；变量从初始值中获得类型。
+        如果初始化是使用表达式，则可以省略类型；变量从初始值中获得类型。
 <div>
 package main
 
@@ -320,7 +320,7 @@ func main() {
         <p>
         在函数中，<code>:=</code> 简洁赋值语句可以在恰当的地方用于简洁的 <code>var</code> 定义。
 	<p>
-         （<code>:=</code> 结构不能使用在函数外，函数外的每个结构都必须以关键字开始。）
+         （<code>:=</code> 结构不能使用在函数外，函数外的每个语法块都必须以关键字开始。）
 <div>
 package main
 
@@ -395,7 +395,7 @@ func main() {
 	<p>
 	Go 只有一种循环结构，<code>for</code> 循环。
 	<p>
-        基本的 <code>for</code> 循环看起来跟 C 或者 Java 中做的一样，除了没有了 <code>( )</code> 之外（它们甚至连可选都不是），而 <code>{ }</code> 是必须的。
+        基本的 <code>for</code> 循环看起来跟 C 或者 Java 中做的一样，除了没有了 <code>( )</code> 之外（甚至强制不能使用它们），而 <code>{ }</code> 是必须的。
 <div>
 package main
 
@@ -481,7 +481,7 @@ func main() {
 <div class="slide">
 	<h2>If</h2>
 	<p>
-	<code>if</code> 语句看起来跟 C 或者 Java 中的一样，除了没有了 <code>( )</code> 之外（它们甚至连可选都不是），而 <code>{ }</code> 是必须的。
+	<code>if</code> 语句看起来跟 C 或者 Java 中的一样，除了没有了 <code>( )</code> 之外（甚至强制不能使用它们），而 <code>{ }</code> 是必须的。
 	<p>
         （耳熟吗？）
 <div>
@@ -656,7 +656,7 @@ func main() {
 	<p>
         Go 有指针，但是没有指针运算。
 	<p>
-	结构题字段可以通过结构体指针来访问。通过指针间接的访问是透明的。
+	结构体字段可以通过结构体指针来访问。通过指针间接的访问是透明的。
 <div>
 package main
 
@@ -707,7 +707,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2><code>new</code>  函数</h2>
+	<h2><code>new</code> 函数</h2>
 	<p>
 	表达式 <code>new(T)</code> 分配了一个零初始化的 <code>T</code> 值，并返回指向它的指针。
 	<pre>var t *T = new(T)</pre>
@@ -763,7 +763,7 @@ func main() {
 <div class="slide">
 	<h2>Map</h2>
 	<p>
-        map 的文法跟结构体文法相似，不过键是必须的。
+        map 的文法跟结构体文法相似，不过键名是必须的。
 <div>
 package main
 
@@ -791,7 +791,7 @@ func main() {
 <div class="slide">
 	<h2>Map</h2>
 	<p>
-        如果顶层类型就是类型名子的话，可以在文法的元素中省略它。
+        如果顶层类型只有类型名的话，可以在文法的元素中省略键名。
 <div>
 package main
 
@@ -1011,7 +1011,7 @@ func main() {
 <div class="slide">
 	<h2>Range</h2>
 	<p>
-        可以将值赋值给 <code>_</code> 来忽略键和值。
+        可以将值赋值给 <code>_</code> 来忽略键名和值。
         <p>
         如果只需要索引值，去掉&ldquo;<code>, value</code>&rdquo;的部分即可。
 <div>
@@ -1144,7 +1144,7 @@ func main() {
         <p>
         提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 	<pre>
-	z := float64(1.0)
+	z := float64(1)
 	z := 1.0
 	</pre>
 
@@ -1222,8 +1222,7 @@ package main
 
 import "fmt"
 
-// fibonacci is a function that returns
-// a function that returns an int.
+// fibonacci 函数会返回一个返回 int 的函数。
 func fibonacci() func() int {
 }
 
@@ -1375,7 +1374,7 @@ func main() {
 <div class="slide">
 	<h2>接口</h2>
         <p>
-        接口类型是由一组方法集合定义的。
+        接口类型是由一组方法定义的集合。
         <p>
         接口类型的值可以存放实现这些方法的任何值。
 <div>
@@ -1431,7 +1430,7 @@ func (v *Vertex) Abs() float64 {
         <p>
         隐式接口解藕了实现接口的包和定义接口的包：互不依赖。
         <p>
-        明确的接口定义也是受到鼓励的，因为这样就无需找到每一个实现，并对其加上新的接口名称。
+        也鼓励明确的接口定义，因为这样就无需找到每一个实现，并对其加上新的接口名称。
 	<p>
         <a target="_blank" href="http://golang.org/pkg/io/">Package io</a> 定义了 <code>Reader</code> 和 <code>Writer</code>；不一定要这么做。
 <div>
@@ -1469,7 +1468,7 @@ func main() {
 <div class="slide">
 	<h2>错误</h2>
         <p>
-        错误是可以描述它自己的任何东西：
+        错误可以是任何能描述自己的东西：
 	<pre>
 package os
 
@@ -1821,7 +1820,7 @@ func main() {
 	<h2>缓冲 channel</h2>
 	
 	<p>
-        channel 可以是<i>缓冲的</i>。为 <code>make</code> 提供第二个参数作为缓冲长度来初始化一个缓冲 channel：
+        channel 可以是<i>带缓冲的</i>。为 <code>make</code> 提供第二个参数作为缓冲长度来初始化一个缓冲 channel：
 <pre>
 ch := make(chan int, 100)
 </pre>
@@ -1942,7 +1941,7 @@ default:
 	<p>
 	<span class="appengineMode">
         <b>注意：</b> 这个例子无法在指南的基于 web 的用户界面中运行，因为<a target="_blank" 
-            href="http://golang.org/doc/play/">沙盒环境</a>对于时间是没有概念的。需要<a target="_blank"
+            href="http://golang.org/doc/play/">沙盒环境</a>是没有定时器概念的。需要<a target="_blank"
             href="http://golang.org/doc/install.html">安装 Go</a> 来了解这个例子如何运行。
 	</span>
 <div>
