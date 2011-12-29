@@ -337,10 +337,10 @@ func main() {
 
 <div class="slide">
 	<h2>常量</h2>
-        <p>
+	<p>
         常量的定义与变量类似，只不过使用 <code>const</code> 关键字。
 	<p>
-        常量可以是字符串、布尔或数字类型的值。
+        常量可以是字符、字符串、布尔或数字类型的值。
 <div>
 package main
 
@@ -579,6 +579,8 @@ string
 
 int  int8  int16  int32  int64
 uint uint8 uint16 uint32 uint64 uintptr
+
+rune // Represents a Unicode code point
 
 float32 float64
 
@@ -1115,11 +1117,11 @@ import (
 )
 
 func main() {
-	t := time.LocalTime()
+	t := time.Now()
 	switch {
-	case t.Hour < 12:
+	case t.Hour() < 12:
 	    fmt.Println("Good morning!")
-	case t.Hour < 17:
+	case t.Hour() < 17:
 	    fmt.Println("Good afternoon.")
 	default:
 	    fmt.Println("Good evening.")
@@ -1175,7 +1177,7 @@ func main() {
 package main
 
 import (
-	"<span class="appengineMode">tour</span><span class="localMode">go-tour.googlecode.com/hg</span>/wc"
+	"<span class="appengineMode">tour</span><span class="localMode">code.google.com/p/go-tour</span>/wc"
 )
 
 func WordCount(s string) map[string]int {
@@ -1200,7 +1202,7 @@ func main() {
 <div>
 package main
 
-import "<span class="appengineMode">tour</span><span class="localMode">go-tour.googlecode.com/hg</span>/pic"
+import "<span class="appengineMode">tour</span><span class="localMode">code.google.com/p/go-tour</span>/pic"
 
 func Pic(dx, dy int) [][]uint8 {
 }
@@ -1442,11 +1444,11 @@ import (
 )
 
 type Reader interface {
-	Read(b []byte) (n int, err os.Error)
+	Read(b []byte) (n int, err error)
 }
 
 type Writer interface {
-	Write(b []byte) (n int, err os.Error)
+	Write(b []byte) (n int, err error)
 }
 
 type ReadWriter interface {
@@ -1467,31 +1469,35 @@ func main() {
 
 <div class="slide">
 	<h2>错误</h2>
-        <p>
-        错误可以是任何能描述自己的东西：
+	<p>
+	错误是可以用字符串描述自己的任何东西。
+	主要思路是由预定义的内建接口类型 
+	<code>error</code>，和其返回返回字符串窜的方法 <code>Error</code> 构成。
 	<pre>
-package os
 
-type Error interface {
-	String() string
+type error interface {
+	Error() string
 }
 	</pre>
+
+	<p>
+	当用 <code>fmt</code> 包的多种不同的打印函数输出一个 <code>error</code> 
+	时，会自动的调用该方法。
 
 <div>
 package main
 
 import (
 	"fmt"
-	"os"
 	"time"
 )
 
 type MyError struct {
-	When *time.Time
+	When time.Time
 	What string
 }
 
-func (e *MyError) String() string {
+func (e *MyError) Error() string {
 	return fmt.Sprintf("at %v, %s",
 		e.When, e.What)
 }
@@ -1524,7 +1530,7 @@ type Handler interface {
 }
 	</pre>
 	<p>
-        在这个例子中，类型 <code>MyHandler</code> 实现了 <code>http.Handler</code>。
+        在这个例子中，类型 <code>Hello</code> 实现了 <code>http.Handler</code>。
 	<p>
 	<span class="localMode">
 	访问 <a href="http://localhost:4000/" target="_blank">http://localhost:4000/</a> 会看到来自程序的问候。
@@ -1537,7 +1543,7 @@ package main
 
 import (
 	"fmt"
-	"http"
+	"net/http"
 )
 
 type Hello struct{}
@@ -1563,14 +1569,14 @@ func main() {
 package image
 
 type Image interface {
-	ColorModel() ColorModel
+	ColorModel() color.Model
 	Bounds() Rectangle
-	At(x, y int) Color
+	At(x, y int) color.Color
 }</pre>
         <p>
         （参阅<a target="_blank" href="http://golang.org/pkg/image/#Image">文档</a>了解全部信息。）
 	<p>
-        <code>Color</code> 和 <code>ColorModel</code> 也是接口，但是通常因为直接使用预定义的实现 <code>image.RGBAColor</code> 和 <code>image.RGBAColorModel</code> 而忽略它们。
+	同样，<code>Color</code> 和 <code>ColorModel</code> 也是接口，但是通常因为直接使用预定义的实现 <code>image.RGBAColor</code> 和 <code>image.RGBAColorModel</code> 而忽略它们。
 <div>
 package main
 
@@ -1580,7 +1586,7 @@ import (
 )
 
 func main() {
-	m := image.NewRGBA(100, 100)
+	m := image.NewRGBA(image.Rect(0, 0, 100, 100))
 	fmt.Println(m.Bounds())
 	fmt.Println(m.At(0, 0).RGBA())
 }
@@ -1590,7 +1596,7 @@ func main() {
 <div class="slide">
 	<h2>练习：错误</h2>
         <p>
-        从之前的练习中复制 <code>Sqrt</code> 函数，并修改使其返回 <code>os.Error</code> 值。
+        从之前的练习中复制 <code>Sqrt</code> 函数，并修改使其返回 <code>error</code> 值。
 	<p>
         <code>Sqrt</code> 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
         <p>
@@ -1598,14 +1604,14 @@ func main() {
 	<pre>
 type ErrNegativeSqrt float64</pre>
 	<p>
-        使其成为一个 <code>os.Error</code>，通过 
+        使其成为一个 <code>error</code>，通过 
 	<pre>
-func (e ErrNegativeSqrt) String() string</pre>
+func (e ErrNegativeSqrt) Error() string</pre>
 	<p>
-        方法就可以让 <code>ErrNegativeSqrt(-2).String()</code> 返回
+        方法就可以让 <code>ErrNegativeSqrt(-2).Error()</code> 返回
         <code>"cannot Sqrt negative number: -2"</code>。
 	<p>
-        <b>注意：</b> 在 <code>String</code> 方法内调用 <code>fmt.Print(e)</code> 将会让程序陷入死循环。
+        <b>注意：</b> 在 <code>Error</code> 方法内调用 <code>fmt.Print(e)</code> 将会让程序陷入死循环。
         可以通过先转换 <code>e</code> 来避免这个：
 	<code>fmt.Print(float64(e))</code>。为什么？
 	<p>
@@ -1615,10 +1621,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
-func Sqrt(f float64) (float64, os.Error) {
+func Sqrt(f float64) (float64, error) {
 	return 0, nil
 }
 
@@ -1649,7 +1654,7 @@ http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})</pre>
 package main
 
 import (
-	"http"
+	"net/http"
 )
 
 func main() {
@@ -1671,14 +1676,14 @@ func main() {
 	<p>
 	<code>ColorModel</code> 应当返回 <code>image.RGBAColorModel</code>。
 	<p>
-	<code>At</code> 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 <code>v</code> 匹配 <code>image.RGBAColor{v, v, 255, 255}</code>。
+	<code>At</code> 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 <code>v</code> 匹配 <code>color.RGBAColor{v, v, 255, 255}</code>。
 
 <div>
 package main
 
 import (
 	"image"
-	"<span class="appengineMode">tour</span><span class="localMode">go-tour.googlecode.com/hg</span>/pic"
+	"<span class="appengineMode">tour</span><span class="localMode">code.google.com/p/go-tour</span>/pic"
 )
 
 type Image struct{}
@@ -1860,7 +1865,7 @@ v, ok := &lt;-ch</pre>
 	<p>
         <b>注意：</b> 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
 	<p>
-        <b>还要注意</b>：channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭。
+        <b>还要注意</b>：channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 <code>range</code>。
 <div>
 package main
 
@@ -2017,7 +2022,7 @@ go Walk(tree.New(1), ch)
 <div>
 package main
 
-import "<span class="appengineMode">tour</span><span class="localMode">go-tour.googlecode.com/hg</span>/tree"
+import "<span class="appengineMode">tour</span><span class="localMode">code.google.com/p/go-tour</span>/tree"
 
 // Walk 步进 tree t 将所有的值从 tree 发送到 channel ch。
 func Walk(t *tree.Tree, ch chan int)
@@ -2040,13 +2045,12 @@ func main() {
 package main
 
 import (
-	"os"
 	"fmt"
 )
 
 type Fetcher interface {
         // Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放到一个 slice 中。
-	Fetch(url string) (body string, urls []string, err os.Error)
+	Fetch(url string) (body string, urls []string, err error)
 }
 
 // Crawl 使用 fetcher 从某个 URL 开始递归的爬取页面，直到达到最大深度。
@@ -2082,7 +2086,7 @@ type fakeResult struct {
 	urls     []string
 }
 
-func (f *fakeFetcher) Fetch(url string) (string, []string, os.Error) {
+func (f *fakeFetcher) Fetch(url string) (string, []string, error) {
 	if res, ok := (*f)[url]; ok {
 		return res.body, res.urls, nil
 	}
