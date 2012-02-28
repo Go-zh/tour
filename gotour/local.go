@@ -22,12 +22,12 @@ import (
 	"sync"
 
 	// Imports so that goinstall automatically installs them.
-	_ "code.google.com/p/go-tour/pic"
-	_ "code.google.com/p/go-tour/tree"
-	_ "code.google.com/p/go-tour/wc"
+	_ "bitbucket.org/mikespook/go-tour-zh/pic"
+	_ "bitbucket.org/mikespook/go-tour-zh/tree"
+	_ "bitbucket.org/mikespook/go-tour-zh/wc"
 )
 
-const basePkg = "code.google.com/p/go-tour/"
+const basePkg = "bitbucket.org/mikespook/go-tour-zh/"
 
 var (
 	httpListen = flag.String("http", "127.0.0.1:3999", "host:port to listen on")
