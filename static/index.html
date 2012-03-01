@@ -123,7 +123,7 @@ func main() {
 <div class="slide">
 	<h2>导入</h2>
 	<p>
-        这个代码用园括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
+        这个代码用圆括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
 	<pre>
 	import "fmt"
 	import "math"
@@ -455,7 +455,7 @@ func main() {
 <div class="slide">
 	<h2>For</h2>
 	<p>
-	而为了避免累赘，分号可以省略，因此一个死循环可以简洁的表达。
+	而为了避免累赘，分号可以省略，因此一个死循环可以简洁地表达。
 <div>
 package main
 
@@ -568,7 +568,7 @@ string
 int  int8  int16  int32  int64
 uint uint8 uint16 uint32 uint64 uintptr
 
-rune // Represents a Unicode code point
+rune // 代表一个Unicode码点
 
 float32 float64
 
@@ -578,14 +578,14 @@ complex64 complex128
 package main
 
 import (
-	"cmath"
+	"math/cmplx"
 	"fmt"
 )
 
 var (
 	ToBe bool = false
 	MaxInt uint64 = 1<<64 - 1
-	z complex128 = cmath.Sqrt(-5+12i)
+	z complex128 = cmplx.Sqrt(-5+12i)
 )
 
 func main() {
@@ -1076,7 +1076,7 @@ import (
 
 func main() {
 	fmt.Println("When's Saturday?")
-	today := time.LocalTime().Weekday
+	today := time.Now().Weekday()
 	switch time.Saturday {
 	case today+0:
 		fmt.Println("Today.")
@@ -1235,7 +1235,7 @@ func main() {
 	</center>
 	<p>
 	找到 2 的立方根，确保算法能够工作。
-	这里有 <a target="_blank" href="http://weekly.golang.org/pkg/cmath/#Pow">cmath.Pow</a> 函数。
+	这里有 <a target="_blank" href="http://weekly.golang.org/pkg/math/cmplx/#Pow">cmath.Pow</a> 函数。
 
 <div>
 package main
@@ -1490,9 +1490,9 @@ func (e *MyError) Error() string {
 		e.When, e.What)
 }
 
-func run() os.Error {
+func run() error {
 	return &MyError{
-		time.LocalTime(),
+		time.Now(),
 		"it didn't work",
 	}
 }
@@ -1508,7 +1508,7 @@ func main() {
 <div class="slide">
 	<h2>Web 服务器</h2>
 	<p>
-	<a target="_blank" href="http://weekly.golang.org/pkg/http/">包 http</a>
+	<a target="_blank" href="http://weekly.golang.org/pkg/net/http/">包 http</a>
 	通过任何实现了 <code>http.Handler</code> 的值来响应 HTTP 请求：
 	<pre>
 package http
@@ -1690,9 +1690,9 @@ func main() {
 	<p>
 	一般的模式是 <a target="_blank" href="http://weekly.golang.org/pkg/io/#Reader">io.Reader</a> 包裹另一个 <code>io.Reader</code>，用某些途径修改特定的流。
 	<p>
-	例如，	<a target="_blank" href="http://weekly.golang.org/pkg/compress/gzip/#Decompressor.NewReader">gzip.NewReader</a>
+	例如，	<a target="_blank" href="http://weekly.golang.org/pkg/compress/gzip/#NewReader">gzip.NewReader</a>
 	函数输入一个 <code>io.Reader</code>（gzip 的数据流）并且返回一个同样实现了 <code>io.Reader</code> 的
-	<code>*gzip.Decompressor</code>（解压缩后的数据流）。
+	<code>*gzip.Reader</code>（解压缩后的数据流）。
 	<p>
         实现一个实现了 <code>io.Reader</code> 的 <code>rot13Reader</code>，用
         <a target="_blank" href="http://en.wikipedia.org/wiki/ROT13">ROT13</a>
@@ -1751,7 +1751,7 @@ import (
 
 func say(s string) {
 	for i := 0; i < 5; i++ {
-		<span class="appengineMode">runtime.Gosched()</span><span class="localMode">time.Sleep(100e6)</span>
+		<span class="appengineMode">runtime.Gosched()</span><span class="localMode">time.Sleep(100 * time.Millisecond)</span>
 		fmt.Println(s)
 	}
 }
