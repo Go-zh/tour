@@ -77,11 +77,11 @@ func main() {
 	<p>
         指南独立运行会在本地的设备上构建和编译代码，这运行得更快。并且会包括一些在沙盒版本中没有的体验上的增强。
 	<p>
-	为了在本地运行指南首先要<a target="_blank" href="http://weekly.golang.org/install/">安装 Go</a>
-	（这个指南使用的最新 weekly 快照版本，），然后使用
-	<a target="_blank" href="http://weekly.golang.org/cmd/go/">go get</a> 安装
+	为了在本地运行指南首先要<a target="_blank" href="http://golang.org/install/">安装 Go</a>，
+	然后使用
+	<a target="_blank" href="http://golang.org/cmd/go/">go get</a> 安装
 	<a target="_blank" href="http://code.google.com/p/go-tour/">gotour</a>：
-        <pre>    go get go-tour.googlecode.com/hg/gotour</pre>
+        <pre>    go get code.google.com/p/go-tour/gotour</pre>
         <p>
         也可以安装<a target="_blank" href="http://bitbucket.org/mikespook/go-tour-zh/">中文版本</a>：
         <pre>    go get bitbucket.org/mikespook/go-tour-zh/gotour</pre>
@@ -178,7 +178,7 @@ func main() {
 	<p>
         注意类型在变量名<i>之后</i>。
         <p>
-	（参考<a target="_blank" href="http://weekly.golang.org/doc/articles/gos_declaration_syntax.html">这篇关于 Go 语法定义的文章</a>了解类型以这种形式出现的原因。）
+	（参考<a target="_blank" href="http://golang.org/doc/articles/gos_declaration_syntax.html">这篇关于 Go 语法定义的文章</a>了解类型以这种形式出现的原因。）
 <div>
 package main
 
@@ -910,11 +910,11 @@ func printSlice(s string, x []int) {
 	<h2>Slice</h2>
 	<p>
 	slice 的零值是 <code>nil</code>。
-        <p>
-        一个 nil 的 slice 的长度和容量是 0。
+	<p>
+	一个 nil 的 slice 的长度和容量是 0。
 	<p>
 	（了解更多关于 slice 的内容，参阅文章
-	“<a target="_blank" href="http://weekly.golang.org/doc/articles/slices_usage_and_internals.html">Slices：使用和内幕</a>”。）
+	“<a target="_blank" href="http://golang.org/doc/articles/slices_usage_and_internals.html">Slices：使用和内幕</a>”。）
 <div>
 package main
 
@@ -1135,7 +1135,7 @@ func main() {
         <p>
         为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
         <p>
-        然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 <a target="_blank" href="http://weekly.golang.org/pkg/math/#Sqrt">math.Sqrt</a> 接近吗？
+        然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 <a target="_blank" href="http://golang.org/pkg/math/#Sqrt">math.Sqrt</a> 接近吗？
         <p>
         提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 	<pre>
@@ -1164,7 +1164,7 @@ func main() {
 	<p>
         实现 <code>WordCount</code>。它应当返回一个含有 <code>s</code> 中每个 &ldquo;word&rdquo; 数量的 map。函数 <code>wc.Test</code> 针对这个函数执行一个测试用例，并打印成功或者失败。
 	<p>
-        你会发现 <a target="_blank" href="http://weekly.golang.org/pkg/strings/#Fields">strings.Fields</a> 很有帮助。
+        你会发现 <a target="_blank" href="http://golang.org/pkg/strings/#Fields">strings.Fields</a> 很有帮助。
 
 <div>
 package main
@@ -1243,7 +1243,7 @@ func main() {
 	</center>
 	<p>
 	找到 2 的立方根，确保算法能够工作。
-	这里有 <a target="_blank" href="http://weekly.golang.org/pkg/math/cmplx/#Pow">cmath.Pow</a> 函数。
+	这里有 <a target="_blank" href="http://golang.org/pkg/math/cmplx/#Pow">cmath.Pow</a> 函数。
 
 <div>
 package main
@@ -1430,7 +1430,7 @@ func (v *Vertex) Abs() float64 {
         <p>
         也鼓励明确的接口定义，因为这样就无需找到每一个实现，并对其加上新的接口名称。
 	<p>
-        <a target="_blank" href="http://weekly.golang.org/pkg/io/">包 io</a> 定义了 <code>Reader</code> 和 <code>Writer</code>；不一定要这么做。
+        <a target="_blank" href="http://golang.org/pkg/io/">包 io</a> 定义了 <code>Reader</code> 和 <code>Writer</code>；不一定要这么做。
 <div>
 package main
 
@@ -1516,7 +1516,7 @@ func main() {
 <div class="slide">
 	<h2>Web 服务器</h2>
 	<p>
-	<a target="_blank" href="http://weekly.golang.org/pkg/net/http/">包 http</a>
+	<a target="_blank" href="http://golang.org/pkg/net/http/">包 http</a>
 	通过任何实现了 <code>http.Handler</code> 的值来响应 HTTP 请求：
 	<pre>
 package http
@@ -1534,7 +1534,7 @@ type Handler interface {
 	</span>
 	<span class="appengineMode">
 	<b>注意：</b> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
-	web 服务器，可能需要<a target="_blank" href="http://weekly.golang.org/install/">安装 Go</a>。
+	web 服务器，可能需要<a target="_blank" href="http://golang.org/install/">安装 Go</a>。
 	</span>
 <div>
 package main
@@ -1562,7 +1562,7 @@ func main() {
 <div class="slide">
 	<h2>图片</h2>
 	<p>
-	<a target="_blank" href="http://weekly.golang.org/pkg/image/#Image">Package image</a> 定义了 <code>Image</code> 接口：
+	<a target="_blank" href="http://golang.org/pkg/image/#Image">Package image</a> 定义了 <code>Image</code> 接口：
 	<pre>
 package image
 
@@ -1572,7 +1572,7 @@ type Image interface {
 	At(x, y int) color.Color
 }</pre>
         <p>
-        （参阅<a target="_blank" href="http://weekly.golang.org/pkg/image/#Image">文档</a>了解全部信息。）
+        （参阅<a target="_blank" href="http://golang.org/pkg/image/#Image">文档</a>了解全部信息。）
 	<p>
 	同样，<code>Color</code> 和 <code>ColorModel</code> 也是接口，但是通常因为直接使用预定义的实现 <code>image.RGBAColor</code> 和 <code>image.RGBAColorModel</code> 而忽略它们。
 <div>
@@ -1668,7 +1668,7 @@ func main() {
         还记得之前编写的图片生成器吗？
         现在来编写另一个，不过这次将会返回一个 <code>image.Image</code> 的实现来代替 slice 的数据。
 	<p>
-        自定义的 <code>Image</code> 类型，要实现<a target="_blank" href="http://weekly.golang.org/pkg/image/#Image" target="_blank">必要的方法</a>，并且调用 <code>pic.ShowImage</code>。
+        自定义的 <code>Image</code> 类型，要实现<a target="_blank" href="http://golang.org/pkg/image/#Image" target="_blank">必要的方法</a>，并且调用 <code>pic.ShowImage</code>。
 	<p>
 	<code>Bounds</code> 应当返回一个 <code>image.Rectangle</code>，例如 <code>image.Rect(0, 0, w, h)</code>。
 	<p>
@@ -1696,9 +1696,9 @@ func main() {
 <div class="slide">
 	<h2>练习：Rot13 读取器</h2>
 	<p>
-	一般的模式是 <a target="_blank" href="http://weekly.golang.org/pkg/io/#Reader">io.Reader</a> 包裹另一个 <code>io.Reader</code>，用某些途径修改特定的流。
+	一般的模式是 <a target="_blank" href="http://golang.org/pkg/io/#Reader">io.Reader</a> 包裹另一个 <code>io.Reader</code>，用某些途径修改特定的流。
 	<p>
-	例如，	<a target="_blank" href="http://weekly.golang.org/pkg/compress/gzip/#NewReader">gzip.NewReader</a>
+	例如，	<a target="_blank" href="http://golang.org/pkg/compress/gzip/#NewReader">gzip.NewReader</a>
 	函数输入一个 <code>io.Reader</code>（gzip 的数据流）并且返回一个同样实现了 <code>io.Reader</code> 的
 	<code>*gzip.Reader</code>（解压缩后的数据流）。
 	<p>
@@ -1748,7 +1748,7 @@ func main() {
         goroutine 中定义的，但是在新的 goroutine 中运行 <code>f</code>。
 	<p>
 	goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。
-        <code><a href="http://weekly.golang.org/pkg/sync/" target="_blank">sync</a></code> 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。 （在接下来的内容中会涉及到。）
+        <code><a href="http://golang.org/pkg/sync/" target="_blank">sync</a></code> 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。 （在接下来的内容中会涉及到。）
 <div>
 package main
 
@@ -1944,7 +1944,7 @@ default:
 	<p>
 	<span class="appengineMode">
 	<b>注意：</b> 这个例子无法在指南的基于 web
-	的用户界面中运行，因为沙盒环境是没有定时器概念的。需要<a target="_blank" href="http://weekly.golang.org/install/">安装、
+	的用户界面中运行，因为沙盒环境是没有定时器概念的。需要<a target="_blank" href="http://golang.org/install/">安装、
 	Go</a> 来了解这个例子如何运行。
 	</span>
 <div>
@@ -2130,34 +2130,34 @@ var fetcher = &fakeFetcher{
 <div class="slide nocode">
 	<h2>Where to Go from here...</h2>
 	<p class="appengineMode">
-	可以从 <a href="http://weekly.golang.org/install/">installing Go</a> 或者下载
+	可以从 <a href="http://golang.org/install/">installing Go</a> 或者下载
 	<a href="http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go">Go App Engine SDK</a>。
 	</p>
 	<p>
 	<span class="appengineMode">一旦在机器上安装好了 Go，</span>
 	<span class="localMode"></span>
-	<a target="_blank" href="http://weekly.golang.org/doc/">Go Documentation</a>
+	<a target="_blank" href="http://golang.org/doc/">Go Documentation</a>
 	
 	<span class="appengineMode">是应当继续阅读的内容</span>
 	<span class="localMode">作为开始</span>。
         它包含了参考、指南、视频等等更多资料。
 	<p>
         在标准库上需要帮助的话，参考
-	<a target="_blank" href="http://weekly.golang.org/pkg/">package
+	<a target="_blank" href="http://golang.org/pkg/">package
             reference</a>。语言本身的帮助，可以阅读令人愉快的
-	<a target="_blank" href="http://weekly.golang.org/doc/go_spec.html">Language
+	<a target="_blank" href="http://golang.org/doc/go_spec.html">Language
 	Spec</a>。
 	<p>
 	进一步探索 Go 的并发模型，参阅
-	<a target="_blank" href="http://weekly.golang.org/doc/codewalk/sharemem/">Share Memory by Communicating</a>
+	<a target="_blank" href="http://golang.org/doc/codewalk/sharemem/">Share Memory by Communicating</a>
 	的代码之旅。
 	<p>
-        <a target="_blank" href="http://weekly.golang.org/doc/codewalk/functions/">First Class Functions in Go</a>
+        <a target="_blank" href="http://golang.org/doc/codewalk/functions/">First Class Functions in Go</a>
         为 Go 的函数类型提供了有趣的展示。
 	<p>
 	<a target="_blank" href="http://blog.golang.org/">Go Blog</a> 有着众多的关于 Go 的文章信息。
 	<p>
-	访问 <a target="_blank" href="http://weekly.golang.org">golang.org</a> 了解更多内容。
+	访问 <a target="_blank" href="http://golang.org">golang.org</a> 了解更多内容。
 </div>
 
 </div><!-- end slides -->
