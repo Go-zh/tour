@@ -7,9 +7,9 @@
 <script src="static/jquery.js"></script>
 
 <!-- Fonts -->
-<link href='http://fonts.googleapis.com/css?family=Droid+Serif&v1' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans&v1' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono&v1' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 
 <!-- Playground -->
 <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css">
@@ -77,7 +77,7 @@ func main() {
 	<p>
         指南独立运行会在本地的设备上构建和编译代码，这运行得更快。并且会包括一些在沙盒版本中没有的体验上的增强。
 	<p>
-	为了在本地运行指南首先要<a target="_blank" href="http://golang.org/install/">安装 Go</a>，
+	为了在本地运行指南首先要<a target="_blank" href="http://golang.org/doc/install/">安装 Go</a>，
 	然后使用
 	<a target="_blank" href="http://golang.org/cmd/go/">go get</a> 安装
 	<a target="_blank" href="http://code.google.com/p/go-tour/">gotour</a>：
@@ -662,7 +662,7 @@ type Vertex struct {
 
 func main() {
 	p := Vertex{1, 2}
-	q := &p
+	q := &amp;p
 	q.X = 1e9
 	fmt.Println(p)
 }
@@ -676,7 +676,7 @@ func main() {
 	<p>
         使用 <code>Name:</code> 语法可以仅列出部分字段。（字段名的顺序无关。）
 	<p>
-        特殊的前缀 <code>&</code> 构造了指向结构体文法的指针。
+        特殊的前缀 <code>&amp;</code> 构造了指向结构体文法的指针。
 <div>
 package main
 
@@ -688,7 +688,7 @@ type Vertex struct {
 
 var (
 	p = Vertex{1, 2}  // has type Vertex
-	q = &Vertex{1, 2} // has type *Vertex
+	q = &amp;Vertex{1, 2} // has type *Vertex
 	r = Vertex{X: 1}  // Y:0 is implicit
 	s = Vertex{}      // X:0 and Y:0
 )
@@ -1130,7 +1130,7 @@ func main() {
         <p>
         在这个例子中，牛顿法是通过选择一个初始点 <i>z</i> 然后重复这一过程求 <code>Sqrt(x)</code> 的近似值：
 	<center>
-	<img src="https://chart.googleapis.com/chart?cht=tx&chl=z=z-\frac{z^2-x}{2z}">
+	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^2-x}{2z}">
         </center>
         <p>
         为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
@@ -1239,12 +1239,12 @@ func main() {
         让我们通过 <code>complex64</code> 和 <code>complex128</code> 来探索一下 Go 内建的复数。
         对于立方根，牛顿法需要大量循环：
 	<center>
-	<img src="https://chart.googleapis.com/chart?cht=tx&chl=z=z-\frac{z^3-x}{3z^2}">
+	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^3-x}{3z^2}">
 	</center>
 	<p>
-	找到 2 的立方根，确保算法能够工作。
-	这里有 <a target="_blank" href="http://golang.org/pkg/math/cmplx/#Pow">cmath.Pow</a> 函数。
-
+	找到 2 的立方根，确保算法能够工作。在 <code>math/cmplx</code>
+包中有 
+<a target="_blank" href="http://golang.org/pkg/math/cmplx/#Pow">Pow</a> 函数。
 <div>
 package main
 
@@ -1289,7 +1289,7 @@ func (v *Vertex) Abs() float64 {
 }
 
 func main() {
-	v := &Vertex{3, 4}
+	v := &amp;Vertex{3, 4}
 	fmt.Println(v.Abs())
 }
 </div>
@@ -1333,7 +1333,6 @@ func main() {
         刚刚看到的两个 <code>Abs</code> 方法。一个是在 <code>*Vertex</code> 指针类型上，而另一个在 <code>MyFloat</code> 值类型上。
         <p>
         有两个原因需要使用指针接收者。首先避免在每个方法调用中拷贝值（如果值类型是大的结构体的话会更有效率）。其次，方法可以修改接收者指向的值。
-	</ol>
 	<p>
         尝试修改 <code>Abs</code> 的定义，同时 <code>Scale</code> 方法使用 <code>Vertex</code> 代替 <code>*Vertex</code> 作为接收者。
 	<p>
@@ -1362,7 +1361,7 @@ func (v *Vertex) Abs() float64 {
 }
 
 func main() {
-	v := &Vertex{3, 4}
+	v := &amp;Vertex{3, 4}
 	v.Scale(5)
 	fmt.Println(v, v.Abs())
 }
@@ -1393,7 +1392,7 @@ func main() {
 	v := Vertex{3, 4}
 
 	a = f  // a MyFloat implements Abser
-	a = &v // a *Vertex implements Abser
+	a = &amp;v // a *Vertex implements Abser
 	a = v  // a Vertex, does NOT
 	       // implement Abser
 
@@ -1499,7 +1498,7 @@ func (e *MyError) Error() string {
 }
 
 func run() error {
-	return &MyError{
+	return &amp;MyError{
 		time.Now(),
 		"it didn't work",
 	}
@@ -1534,7 +1533,7 @@ type Handler interface {
 	</span>
 	<span class="appengineMode">
 	<b>注意：</b> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
-	web 服务器，可能需要<a target="_blank" href="http://golang.org/install/">安装 Go</a>。
+	web 服务器，可能需要<a target="_blank" href="http://golang.org/doc/install/">安装 Go</a>。
 	</span>
 <div>
 package main
@@ -1724,7 +1723,7 @@ func main() {
 	s := strings.NewReader(
 		"Lbh penpxrq gur pbqr!")
 	r := rot13Reader{s}
-	io.Copy(os.Stdout, &r)
+	io.Copy(os.Stdout, &amp;r)
 }
 </div>
 </div>
@@ -1936,7 +1935,7 @@ func main() {
 	为了非阻塞的发送或者接收，可使用 <code>default</code> 分支：
 	<pre>
 select {
-case i := <-c:
+case i := &lt;-c:
 	// use i
 default:
 	// receiving from c would block
@@ -1944,7 +1943,7 @@ default:
 	<p>
 	<span class="appengineMode">
 	<b>注意：</b> 这个例子无法在指南的基于 web
-	的用户界面中运行，因为沙盒环境是没有定时器概念的。需要<a target="_blank" href="http://golang.org/install/">安装、
+	的用户界面中运行，因为沙盒环境是没有定时器概念的。需要<a target="_blank" href="http://golang.org/doc/install/">安装、
 	Go</a> 来了解这个例子如何运行。
 	</span>
 <div>
@@ -2092,15 +2091,15 @@ func (f *fakeFetcher) Fetch(url string) (string, []string, error) {
 }
 
 // fetcher 是填充后的 fakeFetcher。
-var fetcher = &fakeFetcher{
-	"http://golang.org/": &fakeResult{
+var fetcher = &amp;fakeFetcher{
+	"http://golang.org/": &amp;fakeResult{
 		"The Go Programming Language",
 		[]string{
 			"http://golang.org/pkg/",
 			"http://golang.org/cmd/",
 		},
 	},
-	"http://golang.org/pkg/": &fakeResult{
+	"http://golang.org/pkg/": &amp;fakeResult{
 		"Packages",
 		[]string{
 			"http://golang.org/",
@@ -2109,14 +2108,14 @@ var fetcher = &fakeFetcher{
 			"http://golang.org/pkg/os/",
 		},
 	},
-	"http://golang.org/pkg/fmt/": &fakeResult{
+	"http://golang.org/pkg/fmt/": &amp;fakeResult{
 		"Package fmt",
 		[]string{
 			"http://golang.org/",
 			"http://golang.org/pkg/",
 		},
 	},
-	"http://golang.org/pkg/os/": &fakeResult{
+	"http://golang.org/pkg/os/": &amp;fakeResult{
 		"Package os",
 		[]string{
 			"http://golang.org/",
@@ -2130,7 +2129,7 @@ var fetcher = &fakeFetcher{
 <div class="slide nocode">
 	<h2>Where to Go from here...</h2>
 	<p class="appengineMode">
-	可以从 <a href="http://golang.org/install/">installing Go</a> 或者下载
+	可以从 <a href="http://golang.org/doc/install/">installing Go</a> 或者下载
 	<a href="http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go">Go App Engine SDK</a>。
 	</p>
 	<p>
@@ -2145,7 +2144,7 @@ var fetcher = &fakeFetcher{
         在标准库上需要帮助的话，参考
 	<a target="_blank" href="http://golang.org/pkg/">package
             reference</a>。语言本身的帮助，可以阅读令人愉快的
-	<a target="_blank" href="http://golang.org/doc/go_spec.html">Language
+	<a target="_blank" href="http://golang.org/ref/spec">Language
 	Spec</a>。
 	<p>
 	进一步探索 Go 的并发模型，参阅
