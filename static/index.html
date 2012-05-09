@@ -806,7 +806,52 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slice</h2>
+	<h2>修改 map</h2>
+	<p>
+        在 map <code>m</code> 中插入或修改一个元素：
+	<pre>m[key] = elem</pre>
+	<p>
+        获得元素：
+	<pre>elem = m[key]</pre>
+        <p>
+        删除元素：
+	<pre>delete(m, key)</pre>
+        <p>
+        通过双赋值检测某个键存在：
+	<pre>elem, ok = m[key]</pre>
+	<p>
+	如果 <code>key</code> 在 <code>m</code> 中，
+	<code>ok</code> 是 <code>true</code>。
+	否则，<code>ok</code> 是 <code>false</code> 并且 
+        <code>elem</code> 是 map 的元素类型的零值。
+	<p>
+        同样的，当从 map 中读取某个不存在的键时，结果是
+        map 的元素类型的零值。
+<div>
+package main
+
+import "fmt"
+
+func main() {
+	m := make(map[string]int)
+
+	m["Answer"] = 42
+	fmt.Println("The value:", m["Answer"])
+
+	m["Answer"] = 48
+	fmt.Println("The value:", m["Answer"])
+
+	delete(m, "Answer")
+	fmt.Println("The value:", m["Answer"])
+
+	v, ok := m["Answer"]
+	fmt.Println("The value:", v, "Present?", ok)
+}
+</div>
+</div>
+
+<div class="slide">
+	<h2>slice</h2>
 	<p>
         slice 指向数组的值，并且同时包含了长度信息。
 	<p>
