@@ -45,7 +45,7 @@
 <div class="toc">欢迎</div>
 
 <div class="slide">
-	<h2>Hello, world</h2>
+	<h2>Hello, 世界</h2>
 	<p>
 	欢迎来到<a target="_blank" href="http://golang.org/">Go 编程语言</a>指南.
         <p>
@@ -69,6 +69,26 @@ func main() {
 }
 </div>
 </div>
+
+<div class="slide nocode appengineMode">
+  <h2>Go 本地化</h2>
+  <p>
+  该指南也有其他语言版本：
+  <ul>
+  <li><a href="http://go-tour-br.appspot.com/">Brazilian Portuguese &mdash; Português do Brasil</a></li>
+  <li><a href="http://go-tour-cn.appspot.com/">Chinese &mdash; 普通话</a></li>
+  <li><a href="http://go-tour-jp.appspot.com/">Japanese &mdash; 日本語</a></li>
+  </ul>
+  <p>
+  （如果你愿意翻译该指南到其他语言，从
+  <code>https://code.google.com/p/go-tour</code>
+  检出代码，翻译 <code>static/index.html</code>，
+  并根据 <code>appengine/README</code> 的介绍将其部署到
+  App Engine 上。）
+  <p>
+  点击“Next”按钮或者按 PageDown 继续。
+</div>
+
 
 <div class="slide nocode appengineMode">
 	<h2>离线 Go 指南</h2>
@@ -1916,7 +1936,7 @@ import (
 )
 
 func fibonacci(n int, c chan int) {
-        x, y := 1, 1
+        x, y := 0, 1
         for i := 0; i < n; i++ {
                 c <- x
                 x, y = y, x + y
@@ -1946,7 +1966,7 @@ package main
 import "fmt"
 
 func fibonacci(c, quit chan int) {
-        x, y := 1, 1
+        x, y := 0, 1
         for {
                 select {
                 case c <- x:
