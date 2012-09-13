@@ -111,10 +111,10 @@ function init() {
 	$('#togglesyntax').click(function() {
 		if (editor.getOption('theme') === 'default') {
 			editor.setOption('theme', 'plain');
-			$('#togglesyntax').text('Syntax-Highlighting: off');
+			$('#togglesyntax').text('语法高亮：关闭');
 		} else {
 			editor.setOption('theme', 'default');
-			$('#togglesyntax').text('Syntax-Highlighting: on');
+			$('#togglesyntax').text('语法高亮：开启');
 		}
 		setcookie('theme', editor.getOption('theme'), 14);
 		$('.controls').removeClass('expanded');
@@ -124,10 +124,10 @@ function init() {
 	$('#togglelineno').click(function() {
 		if (editor.getOption('lineNumbers')) {
 			editor.setOption('lineNumbers', false);
-			$('#togglelineno').text('Line-Numbers: off');
+			$('#togglelineno').text('行号：关闭');
 		} else {
 			editor.setOption('lineNumbers', true);
-			$('#togglelineno').text('Line-Numbers: on');
+			$('#togglelineno').text('行号：开启');
 		}
 		setcookie('lineno', editor.getOption('lineNumbers'), 14);
 		$('.controls').removeClass('expanded');
