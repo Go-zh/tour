@@ -1,48 +1,36 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Go 指南</title>
 
 <!-- jQuery -->
 <script src="static/jquery.js"></script>
 
-<!-- Fonts -->
-<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
-
-<!-- Playground -->
+<!-- CodeMirror -->
 <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css">
 <script src="/static/codemirror/lib/codemirror.js"></script>
-<link rel="stylesheet" href="/static/codemirror/theme/default.css">
-<script src="static/playground.js"></script>
+<script src="/static/codemirror/lib/go.js"></script>
 
 <!-- Tour -->
-<link rel="stylesheet" href="static/tour.css" charset="utf-8">
+<link rel="stylesheet" href="static/tour.css">
 <script src="static/mode.js"></script>
 <script src="static/tour.js"></script>
 
 </head>
-<body class="loading">
-
-<!-- Top bar -->
-<h2 id="slidenum"></h2>
-<div id="topnav" class="nav">
-	<button id="tocbtn">目录</button>
-</div>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="slidenum">1</div>
+				<a href="#toc" id="tocbtn" title="目录"></a>
 <h1>Go 指南</h1>
 
-<!-- Loading message -->
-<div id="loading">
-	加载幻灯……
 </div>
 
-<!-- Table of Contents -->
-<ol id="toc"></ol>
 
 <div id="slides" class="slides"><!-- begin slides -->
 
-<div class="toc">欢迎</div>
 
 <div class="slide">
 	<h2>Hello, 世界</h2>
@@ -59,15 +47,13 @@
 	编辑程序并且再次执行它。
         <p>
         当你准备好继续了，点击“Next”按钮或按 PageDown 键。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 func main() {
 	fmt.Println("Hello, 世界")
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide nocode appengineMode">
@@ -126,8 +112,7 @@ func main() {
 	<code>"fmt"</code> 和 <code>"math"</code>。
         <p>
         按照惯例，包名与导入路径的最后一个目录一致。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -136,21 +121,17 @@ import (
 
 func main() {
 	fmt.Println("Happy", math.Pi, "Day")
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>导入</h2>
 	<p>
-        这个代码用圆括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
-	<pre>
-	import "fmt"
-	import "math"
-	</pre>
-        不过通常都会用 factored 格式来使代码工整。
-<div>
-package main
+   这个代码用圆括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
+	<pre>import "fmt"
+	import "math"</pre>
+   不过通常都会用 factored 格式来使代码工整。
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -160,8 +141,7 @@ import (
 func main() {
 	fmt.Printf("Now you have %g problems.",
 		math.Nextafter(2, 3))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -175,8 +155,7 @@ func main() {
 	名称 <code>foo</code> 是不会被导出的。
 	<p>
 	执行代码。然后将 <code>math.pi</code> 改名为 <code>math.Pi</code> 再试着执行一下。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -185,8 +164,7 @@ import (
 
 func main() {
 	fmt.Println(math.pi)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -199,8 +177,7 @@ func main() {
         注意类型在变量名<i>之后</i>。
         <p>
 	（参考<a target="_blank" href="http://golang.org/doc/articles/gos_declaration_syntax.html">这篇关于 Go 语法定义的文章</a>了解类型以这种形式出现的原因。）
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -210,8 +187,7 @@ func add(x int, y int) int {
 
 func main() {
 	fmt.Println(add(42, 13))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -225,8 +201,7 @@ func main() {
         被缩写为
 	<p>
 	<pre>x, y int</pre>
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -236,8 +211,7 @@ func add(x, y int) int {
 
 func main() {
 	fmt.Println(add(42, 13))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -246,8 +220,7 @@ func main() {
         函数可以返回任意数量的返回值。
 	<p>
 	这个函数返回了两个字符串。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -258,8 +231,7 @@ func swap(x, y string) (string, string) {
 func main() {
 	a, b := swap("hello", "world")
 	fmt.Println(a, b)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -268,8 +240,7 @@ func main() {
         函数接受参数。在 Go 中，函数可以返回多个“结果参数”，而不仅仅是一个值。它们可以像变量那样命名和使用。
 	<p>
 	如果命名了返回值参数，一个没有参数的 <code>return</code> 语句，会将当前的值作为返回值返回。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -281,16 +252,15 @@ func split(sum int) (x, y int) {
 
 func main() {
 	fmt.Println(split(17))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>变量</h2>
 	<p>
         <code>var</code> 语句定义了一个变量的列表；跟函数的参数列表一样，类型在后面。
-<div>
-package main
+
+<pre class="source">package main
 
 import "fmt"
 
@@ -299,8 +269,7 @@ var c, python, java bool
 
 func main() {
 	fmt.Println(x, y, z, c, python, java)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -309,8 +278,7 @@ func main() {
         变量定义可以包含初始值，每个变量对应一个。
 	<p>
         如果初始化是使用表达式，则可以省略类型；变量从初始值中获得类型。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -319,8 +287,7 @@ var c, python, java = true, false, "no!"
 
 func main() {
 	fmt.Println(x, y, z, c, python, java)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -329,9 +296,7 @@ func main() {
         在函数中，<code>:=</code> 简洁赋值语句在明确类型的地方，可以用于替代 <code>var</code> 定义。
 	<p>
          （<code>:=</code> 结构不能使用在函数外，函数外的每个语法块都必须以关键字开始。）
-<div>
-package main
-
+<pre class="source">package main
 import "fmt"
 
 func main() {
@@ -339,8 +304,7 @@ func main() {
 	c, python, java := true, false, "no!"
 
 	fmt.Println(x, y, z, c, python, java)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -349,8 +313,7 @@ func main() {
         常量的定义与变量类似，只不过使用 <code>const</code> 关键字。
 	<p>
         常量可以是字符、字符串、布尔或数字类型的值。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -363,8 +326,7 @@ func main() {
 
 	const Truth = true
 	fmt.Println("Go rules?", Truth)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -375,14 +337,13 @@ func main() {
         一个未指定类型的常量由上下文来决定其类型。
 	<p>
 	也尝试一下输出 <code>needInt(Big)</code>吧。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 const (
-	Big = 1<<100
-	Small = Big>>99
+	Big = 1&lt;&lt;100
+	Small = Big&gt;&gt;99
 )
 
 func needInt(x int) int { return x*10 + 1 }
@@ -394,8 +355,7 @@ func main() {
 	fmt.Println(needInt(Small))
 	fmt.Println(needFloat(Small))
 	fmt.Println(needFloat(Big))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -404,38 +364,34 @@ func main() {
 	Go 只有一种循环结构，<code>for</code> 循环。
 	<p>
         基本的 <code>for</code> 循环看起来跟 C 或者 Java 中做的一样，除了没有了 <code>( )</code> 之外（甚至强制不能使用它们），而 <code>{ }</code> 是必须的。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 func main() {
 	sum := 0
-	for i := 0; i < 10; i++ {
+	for i := 0; i &lt; 10; i++ {
 		sum += i
 	}
 	fmt.Println(sum)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>For</h2>
 	<p>
 	跟 C 或者 Java 中一样，可以让前置、后置语句为空。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 func main() {
 	sum := 1
-	for ; sum < 1000; {
+	for ; sum &lt; 1000; {
 		sum += sum
 	}
 	fmt.Println(sum)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -443,47 +399,41 @@ func main() {
 	<p>
         基于此可以省略分号：
 	C 的 <code>while</code> 在 Go 中也是用 <code>for</code> 实现。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 func main() {
 	sum := 1
-	for sum < 1000 {
+	for sum &lt; 1000 {
 		sum += sum
 	}
 	fmt.Println(sum)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>For</h2>
 	<p>
 	如果省略了循环条件，它就是个死循环源。
-<div>
-package main
+<pre class="source">package main
 
 func main() {
 	for ; ; {
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>For</h2>
 	<p>
 	而为了避免累赘，分号可以省略，因此一个死循环可以简洁地表达。
-<div>
-package main
+<pre class="source">package main
 
 func main() {
 	for {
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -492,8 +442,7 @@ func main() {
 	<code>if</code> 语句看起来跟 C 或者 Java 中的一样，除了没有了 <code>( )</code> 之外（甚至强制不能使用它们），而 <code>{ }</code> 是必须的。
 	<p>
         （耳熟吗？）
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -501,7 +450,7 @@ import (
 )
 
 func sqrt(x float64) string {
-	if x < 0 {
+	if x &lt; 0 {
 		return sqrt(-x) + "i"
 	}
 	return fmt.Sprint(math.Sqrt(x))
@@ -509,8 +458,7 @@ func sqrt(x float64) string {
 
 func main() {
 	fmt.Println(sqrt(2), sqrt(-4))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -521,8 +469,7 @@ func main() {
         由这个语句定义的变量的作用域仅在 <code>if</code> 范围之内。
 	<p>
         （在最后的 <code>return</code> 语句处使用 <code>v</code> 看看。）
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -530,7 +477,7 @@ import (
 )
 
 func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
+	if v := math.Pow(x, n); v &lt; lim {
 		return v
 	}
 	return lim
@@ -541,16 +488,14 @@ func main() {
 		pow(3, 2, 10),
 		pow(3, 3, 20),
 	)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>If</h2>
         <p>
         在 <code>if</code> 的简单语句处定义的变量同样可以在任何对应的 <code>else</code> 块中使用。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -558,12 +503,12 @@ import (
 )
 
 func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
+	if v := math.Pow(x, n); v &lt; lim {
 		return v
 	} else {
 		fmt.Printf("%g >= %g\n", v, lim)
 	}
-        // 不能在这里使用 v，因此
+   // 不能在这里使用 v，因此
 	return lim
 }
 
@@ -572,16 +517,14 @@ func main() {
 		pow(3, 2, 10),
 		pow(3, 3, 20),
 	)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>基本类型</h2>
 	<p>
 	Go 的基本类型有
-	<pre>
-bool
+	<pre>bool
 
 string
 
@@ -595,10 +538,8 @@ rune // int32 的别名
 
 float32 float64
 
-complex64 complex128
-	</pre>
-<div>
-package main
+complex64 complex128</pre>
+<pre class="source">package main
 
 import (
 	"math/cmplx"
@@ -607,7 +548,7 @@ import (
 
 var (
 	ToBe bool = false
-	MaxInt uint64 = 1<<64 - 1
+	MaxInt uint64 = 1&lt;&lt;64 - 1
 	z complex128 = cmplx.Sqrt(-5+12i)
 )
 
@@ -616,8 +557,7 @@ func main() {
 	fmt.Printf(f, ToBe, ToBe)
 	fmt.Printf(f, MaxInt, MaxInt)
 	fmt.Printf(f, z, z)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -626,8 +566,7 @@ func main() {
         一个结构体（<code>struct</code>）就是一个字段的集合。
 	<p>
 	（而 <code>type</code> 定义跟其字面意思相符。）
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -638,16 +577,14 @@ type Vertex struct {
 
 func main() {
 	fmt.Println(Vertex{1, 2})
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>结构体字段</h2>
         <p>
         结构体字段使用点号来访问。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -660,8 +597,7 @@ func main() {
 	v := Vertex{1, 2}
 	v.X = 4
 	fmt.Println(v.X)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -670,8 +606,7 @@ func main() {
         Go 有指针，但是没有指针运算。
 	<p>
 	结构体字段可以通过结构体指针来访问。通过指针间接的访问是透明的。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -685,8 +620,7 @@ func main() {
 	q := &amp;p
 	q.X = 1e9
 	fmt.Println(p)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -697,8 +631,7 @@ func main() {
         使用 <code>Name:</code> 语法可以仅列出部分字段。（字段名的顺序无关。）
 	<p>
         特殊的前缀 <code>&amp;</code> 构造了指向结构体文法的指针。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -715,20 +648,18 @@ var (
 
 func main() {
 	fmt.Println(p, q, r, s)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
-	<h2><code>new</code> 函数</h2>
+	<h2>new 函数</h2>
 	<p>
 	表达式 <code>new(T)</code> 分配了一个零初始化的 <code>T</code> 值，并返回指向它的指针。
 	<pre>var t *T = new(T)</pre>
 	<p>
 	或
 	<pre>t := new(T)</pre>
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -741,8 +672,7 @@ func main() {
 	fmt.Println(v)
 	v.X, v.Y = 11, 9
 	fmt.Println(v)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -752,8 +682,7 @@ func main() {
 	<p>
         <!-- TODO: empty part not true in compilers yet -->
         map 在使用之前必须用 <code>make</code> 来创建（不是 <code>new</code>）；一个值为 <code>nil</code> 的 map 是空的，并且不能赋值。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -769,16 +698,14 @@ func main() {
 		40.68433, 74.39967,
 	}
 	fmt.Println(m["Bell Labs"])
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>Map</h2>
 	<p>
         map 的文法跟结构体文法相似，不过键名是必须的。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -797,16 +724,14 @@ var m = map[string]Vertex{
 
 func main() {
 	fmt.Println(m)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>Map</h2>
 	<p>
         如果顶层类型只有类型名的话，可以在文法的元素中省略键名。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -821,8 +746,7 @@ var m = map[string]Vertex{
 
 func main() {
 	fmt.Println(m)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -847,8 +771,7 @@ func main() {
 	<p>
         同样的，当从 map 中读取某个不存在的键时，结果是
         map 的元素类型的零值。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -866,8 +789,7 @@ func main() {
 
 	v, ok := m["Answer"]
 	fmt.Println("The value:", v, "Present?", ok)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -876,8 +798,7 @@ func main() {
         slice 指向数组的值，并且同时包含了长度信息。
 	<p>
 	<code>[]T</code> 是一个元素类型为 <code>T</code> 的 slice。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -885,12 +806,11 @@ func main() {
 	p := []int{2, 3, 5, 7, 11, 13}
 	fmt.Println("p ==", p)
 
-	for i := 0; i < len(p); i++ {
+	for i := 0; i &lt; len(p); i++ {
 		fmt.Printf("p[%d] == %d\n",
 			i, p[i])
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -908,8 +828,7 @@ func main() {
 	<pre>s[lo:lo+1]</pre>
         <p>
         有一个元素。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -923,33 +842,24 @@ func main() {
 
 	// missing high index implies len(s)
 	fmt.Println("p[4:] ==", p[4:])
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>Slice</h2>
 	<p>
-        slice 由函数 <code>make</code> 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
-	<pre>
-a := make([]int, 5)  // len(a)=5
-        </pre>
-        slice 有长度和容量。slice 的容量是底层数组可以增长的最大长度。
+   slice 由函数 <code>make</code> 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
+	<pre>a := make([]int, 5)  // len(a)=5</pre>
+   slice 有长度和容量。slice 的容量是底层数组可以增长的最大长度。
 	<p>
-        为了指定容量，可传递第三个参数到 <code>make</code>：
+   为了指定容量，可传递第三个参数到 <code>make</code>：
 	<p>
-	<pre>
-b := make([]int, 0, 5)
-// len(b)=0, cap(b)=5
-        </pre>
-        slice 可以通过“重新切片”来扩容（增长到容量上限）：
+	<pre>b := make([]int, 0, 5) // len(b)=0, cap(b)=5</pre>
+   slice 可以通过“重新切片”来扩容（增长到容量上限）：
 	<p>
-	<pre>
-b = b[:cap(b)] // len(b)=5, cap(b)=5
-b = b[1:]      // len(b)=4, cap(b)=4
-	</pre>
-<div>
-package main
+	<pre>b = b[:cap(b)] // len(b)=5, cap(b)=5
+b = b[1:]      // len(b)=4, cap(b)=4</pre>
+<pre class="source">package main
 
 import "fmt"
 
@@ -967,8 +877,7 @@ func main() {
 func printSlice(s string, x []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n",
 		s, len(x), cap(x), x)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -980,8 +889,7 @@ func printSlice(s string, x []int) {
 	<p>
 	（了解更多关于 slice 的内容，参阅文章
 	“<a target="_blank" href="http://golang.org/doc/articles/slices_usage_and_internals.html">Slices：使用和内幕</a>”。）
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -991,16 +899,14 @@ func main() {
 	if z == nil {
 		fmt.Println("nil!")
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>函数</h2>
-        <p>
-        函数也是值。
-<div>
-package main
+   <p>
+   函数也是值。
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1013,8 +919,7 @@ func main() {
 	}
 
 	fmt.Println(hypot(3, 4))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1023,8 +928,7 @@ func main() {
         并且函数是完全闭包的。
 	<p>
 	函数 <code>adder</code> 返回一个闭包。每个闭包被绑定到了特定的 <code>sum</code> 变量上。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -1038,22 +942,20 @@ func adder() func(int) int {
 
 func main() {
 	pos, neg := adder(), adder()
-	for i := 0; i < 10; i++ {
+	for i := 0; i &lt; 10; i++ {
 		fmt.Println(
 			pos(i),
 			neg(-2*i),
 		)
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>Range</h2>
 	<p>
         <code>for</code> 循环的 <code>range</code> 格式可以对 slice 或者 map 进行迭代循环。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -1063,8 +965,7 @@ func main() {
 	for i, v := range pow {
 	    fmt.Printf("2**%d = %d\n", i, v)
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1073,8 +974,7 @@ func main() {
         可以将值赋值给 <code>_</code> 来忽略序号和值。
         <p>
         如果只需要索引值，去掉&ldquo;<code>, value</code>&rdquo;的部分即可。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -1086,8 +986,7 @@ func main() {
 	for _, value := range pow {
 		fmt.Printf("%d\n", value)
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1097,8 +996,7 @@ func main() {
         <p>
         case 体会自动终止，除非用 <code>fallthrough</code> 语句作为结尾。
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1117,8 +1015,7 @@ func main() {
 		// plan9, windows...
 		fmt.Printf("%s.", os)
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1127,16 +1024,14 @@ func main() {
         switch 的条件从上到下的执行，当匹配成功的时候停止。
 	<p>
 	（例如，
-	<pre>
-switch i {
+	<pre>switch i {
 case 0:
 case f():
 }</pre>
         <p>
         当 <code>i==0</code> 时不会调用 <code>f</code>。）
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1156,8 +1051,7 @@ func main() {
 	default:
 		fmt.Println("Too far away.")
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1166,8 +1060,7 @@ func main() {
 	没有条件的 switch 同 <code>switch true</code> 一样。
 	<p>
 	这一构造使得可以用更清晰的形式来编写长的 if-then-else 链。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1177,39 +1070,35 @@ import (
 func main() {
 	t := time.Now()
 	switch {
-	case t.Hour() < 12:
+	case t.Hour() &lt; 12:
 	    fmt.Println("Good morning!")
-	case t.Hour() < 17:
+	case t.Hour() &lt; 17:
 	    fmt.Println("Good afternoon.")
 	default:
 	    fmt.Println("Good evening.")
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>练习：循环和函数</h2>
-        <p>
-        作为练习函数和循环的简单途径，用牛顿法实现开方函数。
-        <p>
-        在这个例子中，牛顿法是通过选择一个初始点 <i>z</i> 然后重复这一过程求 <code>Sqrt(x)</code> 的近似值：
-	<center>
-	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^2-x}{2z}">
-        </center>
-        <p>
-        为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
-        <p>
-        然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 <a target="_blank" href="http://golang.org/pkg/math/#Sqrt">math.Sqrt</a> 接近吗？
-        <p>
-        提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
-	<pre>
-	z := float64(1)
-	z := 1.0
-	</pre>
+   <p>
+   作为练习函数和循环的简单途径，用牛顿法实现开方函数。
+   <p>
+   在这个例子中，牛顿法是通过选择一个初始点 <i>z</i> 然后重复这一过程求 <code>Sqrt(x)</code> 的近似值：
+	<div style="text-align: center">
+	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^2-x}{2z}" alt="牛顿法">
+	</div>
+   <p>
+   为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
+   <p>
+   然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 <a target="_blank" href="http://golang.org/pkg/math/#Sqrt">math.Sqrt</a> 接近吗？
+   <p>
+   提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
+	<pre>z := float64(1)
+z := 1.0</pre>
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1220,8 +1109,7 @@ func Sqrt(x float64) float64 {
 
 func main() {
 	fmt.Println(Sqrt(2))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1231,8 +1119,7 @@ func main() {
 	<p>
         你会发现 <a target="_blank" href="http://golang.org/pkg/strings/#Fields">strings.Fields</a> 很有帮助。
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"<span class="appengineMode">tour</span><span class="localMode">bitbucket.org/mikespook/go-tour-zh</span>/wc"
@@ -1244,8 +1131,7 @@ func WordCount(s string) map[string]int {
 
 func main() {
 	wc.Test(WordCount)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1260,8 +1146,8 @@ func main() {
 	（需要使用循环来分配 <code>[][]uint8</code> 中的每个 <code>[]uint8</code>。）
 	<p>
 	（使用 <code>uint8(intValue)</code> 在类型之间转换。）
-<div>
-package main
+
+<pre class="source">package main
 
 import "<span class="appengineMode">tour</span><span class="localMode">bitbucket.org/mikespook/go-tour-zh</span>/pic"
 
@@ -1270,8 +1156,7 @@ func Pic(dx, dy int) [][]uint8 {
 
 func main() {
 	pic.Show(Pic)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1280,8 +1165,8 @@ func main() {
         现在来通过函数找些乐趣。
 	<p>
         实现一个 <code>fibonacci</code> 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数。
-<div>
-package main
+
+<pre class="source">package main
 
 import "fmt"
 
@@ -1291,11 +1176,10 @@ func fibonacci() func() int {
 
 func main() {
 	f := fibonacci()
-	for i := 0; i < 10; i++ {
+	for i := 0; i &lt; 10; i++ {
 		fmt.Println(f())
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1303,15 +1187,15 @@ func main() {
 	<p>
         让我们通过 <code>complex64</code> 和 <code>complex128</code> 来探索一下 Go 内建的复数。
         对于立方根，牛顿法需要大量循环：
-	<center>
-	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^3-x}{3z^2}">
-	</center>
+	<div style="text-align: center">
+	<img src="https://chart.googleapis.com/chart?cht=tx&amp;chl=z=z-\frac{z^3-x}{3z^2}" alt="牛顿法">
+	</div>
 	<p>
 	找到 2 的立方根，确保算法能够工作。在 <code>math/cmplx</code>
 包中有 
 <a target="_blank" href="http://golang.org/pkg/math/cmplx/#Pow">Pow</a> 函数。
-<div>
-package main
+
+<pre class="source">package main
 
 import "fmt"
 
@@ -1320,8 +1204,7 @@ func Cbrt(x complex128) complex128 {
 
 func main() {
 	fmt.Println(Cbrt(2))
-}
-</div>
+}</pre>
 </div>
 
 
@@ -1337,8 +1220,7 @@ func main() {
         Go 没有类。然而，仍然可以在结构体类型上定义方法。
 	<p>
         <i>方法接收者</i>出现在 <code>func</code> 关键字和方法名之间的参数中。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1356,8 +1238,7 @@ func (v *Vertex) Abs() float64 {
 func main() {
 	v := &amp;Vertex{3, 4}
 	fmt.Println(v.Abs())
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1366,8 +1247,7 @@ func main() {
         事实上，可以对包中的<i>任意</i>类型定义任意方法，而不仅仅是结构体。
         <p>
         不能对来自其他包的类型或基础类型定义方法。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1377,7 +1257,7 @@ import (
 type MyFloat float64
 
 func (f MyFloat) Abs() float64 {
-	if f < 0 {
+	if f &lt; 0 {
 		return float64(-f)
 	}
 	return float64(f)
@@ -1386,8 +1266,7 @@ func (f MyFloat) Abs() float64 {
 func main() {
 	f := MyFloat(-math.Sqrt2)
 	fmt.Println(f.Abs())
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1404,8 +1283,7 @@ func main() {
         当 <code>v</code> 是 <code>Vertex</code> 的时候 <code>Scale</code> 方法没有任何作用。<code>Scale</code> 修改 <code>v</code>。当 <code>v</code> 是一个值（非指针），方法看到的是 <code>Vertex</code> 的副本，并且无法修改原始值。
 	<p>
 	<code>Abs</code> 的工作方式是一样的。只不过，仅仅读取 <code>v</code>。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1429,8 +1307,7 @@ func main() {
 	v := &amp;Vertex{3, 4}
 	v.Scale(5)
 	fmt.Println(v, v.Abs())
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1439,8 +1316,8 @@ func main() {
         接口类型是由一组方法定义的集合。
         <p>
         接口类型的值可以存放实现这些方法的任何值。
-<div>
-package main
+
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1467,7 +1344,7 @@ func main() {
 type MyFloat float64
 
 func (f MyFloat) Abs() float64 {
-	if f < 0 {
+	if f &lt; 0 {
 		return float64(-f)
 	}
 	return float64(f)
@@ -1479,8 +1356,7 @@ type Vertex struct {
 
 func (v *Vertex) Abs() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1495,8 +1371,7 @@ func (v *Vertex) Abs() float64 {
         因此，也就无需在每一个实现上增加新的接口名称，这样同时也鼓励了明确的接口定义。（对比其他语言）
 	<p>
         <a target="_blank" href="http://golang.org/pkg/io/">包 io</a> 定义了 <code>Reader</code> 和 <code>Writer</code>；不一定要这么做。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1523,8 +1398,7 @@ func main() {
 	w = os.Stdout
 
 	fmt.Fprintf(w, "hello, writer\n")
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1533,19 +1407,15 @@ func main() {
 	错误是可以用字符串描述自己的任何东西。
 	主要思路是由预定义的内建接口类型 
 	<code>error</code>，和其返回返回字符串窜的方法 <code>Error</code> 构成。
-	<pre>
-
-type error interface {
+	<pre>type error interface {
 	Error() string
-}
-	</pre>
+}</pre>
 
 	<p>
 	当用 <code>fmt</code> 包的多种不同的打印函数输出一个 <code>error</code> 
 	时，会自动的调用该方法。
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1573,8 +1443,7 @@ func main() {
 	if err := run(); err != nil {
 		fmt.Println(err)
 	}
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1582,14 +1451,11 @@ func main() {
 	<p>
 	<a target="_blank" href="http://golang.org/pkg/net/http/">包 http</a>
 	通过任何实现了 <code>http.Handler</code> 的值来响应 HTTP 请求：
-	<pre>
-package http
+	<pre>package http
 
 type Handler interface {
-	ServeHTTP(w ResponseWriter,
-	          r *Request)
-}
-	</pre>
+	ServeHTTP(w ResponseWriter, r *Request)
+}</pre>
 	<p>
         在这个例子中，类型 <code>Hello</code> 实现了 <code>http.Handler</code>。
 	<p>
@@ -1600,8 +1466,7 @@ type Handler interface {
 	<b>注意：</b> 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
 	web 服务器，可能需要<a target="_blank" href="http://golang.org/doc/install/">安装 Go</a>。
 	</span>
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1619,16 +1484,14 @@ func (h Hello) ServeHTTP(
 func main() {
 	var h Hello
 	http.ListenAndServe("localhost:4000",h)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
 	<h2>图片</h2>
 	<p>
 	<a target="_blank" href="http://golang.org/pkg/image/#Image">Package image</a> 定义了 <code>Image</code> 接口：
-	<pre>
-package image
+	<pre>package image
 
 type Image interface {
 	ColorModel() color.Model
@@ -1639,8 +1502,8 @@ type Image interface {
         （参阅<a target="_blank" href="http://golang.org/pkg/image/#Image">文档</a>了解全部信息。）
 	<p>
 	同样，<code>color.Color</code> 和 <code>color.Model</code> 也是接口，但是通常因为直接使用预定义的实现 <code>image.RGBAColor</code> 和 <code>image.RGBAColorModel</code> 而忽略它们。
-<div>
-package main
+
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1651,8 +1514,7 @@ func main() {
 	m := image.NewRGBA(image.Rect(0, 0, 100, 100))
 	fmt.Println(m.Bounds())
 	fmt.Println(m.At(0, 0).RGBA())
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1663,12 +1525,10 @@ func main() {
         <code>Sqrt</code> 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
         <p>
         创建一个新类型
-	<pre>
-type ErrNegativeSqrt float64</pre>
+	<pre>type ErrNegativeSqrt float64</pre>
 	<p>
         使其成为一个 <code>error</code>，通过 
-	<pre>
-func (e ErrNegativeSqrt) Error() string</pre>
+	<pre>func (e ErrNegativeSqrt) Error() string</pre>
 	<p>
         方法就可以让 <code>ErrNegativeSqrt(-2).Error()</code> 返回
         <code>"cannot Sqrt negative number: -2"</code>。
@@ -1678,8 +1538,7 @@ func (e ErrNegativeSqrt) Error() string</pre>
 	<code>fmt.Print(float64(e))</code>。为什么？
 	<p>
 	修改 <code>Sqrt</code> 函数，使其接受一个负数时，返回 <code>ErrNegativeSqrt</code> 值。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1692,8 +1551,7 @@ func Sqrt(f float64) (float64, error) {
 func main() {
 	fmt.Println(Sqrt(2))
 	fmt.Println(Sqrt(-2))
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide localMode">
@@ -1712,8 +1570,7 @@ type Struct struct {
         例如，可以使用如下方式注册处理方法：
 <pre>http.Handle("/string", String("I'm a frayed knot."))
 http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})</pre>
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"net/http"
@@ -1722,8 +1579,7 @@ import (
 func main() {
 	// your http.Handle calls here
 	http.ListenAndServe("localhost:4000", nil)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1740,8 +1596,7 @@ func main() {
 	<p>
 	<code>At</code> 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 <code>v</code> 匹配 <code>color.RGBAColor{v, v, 255, 255}</code>。
 
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"image"
@@ -1753,8 +1608,7 @@ type Image struct{}
 func main() {
 	m := Image{}
 	pic.ShowImage(m)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1771,8 +1625,7 @@ func main() {
         修改数据流中的所有的字母进行密文替换。
 	<p>
         <code>rot13Reader</code> 已经提供。通过实现其 <code>Read</code> 方法使得它匹配 <code>io.Reader</code>。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"io"
@@ -1789,8 +1642,7 @@ func main() {
 		"Lbh penpxrq gur pbqr!")
 	r := rot13Reader{s}
 	io.Copy(os.Stdout, &amp;r)
-}
-</div>
+}</pre>
 </div>
 
 <div class="toc">并发</div>
@@ -1813,8 +1665,7 @@ func main() {
 	<p>
 	goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。
         <code><a href="http://golang.org/pkg/sync/" target="_blank">sync</a></code> 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。 （在接下来的内容中会涉及到。）
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1822,7 +1673,7 @@ import (
 )
 
 func say(s string) {
-	for i := 0; i < 5; i++ {
+	for i := 0; i &lt; 5; i++ {
 		<span class="appengineMode">runtime.Gosched()</span><span class="localMode">time.Sleep(100 * time.Millisecond)</span>
 		fmt.Println(s)
 	}
@@ -1831,8 +1682,7 @@ func say(s string) {
 func main() {
 	go say("world")
 	say("hello")
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1840,24 +1690,19 @@ func main() {
 
         <p>
         channel 是有类型的管道，可以用 channel 操作符 <code>&lt;-</code> 对其发送或者接收值。
-<pre>
-ch <- v    // 将 v 送入 channel ch。
-v := <-ch  // 从 ch 接收，并且赋值给 v。
-</pre>
+<pre>ch &lt;- v    // 将 v 送入 channel ch。
+v := &lt;-ch  // 从 ch 接收，并且赋值给 v。</pre>
 	<p>
         （“箭头”就是数据流的方向。）
 
 	<p>
         和 map 与 slice 一样，channel 使用前必须创建：
-<pre>
-ch := make(chan int)
-</pre>
+<pre>ch := make(chan int)</pre>
 
 	<p>
         默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 
         goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -1866,7 +1711,7 @@ func sum(a []int, c chan int) {
 	for _, v := range a {
 		sum += v
 	}
-	c <- sum  // send sum to c
+	c &lt;- sum  // send sum to c
 }
 
 func main() {
@@ -1875,11 +1720,10 @@ func main() {
         c := make(chan int)
 	go sum(a[:len(a)/2], c)
 	go sum(a[len(a)/2:], c)
-        x, y := <-c, <-c  // receive from c
+	x, y := &lt;-c, &lt;-c  // 从 c 中接收
 
 	fmt.Println(x, y, x + y)
-}
-</div>
+}</pre>
 </div>
 
 
@@ -1888,9 +1732,7 @@ func main() {
 	
 	<p>
         channel 可以是<i>带缓冲的</i>。为 <code>make</code> 提供第二个参数作为缓冲长度来初始化一个缓冲 channel：
-<pre>
-ch := make(chan int, 100)
-</pre>
+<pre>ch := make(chan int, 100)</pre>
 
 	<p>
         向缓冲 channel 发送数据的时候，只有在缓冲区满的时候才会阻塞。当缓冲区清空的时候接受阻塞。
@@ -1898,19 +1740,17 @@ ch := make(chan int, 100)
         <p>
         修改例子使得缓冲区被填满，然后看看会发生什么。
 
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
 func main() {
 	c := make(chan int, 2)
-	c <- 1
-	c <- 2
-	fmt.Println(<-c)
-	fmt.Println(<-c)
-}
-</div>
+	c &lt;- 1
+	c &lt;- 2
+	fmt.Println(&lt;-c)
+	fmt.Println(&lt;-c)
+}</pre>
 </div>
 
 <div class="slide">
@@ -1918,8 +1758,7 @@ func main() {
 	<p>
         发送者可以 <code>close</code> 一个 channel 来表示再没有值会被发送了。接收者可以通过赋值语句的第二参数来测试 
         channel 是否被关闭：当没有值可以接收并且 channel 已经被关闭，那么
-	<pre>
-v, ok := &lt;-ch</pre>
+	<pre>v, ok := &lt;-ch</pre>
 	<p>
         <code>ok</code> 会被设置为 <code>false</code>。
         <p>
@@ -1928,8 +1767,7 @@ v, ok := &lt;-ch</pre>
         <b>注意：</b> 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
 	<p>
         <b>还要注意</b>：channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 <code>range</code>。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -1937,8 +1775,8 @@ import (
 
 func fibonacci(n int, c chan int) {
         x, y := 0, 1
-        for i := 0; i < n; i++ {
-                c <- x
+	for i := 0; i &lt; n; i++ {
+		c &lt;- x
                 x, y = y, x + y
         }
         close(c)
@@ -1950,8 +1788,7 @@ func main() {
         for i := range c {
                 fmt.Println(i)
         }
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1960,8 +1797,7 @@ func main() {
         <code>select</code> 语句使得一个 goroutine 在多个通讯操作上等待。
 	<p>
         <code>select</code> 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会随机选择一个。
-<div>
-package main
+<pre class="source">package main
 
 import "fmt"
 
@@ -1969,9 +1805,9 @@ func fibonacci(c, quit chan int) {
         x, y := 0, 1
         for {
                 select {
-                case c <- x:
+		case c &lt;- x:
                           x, y = y, x + y
-                case <-quit:
+		case &lt;-quit:
 			fmt.Println("quit")
                         return
                 }
@@ -1982,14 +1818,13 @@ func main() {
         c := make(chan int)
 	quit := make(chan int)
 	go func() {
-		for i := 0; i < 10; i++ {
-			fmt.Println(<-c)
+		for i := 0; i &lt; 10; i++ {
+			fmt.Println(&lt;-c)
 		}
-		quit <- 0
+		quit &lt;- 0
 	}()
 	fibonacci(c, quit)
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -1998,8 +1833,7 @@ func main() {
         当 <code>select</code> 中的其他条件分支都没有准备好的时候，<code>default</code> 分支会被执行。
 	<p>
 	为了非阻塞的发送或者接收，可使用 <code>default</code> 分支：
-	<pre>
-select {
+	<pre>select {
 case i := &lt;-c:
 	// use i
 default:
@@ -2011,8 +1845,7 @@ default:
 	的用户界面中运行，因为沙盒环境是没有定时器概念的。需要<a target="_blank" href="http://golang.org/doc/install/">安装、
 	Go</a> 来了解这个例子如何运行。
 	</span>
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -2024,9 +1857,9 @@ func main() {
         boom := time.After(5e8)
         for {
                 select {
-                case <-tick:
+		case &lt;-tick:
                         fmt.Println("tick.")
-                case <-boom:
+		case &lt;-boom:
                         fmt.Println("BOOM!")
                         return
                 default:
@@ -2034,27 +1867,24 @@ func main() {
                         time.Sleep(5e7)
                 }
         }
-}
-</div>
+	}</pre>
 </div>
 
 <div class="slide nocode">
 	<h2>练习：等价二叉树</h2>
         <p>
         可以用多种不同的二叉树的叶子节点存储相同的数列值。例如，这里有两个二叉树保存了序列 1，1，2，3，5，8，13。
-	<img src="static/fig4.png">
+    <img src="static/fig4.png" alt="二叉树">
         <p>
         用于检查两个二叉树是否存储了相同的序列的函数在多数语言中都是相当复杂的。这里将使用 Go 的并发和 
         channel 来编写一个简单的解法。
 	<p>
         这个例子使用了 <code>tree</code> 包，定义了类型：
-<pre>
-type Tree struct {
+<pre>type Tree struct {
 	Left  *Tree
 	Value int
 	Right *Tree
-}
-</pre>
+}</pre>
 </div>
 
 <div class="slide">
@@ -2068,9 +1898,7 @@ type Tree struct {
 	<code>k</code>，<code>2k</code>，<code>3k</code>，...，<code>10k</code>。
         <p>
         创建一个新的 channel <code>ch</code> 并且对其进行步进：
-<pre>
-go Walk(tree.New(1), ch)
-</pre>
+   <pre>go Walk(tree.New(1), ch)</pre>
 	<p>
         然后从 channel 中读取并且打印 10 个值。应当是值 1，2，3，...，10。
 	<p>
@@ -2093,8 +1921,7 @@ func Walk(t *tree.Tree, ch chan int)
 func Same(t1, t2 *tree.Tree) bool
 
 func main() {
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide">
@@ -2103,8 +1930,7 @@ func main() {
         在这个练习中，将会使用 Go 的并发特性来并行执行 web 爬虫。
 	<p>
 	修改 <code>Crawl</code> 函数来并行的抓取 URLs，并且保证不重复。
-<div>
-package main
+<pre class="source">package main
 
 import (
 	"fmt"
@@ -2120,7 +1946,7 @@ func Crawl(url string, depth int, fetcher Fetcher) {
         // TODO: 并行的抓取 URL。
         // TODO: 不重复抓取页面。
         // 下面并没有实现上面两种情况：
-	if depth <= 0 {
+	if depth &lt;= 0 {
 		return
 	}
 	body, urls, err := fetcher.Fetch(url)
@@ -2187,8 +2013,7 @@ var fetcher = &amp;fakeFetcher{
 			"http://golang.org/pkg/",
 		},
 	},
-}
-</div>
+}</pre>
 </div>
 
 <div class="slide nocode">
@@ -2225,6 +2050,30 @@ var fetcher = &amp;fakeFetcher{
 </div>
 
 </div><!-- end slides -->
+<div id="workspace">
+	<div class="controls">
+		<div><a id="run" href="#run" title="编译并运行">运行</a><a href="#more" id="more" title="选项">▼</a></div>
+		<ul class="more">
+			<li><a href="#" id="reset">重置幻灯/a></li>
+			<li><a href="#" id="format">格式化代码</a></li>
+			<li><a href="#" id="kill" class="localMode">终止程序</a></li>
+			<li><hr></li>
+			<li><a href="#" id="togglesyntax">语法高亮：开启</a></li>
+			<li><a href="#" id="togglelineno">行号：开启</a></li>
+		</ul>
+	</div>
+
+	<div id="workspace-top">
+		<div id="workspace-editor">
+			<textarea id="editor" spellcheck="false"></textarea>
+		</div>
+	</div>
+
+	<div id="workspace-bottom">
+		<div id="output"></div>
+	</div>
+</div>
+</div>
 
 </body>
 </html>
