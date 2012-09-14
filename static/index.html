@@ -24,12 +24,10 @@
 		<div id="header">
 			<div id="slidenum">1</div>
 				<a href="#toc" id="tocbtn" title="目录"></a>
-<h1>Go 指南</h1>
+             <h1>Go 指南</h1>
+         </div>
 
-</div>
-
-
-<div id="slides" class="slides"><!-- begin slides -->
+        <div id="slides" class="slides"><!-- begin slides -->
 
 
 <div class="slide">
@@ -1569,7 +1567,7 @@ type Struct struct {
 	<p>
         例如，可以使用如下方式注册处理方法：
 <pre>http.Handle("/string", String("I'm a frayed knot."))
-http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})</pre>
+http.Handle("/struct", &amp;Struct{"Hello", ":", "Gophers!"})</pre>
 <pre class="source">package main
 
 import (
@@ -1588,7 +1586,7 @@ func main() {
         还记得之前编写的图片生成器吗？
         现在来编写另一个，不过这次将会返回一个 <code>image.Image</code> 的实现来代替 slice 的数据。
 	<p>
-        自定义的 <code>Image</code> 类型，要实现<a target="_blank" href="http://golang.org/pkg/image/#Image" target="_blank">必要的方法</a>，并且调用 <code>pic.ShowImage</code>。
+        自定义的 <code>Image</code> 类型，要实现<a href="http://golang.org/pkg/image/#Image" target="_blank">必要的方法</a>，并且调用 <code>pic.ShowImage</code>。
 	<p>
 	<code>Bounds</code> 应当返回一个 <code>image.Rectangle</code>，例如 <code>image.Rect(0, 0, w, h)</code>。
 	<p>
@@ -1909,8 +1907,7 @@ func main() {
 	<code>Same(tree.New(1), tree.New(1))</code> 应当返回 true，而
 	<code>Same(tree.New(1), tree.New(2))</code> 应当返回 false。
 
-<div>
-package main
+<pre class="source">package main
 
 import "<span class="appengineMode">tour</span><span class="localMode">bitbucket.org/mikespook/go-tour-zh</span>/tree"
 
@@ -2050,6 +2047,7 @@ var fetcher = &amp;fakeFetcher{
 </div>
 
 </div><!-- end slides -->
+
 <div id="workspace">
 	<div class="controls">
 		<div><a id="run" href="#run" title="编译并运行">运行</a><a href="#more" id="more" title="选项">▼</a></div>
