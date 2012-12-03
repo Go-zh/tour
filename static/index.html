@@ -60,6 +60,7 @@ func main() {
   该指南也有其他语言版本：
   <ul>
   <li><a href="http://go-tour-br.appspot.com/">Brazilian Portuguese &mdash; Português do Brasil</a></li>
+	<li><a href="http://go-tour-he.appspot.com/">Hebrew &mdash; עִבְרִית</a></li>
 	<li><a href="http://go-tour-zh.appspot.com/">Chinese &mdash; 普通话</a></li>
   <li><a href="http://go-tour-jp.appspot.com/">Japanese &mdash; 日本語</a></li>
   </ul>
@@ -693,7 +694,7 @@ var m map[string]Vertex
 func main() {
 	m = make(map[string]Vertex)
 	m["Bell Labs"] = Vertex{
-		40.68433, 74.39967,
+		40.68433, -74.39967,
 	}
 	fmt.Println(m["Bell Labs"])
 }</pre>
@@ -2027,12 +2028,17 @@ var fetcher = &amp;fakeFetcher{
 	<span class="appengineMode">是应当继续阅读的内容</span>
 	<span class="localMode">作为开始</span>。
         它包含了参考、指南、视频等等更多资料。
+    </p>
+	<p>
+	了解如何组织 Go 代码并在其上工作，参阅 <a href="http://www.youtube.com/watch?v=XCsL89YtqCs">this screencast</a> or read <a href="http://golang.org/doc/code.html">如何编写 Go 代码</a>。
+	</p>
 	<p>
         在标准库上需要帮助的话，参考
 	<a target="_blank" href="http://golang.org/pkg/">package
             reference</a>。语言本身的帮助，可以阅读令人愉快的
 	<a target="_blank" href="http://golang.org/ref/spec">Language
 	Spec</a>。
+    </p>
 	<p>
 	进一步探索 Go 的并发模型，参阅
 	<a target="_blank" href="http://golang.org/doc/codewalk/sharemem/">Share Memory by Communicating</a>
