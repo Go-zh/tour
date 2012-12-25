@@ -16,6 +16,24 @@
 <!-- Tour -->
 <link rel="stylesheet" href="static/tour.css">
 <script src="static/mode.js"></script>
+<script>
+// Localized user interface.
+var tr = {
+	"off": "关闭",
+	"on": "开启",
+	"syntax": "语法高亮",
+	"lineno": "行号",
+	"reset": "重置",
+	"format": "格式化代码",
+	"kill": "杀死进程",
+	"run": "运行",
+	"toc": "目录",
+	"prev": "向前",
+	"next": "向后",
+	"waiting": "等待远端服务器...",
+	"errcomm": "与远端服务器通讯异常。",
+}
+</script>
 <script src="static/tour.js"></script>
 
 </head>
@@ -190,7 +208,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>函数</h2>
+	<h2>函数（续）</h2>
         <p>
         当两个或多个连续的函数命名参数是同一类型，则除了最后一个类型之外，其他都可以省略。
 	<p>
@@ -214,7 +232,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>函数</h2>
+	<h2>多值返回</h2>
 	<p>
         函数可以返回任意数量的返回值。
 	<p>
@@ -234,7 +252,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>函数</h2>
+	<h2>命名返回值</h2>
         <p>
         函数接受参数。在 Go 中，函数可以返回多个“结果参数”，而不仅仅是一个值。它们可以像变量那样命名和使用。
 	<p>
@@ -272,7 +290,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>变量</h2>
+	<h2>初始化变量</h2>
 	<p>
         变量定义可以包含初始值，每个变量对应一个。
 	<p>
@@ -290,7 +308,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>变量</h2>
+	<h2>短声明变量</h2>
         <p>
         在函数中，<code>:=</code> 简洁赋值语句在明确类型的地方，可以用于替代 <code>var</code> 定义。
 	<p>
@@ -377,7 +395,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>For</h2>
+	<h2>For（续）</h2>
 	<p>
 	跟 C 或者 Java 中一样，可以让前置、后置语句为空。
 <pre class="source">package main
@@ -394,7 +412,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>For</h2>
+	<h2>For 是 Go 的 “while”</h2>
 	<p>
         基于此可以省略分号：
 	C 的 <code>while</code> 在 Go 中也是用 <code>for</code> 实现。
@@ -412,21 +430,10 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>For</h2>
+	<h2>死循环</h2>
 	<p>
-	如果省略了循环条件，它就是个死循环源。
-<pre class="source">package main
-
-func main() {
-	for ; ; {
-	}
-}</pre>
-</div>
-
-<div class="slide">
-	<h2>For</h2>
-	<p>
-	而为了避免累赘，分号可以省略，因此一个死循环可以简洁地表达。
+	如果省略了循环条件，循环就不会结束，
+因此一个死循环可以有更简洁地表达。
 <pre class="source">package main
 
 func main() {
@@ -461,7 +468,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>If</h2>
+	<h2>If 的简洁语句</h2>
 	<p>
 	跟 <code>for</code> 一样，<code>if</code> 语句可以在条件之前执行一个简单的语句。
         <p>
@@ -491,7 +498,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>If</h2>
+	<h2>If 和 else</h2>
         <p>
         在 <code>if</code> 的简单语句处定义的变量同样可以在任何对应的 <code>else</code> 块中使用。
 <pre class="source">package main
@@ -701,7 +708,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Map</h2>
+	<h2>Map 的文法</h2>
 	<p>
         map 的文法跟结构体文法相似，不过键名是必须的。
 <pre class="source">package main
@@ -727,7 +734,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Map</h2>
+	<h2>Map 的文法（续）</h2>
 	<p>
         如果顶层类型只有类型名的话，可以在文法的元素中省略键名。
 <pre class="source">package main
@@ -813,7 +820,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slice</h2>
+	<h2>切片 Slice</h2>
         <p>
         slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
 	<p>
@@ -845,7 +852,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Slice</h2>
+	<h2>构造 Slice</h2>
 	<p>
    slice 由函数 <code>make</code> 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
 	<pre>a := make([]int, 5)  // len(a)=5</pre>
@@ -880,7 +887,7 @@ func printSlice(s string, x []int) {
 </div>
 
 <div class="slide">
-	<h2>Slice</h2>
+	<h2>空 Slice</h2>
 	<p>
 	slice 的零值是 <code>nil</code>。
 	<p>
@@ -902,7 +909,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>函数</h2>
+	<h2>函数为值</h2>
    <p>
    函数也是值。
 <pre class="source">package main
@@ -922,7 +929,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>函数</h2>
+	<h2>函数的闭包</h2>
         <p>
         并且函数是完全闭包的。
 	<p>
@@ -968,7 +975,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Range</h2>
+	<h2>Range（续）</h2>
 	<p>
         可以将值赋值给 <code>_</code> 来忽略序号和值。
         <p>
@@ -1018,7 +1025,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Switch</h2>
+	<h2>Switch 的执行顺序</h2>
 	<p>
         switch 的条件从上到下的执行，当匹配成功的时候停止。
 	<p>
@@ -1029,6 +1036,10 @@ case f():
 }</pre>
         <p>
         当 <code>i==0</code> 时不会调用 <code>f</code>。）
+
+<p class="appengineMode">
+注意：Go playground 中的时间总是从 2009-11-10 23:00:00 UTC 开始，
+a value whose significance is left as an exercise for the reader.
 
 <pre class="source">package main
 
@@ -1054,7 +1065,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>Switch</h2>
+	<h2>没有条件的 Switch</h2>
 	<p>
 	没有条件的 switch 同 <code>switch true</code> 一样。
 	<p>
@@ -1241,7 +1252,7 @@ func main() {
 </div>
 
 <div class="slide">
-	<h2>方法</h2>
+	<h2>方法（续）</h2>
         <p>
         事实上，可以对包中的<i>任意</i>类型定义任意方法，而不仅仅是结构体。
         <p>
@@ -1359,7 +1370,7 @@ func (v *Vertex) Abs() float64 {
 </div>
 
 <div class="slide">
-	<h2>接口</h2>
+	<h2>隐式接口</h2>
         <p>
         类型通过实现那些方法来实现接口。
 	<p>
