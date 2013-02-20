@@ -18,6 +18,7 @@ function L(k) {
 		return "(no translation for "+k+")";
 	}
 }
+
 function init() {
 	var $tocdiv = $('<div id="toc" />').insertBefore('#slides').hide();
 	$tocdiv.append($('<h2>'+L('toc')+'</h2>'));
@@ -148,6 +149,7 @@ function init() {
 	} else {
 		$('#togglesyntax').text(L('syntax')+': '+L('on'));
 	}
+
 	// set these according to lang.js
 	$('#run').text(L('run'));
 	$('#reset').text(L('reset'));
