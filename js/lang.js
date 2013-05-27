@@ -8,6 +8,8 @@ var tr = {
         "format": "格式化代码",
         "kill": "杀死进程",
         "run": "运行",
+        "compile": "编译并运行",
+        "more": "选项",
         "toc": "目录",
         "prev": "向前",
         "next": "向后",

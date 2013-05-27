@@ -156,6 +156,8 @@ function init() {
 	$('#format').text(L('format'));
 	$('#kill').text(L('kill'));
 	$('#tocbtn').attr('title', L('toc'));
+	$('#run').attr('title', L('compile'));
+	$('#more').attr('title', L('more'));
 }
 
 function toggleToc() {
@@ -193,7 +195,9 @@ function show(i) {
 	// load stored code, or hide code box
 	if ($s.hasClass("nocode")) {
 		$('#workspace').hide();
+		$('#wrap').addClass('full-width');
 	} else {
+		$('#wrap').removeClass('full-width');
 		$('#workspace').show();
 		$output.empty();
 		editor.setValue(load(i) || $s.find('div.source').text());

@@ -45,6 +45,8 @@ http://golang.org
 
 - [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
 - [[http://go-tour-ca.appspot.com/][Catalan — Català]]
+- [[http://go-tour-es.appspot.com/][Spanish — Español]]
+- [[http://go-tour-fr.appspot.com/][French - Français]]
 - [[http://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
 - [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
 - [[http://go-tour-ro.appspot.com/][Romanian - Română]]
@@ -285,7 +287,7 @@ Go 有指针，但是没有指针运算。
 
 使用 `Name:` 语法可以仅列出部分字段。（字段名的顺序无关。）
 
-特殊的前缀 `&` 构造了指向结构体文法的指针。
+特殊的前缀 `&` 构造了指向结构体的指针。
 
 .play prog/struct-literals.go
 

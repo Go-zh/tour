@@ -179,9 +179,10 @@ ol li {
 }
 
 #output img {
-	margin: 5px;
+	margin: 0;
 	padding: 0;
 	border: none;
+	display: block;
 }
 
 pre, code {
@@ -374,6 +375,9 @@ div.nav a:hover {
 	color: #375EAB;
 }
 
+.full-width {
+  width: 100% !important;
+}
 
 @media screen and (max-width : 1100px) {
 	#wrap {
