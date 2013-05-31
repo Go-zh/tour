@@ -819,9 +819,9 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 开始。
 它包含了参考、指南、视频等等更多资料。
 
-了解如何组织 Go 代码并在其上工作，参阅 [[http://www.youtube.com/watch?v=XCsL89YtqCs][这个视频]]，或者阅读[[http://golang.org/doc/code.html][如何编写 Go 代码]]
+了解如何组织 Go 代码并在其上工作，参阅 [[http://www.youtube.com/watch?v=XCsL89YtqCs][这个视频]]，或者阅读 [[http://golang.org/doc/code.html][如何编写 Go 代码]]。
         
-在标准库上需要帮助的话，参考[[http://golang.org/pkg/][包手册]]。语言本身的帮助，阅读[[http://golang.org/ref/spec][语言规范]]是件令人愉快的事情。
+在标准库上需要帮助的话，参考 [[http://golang.org/pkg/][包手册]]。语言本身的帮助，阅读 [[http://golang.org/ref/spec][语言规范]]是件令人愉快的事情。
 
 进一步探索 Go 的并发模型，参阅 [[http://golang.org/doc/codewalk/sharemem/][Share Memory by Communicating]] 的代码之旅。
         
@@ -830,5 +830,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 [[http://blog.golang.org/][Go Blog]] 有着众多的关于 Go 的文章信息。
 
 [[http://www.mikespook.com/tag/golang/][mikespook 的博客]]有大量中文的关于 Go 的文章和翻译。
+
+开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
         
 访问 [[http://golang.org][golang.org]] 了解更多内容。
