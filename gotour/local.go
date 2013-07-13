@@ -41,8 +41,6 @@ var (
 )
 
 var (
-	// a source of numbers, for naming temporary files
-	uniq = make(chan int)
 
 	// GOPATH containing the tour packages
 	gopath = os.Getenv("GOPATH")
@@ -74,12 +72,6 @@ func findRoot() (string, error) {
 func main() {
 	flag.Parse()
 
-	// source of unique numbers
-	go func() {
-		for i := 0; ; i++ {
-			uniq <- i
-		}
-	}()
 
 	// find and serve the go tour files
 	root, err := findRoot()
@@ -121,7 +113,7 @@ func main() {
 
 	http.Handle(socketPath, socket.Handler)
 
-	err = serveScripts(filepath.Join(root, "js"), "socket.js")
+	err = serveScripts(filepath.Join(root, "js"), "SocketTransport")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -158,21 +150,17 @@ func init() {
 	socket.Environ = environ
 }
 
-// environ returns an execution environment containing only GO* variables
-// and replacing GOPATH with the value of the global var gopath.
+// environ returns the original execution environment with GOPATH
+// replaced (or added) with the value of the global var gopath.
 func environ() (env []string) {
 	for _, v := range os.Environ() {
-		if !strings.HasPrefix(v, "GO") {
-			continue
-	}
-		if strings.HasPrefix(v, "GOPATH=") {
-			v = "GOPATH=" + gopath
-}
-
+		if !strings.HasPrefix(v, "GOPATH=") {
 		env = append(env, v)
-}
+		}
+	}
 
-		return
+	env = append(env, "GOPATH="+gopath)
+	return
 }
 
 // waitServer waits some time for the http Server to start

@@ -691,7 +691,7 @@ _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
         
 `f`，`x`，`y` 和 `z` 是当前 goroutine 中定义的，但是在新的 goroutine 中运行 `f`。
 
-goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。`[[http://golang.org/pkg/sync/][sync]]` 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
+goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
 
 .play prog/goroutines.go
 
@@ -823,9 +823,23 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
         
 在标准库上需要帮助的话，参考 [[http://golang.org/pkg/][包手册]]。语言本身的帮助，阅读 [[http://golang.org/ref/spec][语言规范]]是件令人愉快的事情。
 
-进一步探索 Go 的并发模型，参阅 [[http://golang.org/doc/codewalk/sharemem/][Share Memory by Communicating]] 的代码之旅。
-        
-[[http://golang.org/doc/codewalk/functions/][First Class Functions in Go]] 展示了有趣的函数类型。
+进一步探索 Go 的并发模型，参阅
+[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]
+([[http://talks.golang.org/2012/concurrency.slide][幻灯片]])
+以及
+[[https://www.youtube.com/watch?v=QDDwwePbDtw][深入 Go 并发模型]]
+([[http://talks.golang.org/2013/advconc.slide][幻灯片]])
+并且阅读
+[[http://golang.org/doc/codewalk/sharemem/][使用通讯共享内存]]
+的代码之旅。
+
+想要开始编写 Web 应用，参阅
+[[http://vimeo.com/53221558][一个简单的编程环境]]
+([[http://talks.golang.org/2012/simple.slide][幻灯片]])
+并且阅读
+[[http://golang.org/doc/articles/wiki/][编写 Web 应用]] 的指南.
+
+[[http://golang.org/doc/codewalk/functions/][GO 中的一等公民函数]] 展示了有趣的函数类型。
         
 [[http://blog.golang.org/][Go Blog]] 有着众多的关于 Go 的文章信息。
 
