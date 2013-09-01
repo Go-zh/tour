@@ -54,15 +54,37 @@ http://golang.org
 
 点击“向后”按钮或者按 PageDown 继续。
 
-* 包
+#appengine: * Go Playground
+#appengine: 
+#appengine: 这个指南构建在 [[http://play.golang.org/][Go Playground]] 之上，这是一个运行在
+#appengine: [[http://golang.org/][golang.org]] 的服务器上的一个 Web 服务。
+#appengine: 
+#appengine: 服务接收 Go 程序的输入，且在沙盒里编译、链接和运行，
+#appengine: 然后返回输出。
+#appengine: 
+#appengine: 对于在 Playground 运行的程序的限制是：
+#appengine: 
+#appengine: - 除了部分例外，Playground 可以使用大部分的标准库；尤其是关于访问网络和文件系统。因此，在 Playground 中的程序与外部唯一的通讯方式是使用标准输出和标准错误输出。
+#appengine: - Playground 的时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。这使得根据可预见的输出来缓存程序变得容易。
+#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序是限制单一线程运行（但是可以有多个 goroutine）。
+#appengine:
+#appengine: Playground 使用最后发布的 Go 的稳定版本。
+#appengine: 
+#appengine: .play prog/sandbox.go
+* Packages
 
 每个 Go 程序都是由包组成的。
 
 程序运行的入口是包 `main`。
 
-这个程序使用并导入了包 `"fmt"` 和 `"math"`。
+这个程序使用并导入了包 `"fmt"` 和 `"math/rand"`。
 
-按照惯例，包名与导入路径的最后一个目录一致。
+按照惯例，包名与导入路径的最后一个目录一致。例如，`"math/rand"` 包由 `package`rand` 语句开始。
+
+#appengine: *注意：* 这个程序的运行环境是固定的，因此
+#appengine: `rand.Intn` 总是会返回相同的数字。
+#appengine: 
+#appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
 .play prog/packages.go
 
@@ -147,7 +169,7 @@ http://golang.org
 
 在函数中，`:=` 简洁赋值语句在明确类型的地方，可以用于替代 `var` 定义。
 
-（`:=` 结构不能使用在函数外，函数外的每个语法块都必须以关键字开始。）
+函数外的每个语法块都必须以关键字开始（`var`、`func`、等等），`:=` 结构不能使用在函数外。
 
 .play prog/short-variable-declarations.go
 
@@ -178,6 +200,8 @@ Go 的基本类型有Basic types
 常量的定义与变量类似，只不过使用 `const` 关键字。
 
 常量可以是字符、字符串、布尔或数字类型的值。
+
+常量不能使用 `:=` 语法定义。
 
 .play prog/constants.go
 
@@ -303,7 +327,6 @@ Go 有指针，但是没有指针运算。
 
 .play prog/the-new-function.go
 
-# TODO(campoy): Arrays section
 
 * slice
         
@@ -358,7 +381,6 @@ slice 的零值是 `nil`。
 
 .play prog/nil-slices.go
 
-# TODO(campoy): Appending to slices section
 
 * range
 
@@ -430,7 +452,6 @@ map 的文法跟结构体文法相似，不过必须有键名。
 
 .play prog/mutating-maps.go
 
-# TODO(campoy): Range on maps section
 
 * 练习：map
         
@@ -448,9 +469,9 @@ map 的文法跟结构体文法相似，不过必须有键名。
 
 * 函数的闭包
 
-并且函数是完全闭包的。
+Go 函数可以是闭包的。闭包是一个函数值，它来自函数体的外部的变量引用。函数可以对这个引用值进行访问和赋值；换句话说这个函数被“绑定”在这个变量上。
 
-函数 `adder` 返回一个闭包。每个闭包被绑定到了特定的 `sum` 变量上。
+例如，函数 `adder` 返回一个闭包。每个闭包都被绑定到其各自的 `sum` 变量上。
 
 .play prog/function-closures.go
 
@@ -507,6 +528,8 @@ switch 的条件从上到下的执行，当匹配成功的时候停止。
 .play prog/advanced-exercise-complex-cube-roots.go
 
 * 方法和接口
+
+下面的一组幻灯包含了方法和接口，以及定义对象和其行为的结构。
 
 * 方法
 
@@ -678,6 +701,8 @@ _没有显式声明的必要。_
 .play prog/exercise-rot-reader.go
 
 * 并发
+
+接下来的章节涵盖了 Go 的并发机制。
 
 * goroutine
 
