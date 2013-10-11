@@ -21,7 +21,7 @@ import (
 	"strings"
 	"time"
 
-	"code.google.com/p/go.talks/pkg/socket"
+	"code.google.com/p/go.tools/playground/socket"
 	
 	// Imports so that go build/install automatically installs them.
 	_ "bitbucket.org/mikespook/go-tour-zh/pic"
@@ -47,8 +47,13 @@ var (
 	httpAddr string
 )
 
+// isRoot reports whether path is the root directory of the tour tree.
+// To be the root, it must have content and template subdirectories.
 func isRoot(path string) bool {
-	_, err := os.Stat(filepath.Join(path, "tour.article"))
+	_, err := os.Stat(filepath.Join(path, "content", "tour.article"))
+	if err == nil {
+		_, err = os.Stat(filepath.Join(path, "template", "tour.tmpl"))
+	}
 	return err == nil
 }
 
@@ -163,7 +168,7 @@ func environ() (env []string) {
 }
 
 // waitServer waits some time for the http Server to start
-// serving url and returns whether it starts
+// serving url. The return value reports whether it starts.
 func waitServer(url string) bool {
 	tries := 20
 	for tries > 0 {
