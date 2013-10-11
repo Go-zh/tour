@@ -559,8 +559,6 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 `Abs` 的工作方式是一样的。只不过，仅仅读取 `v`。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
 
-.play prog/methods-with-pointer-receivers.go
-
 .play prog/tour/methods-with-pointer-receivers.go
 
 * 接口
