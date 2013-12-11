@@ -50,9 +50,10 @@ http://golang.org
 - [[http://go-tour-fr.appspot.com/][French - Français]]
 - [[http://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
 - [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
+- [[http://go-tour-kr.appspot.com/][Korean — 한국어]]
 - [[http://go-tour-ro.appspot.com/][Romanian - Română]]
 - [[http://tur.golang.org.tr/][Turkish - Türkçe]]
-- [[http://go-tour-zh.appspot.com/][Chinese — 普通话]]
+- [[http://go-tour-zh.appspot.com/][Chinese — 简体中文]]
 
 点击“向后”按钮或者按 PageDown 继续。
 
@@ -198,6 +199,27 @@ Go 的基本类型有Basic types
 
 .play prog/tour/basic-types.go
 
+* 类型转换
+
+表达式 `T(v)` 将值 `v` 转换为类型 `T`。
+
+一些关于数值的转换：
+
+	var i int = 42
+	var f float64 = float64(i)
+	var u uint = uint(f)
+
+或者，更加简单的形式：
+
+	i := 42
+	f := float64(i)
+	u := uint(f)
+
+与 C 不同的是 Go 的在不同类型之间的项目赋值时需要显式转换。
+试着移除例子中 `float64` 或 `int` 的转换看看会发生什么。
+
+.play prog/tour/type-conversions.go
+
 * 常量
 
 常量的定义与变量类似，只不过使用 `const` 关键字。
@@ -329,6 +351,21 @@ Go 有指针，但是没有指针运算。
     t := new(T)
 
 .play prog/tour/the-new-function.go
+
+* 数组
+
+类型 `[n]T` 是一个有 `n` 个类型为 `T` 的值的数组。
+
+表达式
+
+	var a [10]int
+
+定义变量 `a` 是一个有十个整数的数组。
+
+数组的长度是其类型的一部分，因此数组不能改变大小。
+这看起来是一个制约，但是请不要担心；Go 提供了更加便利的方式来使用数组。
+
+.play prog/tour/array.go
 
 * slice
         
@@ -670,7 +707,7 @@ _没有显式声明的必要。_
 
 （参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
 
-同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBAColor` 和 `image.RGBAColorModel` 而被忽视了。
+同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBAColor` 和 `image.RGBAColorModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
 
 .play prog/tour/images.go
 
