@@ -915,3 +915,5 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
         
 访问 [[http://golang.org][golang.org]] 了解更多内容。
+
+关于本项目（中文）的任何意见、建议，请在[[https://bitbucket.org/mikespook/go-tour-zh/issues][这里]]提交 Issues。
