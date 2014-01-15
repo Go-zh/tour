@@ -712,7 +712,7 @@ _没有显式声明的必要。_
 
 （参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
 
-同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBAColor` 和 `image.RGBAColorModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
+同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
 
 .play prog/tour/images.go
 
@@ -724,9 +724,9 @@ _没有显式声明的必要。_
 
 `Bounds` 应当返回一个 `image.Rectangle`，例如 `image.Rect(0, 0, w, h)`。
 
-`ColorModel` 应当返回 `image.RGBAColorModel`。
+`ColorModel` 应当返回 `image.RGBAModel`。
 
-`At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBAColor{v, v, 255, 255}`。
+`At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBA{v, v, 255, 255}`。
 
 .play prog/tour/exercise-images.go
 
