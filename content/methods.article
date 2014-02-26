@@ -1,0 +1,185 @@
+方法和接口
+本课包含了方法和接口，可以用它们来定义对象和其行为。
+
+Go 作者组
+http://golang.org
+
+* 方法
+
+Go 没有类。然而，仍然可以在结构体类型上定义方法。
+
+_方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
+
+.play prog/tour/methods.go
+
+* 方法（续）
+
+事实上，可以对包中的 _任意_ 类型定义任意方法，而不仅仅是针对结构体。
+
+不能对来自其他包的类型或基础类型定义方法。
+
+.play prog/tour/methods-continued.go
+
+* 接收者为指针的方法
+
+方法可以与命名类型或命名类型的指针关联。
+
+刚刚看到的两个 `Abs` 方法。一个是在 `*Vertex` 指针类型上，而另一个在 `MyFloat` 值类型上。
+		有两个原因需要使用指针接收者。首先避免在每个方法调用中拷贝值（如果值类型是大的结构体的话会更有效率）。其次，方法可以修改接收者指向的值。
+
+尝试修改 `Abs` 的定义，同时 `Scale` 方法使用 `Vertex` 代替 `*Vertex` 作为接收者。
+
+当 `v` 是 `Vertex` 的时候 `Scale` 方法没有任何作用。`Scale` 修改 `v`。当 `v` 是一个值（非指针），方法看到的是 `Vertex` 的副本，并且无法修改原始值。
+
+`Abs` 的工作方式是一样的。只不过，仅仅读取 `v`。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
+
+.play prog/tour/methods-with-pointer-receivers.go
+
+* 接口
+
+接口类型是由一组方法定义的集合。
+
+接口类型的值可以存放实现这些方法的任何值。
+
+*注意：* 左边的代码会导致编译失败。	
+
+由于 `Abs` 只定义在 `*Vertex` 上，而不是 `Vertex`。
+所以 `Vertex` 不满足 `Abser`。
+
+.play prog/tour/interfaces.go
+
+* 隐式接口
+
+类型通过实现那些方法来实现接口。
+
+_没有显式声明的必要。_
+
+隐式接口解藕了实现接口的包和定义接口的包：互不依赖。
+
+因此，也就无需在每一个实现上增加新的接口名称，这样同时也鼓励了明确的接口定义。
+
+[[http://golang.org/pkg/io/][包 io]] 定义了 `Reader` 和 `Writer`；其实不一定要这么做。
+
+.play prog/tour/interfaces-are-satisfied-implicitly.go
+
+* 错误
+
+错误是可以用字符串描述自己的任何东西。主要思路是由预定义的内建接口类型 `error`，和方法 `Error`，返回字符串：
+
+	type error interface {
+		Error() string
+	}
+
+当用 `fmt` 包的多种不同的打印函数输出一个 `error` 时，会自动的调用该方法。
+
+.play prog/tour/errors.go
+
+* 练习：错误
+
+从之前的练习中复制 `Sqrt` 函数，并修改使其返回 `error` 值。	  
+
+`Sqrt` 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
+	
+创建一个新类型
+		
+	type ErrNegativeSqrt float64
+
+为其实现
+
+	func (e ErrNegativeSqrt) Error() string
+
+使其成为一个 `error`， 该方法就可以让 `ErrNegativeSqrt(-2).Error()` 返回 `"cannot Sqrt negative number: -2"`。
+
+*注意：* 在 `Error` 方法内调用 `fmt.Print(e)` 将会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Print(float64(e))`。请思考这是为什么呢？
+
+修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
+
+.play prog/tour/exercise-errors.go
+
+* Web 服务器
+	
+[[http://golang.org/pkg/net/http/][包 http]] 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
+
+	package http
+
+	type Handler interface {
+		ServeHTTP(w ResponseWriter, r *Request)
+	}
+
+在这个例子中，类型 `Hello` 实现了 `http.Handler`。
+
+访问 [[http://localhost:4000/][http://localhost:4000/]] 会看到来自程序的问候。
+	
+#appengine: *注意：* 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
+#appengine: web 服务器，可能需要[[http://golang.org/doc/install/][安装 Go]]。
+
+.play prog/tour/web-servers.go
+
+* 练习：HTTP 处理
+
+实现下面的类型，并在其上定义 ServeHTTP 方法。在 web 服务器中注册它们来处理指定的路径。
+
+	type String string
+
+	type Struct struct {
+		Greeting string
+		Punct    string
+		Who      string
+	}
+
+例如，可以使用如下方式注册处理方法：
+
+	http.Handle("/string", String("I'm a frayed knot."))
+	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
+
+.play prog/tour/exercise-http-handlers.go
+
+* 图片
+
+[[http://golang.org/pkg/image/#Image][Package image]] 定义了 `Image` 接口：
+		
+	package image
+
+	type Image interface {
+		ColorModel() color.Model
+		Bounds() Rectangle
+		At(x, y int) color.Color
+	}
+
+（参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
+
+同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
+
+.play prog/tour/images.go
+
+* 练习：图片
+
+还记得之前编写的图片生成器吗？现在来另外编写一个，不过这次将会返回 `image.Image` 来代替 slice 的数据。
+
+自定义的 `Image` 类型，要实现[[http://golang.org/pkg/image/#Image][必要的方法]]，并且调用 `pic.ShowImage`。
+
+`Bounds` 应当返回一个 `image.Rectangle`，例如 `image.Rect(0, 0, w, h)`。
+
+`ColorModel` 应当返回 `image.RGBAModel`。
+
+`At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBA{v, v, 255, 255}`。
+
+.play prog/tour/exercise-images.go
+
+* 练习：Rot13 读取器
+
+一般的模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 包裹另一个 `io.Reader`，用某些途径修改特定的流。
+
+例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 函数输入一个 `io.Reader`（gzip 的数据流）并且返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压缩后的数据流）。
+		
+实现一个实现了 `io.Reader` 的 `rot13Reader`，用 [[http://en.wikipedia.org/wiki/ROT13][ROT13]] 修改数据流中的所有的字母进行密文替换。
+
+`rot13Reader` 已经提供。通过实现其 `Read` 方法使得它匹配 `io.Reader`。
+
+.play prog/tour/exercise-rot-reader.go
+
+* 恭喜！
+
+你已经完成了本课程！
+
+你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。

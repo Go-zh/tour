@@ -1,0 +1,234 @@
+复杂类型： struct、slice 和 map。
+学习如何基于已有类型定义新的类型：本课涵盖了结构体、数组和 map。
+
+Go 作者组
+http://golang.org
+
+* 结构体
+
+一个结构体（`struct`）就是一个字段的集合。
+
+（而 `type` 的含义跟其字面意思相符。）
+
+.play prog/tour/structs.go
+
+* 结构体字段
+
+结构体字段使用点号来访问。
+
+.play prog/tour/struct-fields.go
+
+* 指针
+
+Go 有指针，但是没有指针运算。
+
+结构体字段可以通过结构体指针来访问。通过指针间接的访问是透明的。
+
+.play prog/tour/pointers.go
+
+* 结构体文法
+
+结构体文法表示通过结构体字段的值作为列表来新分配一个结构体。
+
+使用 `Name:` 语法可以仅列出部分字段。（字段名的顺序无关。）
+
+特殊的前缀 `&` 构造了指向结构体的指针。
+
+.play prog/tour/struct-literals.go
+
+* new 函数
+
+表达式 `new(T)` 分配了一个零初始化的 `T` 值，并返回指向它的指针。
+
+    var t *T = new(T)
+
+或
+
+	t := new(T)
+
+.play prog/tour/the-new-function.go
+
+* 数组
+
+类型 `[n]T` 是一个有 `n` 个类型为 `T` 的值的数组。
+
+表达式
+
+	var a [10]int
+
+定义变量 `a` 是一个有十个整数的数组。
+
+数组的长度是其类型的一部分，因此数组不能改变大小。
+这看起来是一个制约，但是请不要担心；Go 提供了更加便利的方式来使用数组。
+
+.play prog/tour/array.go
+
+* slice
+        
+一个 slice 会指向一个数组，并且包含了长度信息。
+
+`[]T` 是一个元素类型为 `T` 的 slice。
+
+.play prog/tour/slices.go
+
+* 对 slice 切片
+
+slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
+
+表达式
+
+    s[lo:hi]
+        
+表示从 `lo` 到 `hi-1` 的 slice 元素，含两端。因此
+
+    s[lo:lo]
+
+是空的，而
+
+    s[lo:lo+1]
+
+有一个元素。
+
+.play prog/tour/slicing-slices.go
+
+* 构造 slice
+
+slice 由函数 `make` 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
+
+    a := make([]int, 5)  // len(a)=5
+
+为了指定容量，可传递第三个参数到 `make`：
+
+	b := make([]int, 0, 5) // len(b)=0, cap(b)=5
+
+	b = b[:cap(b)] // len(b)=5, cap(b)=5
+	b = b[1:]      // len(b)=4, cap(b)=4
+
+.play prog/tour/making-slices.go
+
+* 空 slice
+
+slice 的零值是 `nil`。
+
+一个 nil 的 slice 的长度和容量是 0。
+
+（了解更多关于 slice 的内容，参阅文章[[http://golang.org/doc/articles/slices_usage_and_internals.html][slice：使用和内幕]]。）
+
+.play prog/tour/nil-slices.go
+
+* range
+
+`for` 循环的 `range` 格式可以对 slice 或者 map 进行迭代循环。
+
+.play prog/tour/range.go
+
+* range（续）
+
+可以将值赋值给 `_` 来忽略序号和值。
+
+如果只需要索引值，去掉“, value”的部分即可。
+
+.play prog/tour/range-continued.go
+
+* 练习：slice
+
+实现 `Pic`。它返回一个 slice 的长度 `dy`，和 slice 中每个元素的长度的 8 位无符号整数 `dx`。当执行这个程序，它会将整数转换为灰度（好吧，蓝度）图片进行展示。
+
+图片的实现已经完成。可能用到的函数包括 `>x^y`，`(x+y)/2` 和 `x*y`。
+
+（需要使用循环来分配 `[][]uint8` 中的每个 `[]uint8`。）
+
+（使用 `uint8(intValue)` 在类型之间进行转换。）
+
+.play prog/tour/exercise-slices.go
+
+* map
+
+map 映射键到值。
+
+map 在使用之前必须用 `make` 而不是 `new` 来创建；值为 `nil` 的 map 是空的，并且不能赋值。
+
+.play prog/tour/maps.go
+
+* map 的文法
+
+map 的文法跟结构体文法相似，不过必须有键名。
+
+.play prog/tour/map-literals.go
+
+* map 的文法（续）
+
+如果顶级的类型只有类型名的话，可以在文法的元素中省略键名。
+
+.play prog/tour/map-literals-continued.go
+
+* 修改 map
+
+在 map `m` 中插入或修改一个元素：
+
+	m[key] = elem
+
+获得元素：
+
+    elem = m[key]
+
+删除元素：
+
+	delete(m, key)
+
+通过双赋值检测某个键存在：
+
+    elem, ok = m[key]
+
+如果 `key` 在 `m` 中，`ok` 为 `true`。否则，`ok` 为 `false`，并且 `elem` 是 map 的元素类型的零值。
+
+同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
+
+.play prog/tour/mutating-maps.go
+
+* 练习：map
+
+实现 `WordCount`。它应当返回一个含有 `s` 中每个 “词” 个数的 map。函数 `wc.Test` 针对这个函数执行一个测试用例，并打印成功或者失败。
+
+你会发现 [[http://golang.org/pkg/strings/#Fields][strings.Fields]] 很有帮助。
+
+.play prog/tour/exercise-maps.go
+
+* 函数为值
+
+函数也是值。Function values
+
+.play prog/tour/function-values.go
+
+* 函数的闭包
+
+Go 函数可以是闭包的。闭包是一个函数值，它来自函数体的外部的变量引用。函数可以对这个引用值进行访问和赋值；换句话说这个函数被“绑定”在这个变量上。
+
+例如，函数 `adder` 返回一个闭包。每个闭包都被绑定到其各自的 `sum` 变量上。
+
+.play prog/tour/function-closures.go
+
+* 练习：斐波纳契闭包
+
+现在来通过函数做些有趣的事情。
+
+实现一个 `fibonacci` 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数。
+
+.play prog/tour/exercise-fibonacci-closure.go
+
+
+* 进阶练习：复数的立方跟
+
+让我们通过 `complex64` 和 `complex128` 来探索一下 Go 内建的复数。对于立方根，牛顿法需要大量循环：
+
+.image /content/img/newton3.png
+
+找到 2 的立方根，确保算法能够工作。在 `math/cmplx` 包中有 [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] 函数。
+
+.play prog/tour/advanced-exercise-complex-cube-roots.go
+
+* 恭喜！
+
+你已经完成了本课程！
+
+你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。

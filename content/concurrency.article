@@ -1,0 +1,177 @@
+并发
+Go 将并发作为语言的核心构成。本课将对其进行介绍，并提供了一些示例来展示如何使用它们。
+
+Go 作者组
+http://golang.org
+
+* goroutine
+
+_goroutine_ 是由 Go 运行时环境管理的轻量级线程。
+
+    go f(x, y, z)
+
+开启一个新的 goroutine 执行
+
+	f(x, y, z)
+
+`f`，`x`，`y` 和 `z` 是当前 goroutine 中定义的，但是在新的 goroutine 中运行 `f`。
+
+goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
+
+.play prog/tour/goroutines.go
+
+* channel
+
+channel 是有类型的管道，可以用 channel 操作符 `<-` 对其发送或者接收值。
+
+    ch <- v    // 将 v 送入 channel ch。
+    v := <-ch  // 从 ch 接收，并且赋值给 v。
+
+（“箭头”就是数据流的方向。）
+
+和 map 与 slice 一样，channel 使用前必须创建：
+
+    ch := make(chan int)
+
+默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
+
+.play prog/tour/channels.go
+
+* 缓冲 channel
+
+channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲长度来初始化一个缓冲 channel：
+
+	ch := make(chan int, 100)
+
+向缓冲 channel 发送数据的时候，只有在缓冲区满的时候才会阻塞。当缓冲区清空的时候接受阻塞。
+
+修改例子使得缓冲区被填满，然后看看会发生什么。
+
+.play prog/tour/buffered-channels.go
+
+* range 和 close
+
+发送者可以 `close` 一个 channel 来表示再没有值会被发送了。接收者可以通过赋值语句的第二参数来测试 channel 是否被关闭：当没有值可以接收并且 channel 已经被关闭，那么经过
+
+	v, ok := <-ch
+
+之后 `ok` 会被设置为 `false`。
+
+循环 `for i := range c` 会不断从 channel 接收值，直到它被关闭。
+        
+*注意：* 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
+*还要注意：* channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 `range`。
+
+.play prog/tour/range-and-close.go
+
+* select
+        
+`select` 语句使得一个 goroutine 在多个通讯操作上等待。
+
+`select` 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会随机选择一个。
+
+.play prog/tour/select.go
+
+* 默认选择
+
+当 `select` 中的其他条件分支都没有准备好的时候，`default` 分支会被执行。
+
+为了非阻塞的发送或者接收，可使用 `default` 分支：
+
+    select {
+    case i := <-c:
+    	// 使用 i
+    default:
+	// 从 c 读取会阻塞
+    }
+        
+.play prog/tour/default-selection.go
+
+* 练习：等价二叉树
+
+可以用多种不同的二叉树的叶子节点存储相同的数列值。例如，这里有两个二叉树保存了序列 1，1，2，3，5，8，13。
+
+.image /content/img/tree.png
+
+用于检查两个二叉树是否存储了相同的序列的函数在多数语言中都是相当复杂的。这里将使用 Go 的并发和 channel 来编写一个简单的解法。
+
+这个例子使用了 `tree` 包，定义了类型：
+
+    type Tree struct {
+        Left  *Tree
+        Value int
+        Right *Tree
+    }
+
+* 练习：等价二叉树
+
+*1.* 实现 `Walk` 函数。
+
+*2.* 测试 `Walk` 函数。
+
+函数 `tree.New(k)` 构造了一个随机结构的二叉树，保存了值 `k`，`2k`，`3k`，...，`10k`。
+创建一个新的 channel `ch` 并且对其进行步进：
+
+    go Walk(tree.New(1), ch)
+
+然后从 channel 中读取并且打印 10 个值。应当是值 1，2，3，...，10。
+    
+*3.* 用 `Walk` 实现 `Same` 函数来检测是否 `t1` 和 `t2` 存储了相同的值。
+
+*4.* 测试 `Same` 函数。
+
+`Same(tree.New(1), tree.New(1))` 应当返回 true，而 `Same(tree.New(1), tree.New(2))` 应当返回 false。
+
+.play prog/tour/exercise-equivalent-binary-trees.go
+
+* 练习：Web 爬虫
+
+在这个练习中，将会使用 Go 的并发特性来并行执行 web 爬虫。
+
+修改 `Crawl` 函数来并行的抓取 URLs，并且保证不重复。
+
+.play prog/tour/exercise-web-crawler.go
+
+* Where to Go from here...
+
+#appengine: 你可以从
+#appengine: [[http://golang.org/doc/install/][安装 Go]] 开始，或者下载
+#appengine: [[http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go][Go App Engine SDK]].
+
+#appengine: 一旦安装了 Go，
+[[http://golang.org/doc/][Go 文档]] 是一个极好的
+#appengine: 应当继续阅读的内容。
+开始。
+它包含了参考、指南、视频等等更多资料。
+
+了解如何组织 Go 代码并在其上工作，参阅 [[http://www.youtube.com/watch?v=XCsL89YtqCs][这个视频]]，或者阅读 [[http://golang.org/doc/code.html][如何编写 Go 代码]]。
+        
+在标准库上需要帮助的话，参考 [[http://golang.org/pkg/][包手册]]。语言本身的帮助，阅读 [[http://golang.org/ref/spec][语言规范]]是件令人愉快的事情。
+
+进一步探索 Go 的并发模型，参阅
+[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]
+([[http://talks.golang.org/2012/concurrency.slide][幻灯片]])
+以及
+[[https://www.youtube.com/watch?v=QDDwwePbDtw][深入 Go 并发模型]]
+([[http://talks.golang.org/2013/advconc.slide][幻灯片]])
+并且阅读
+[[http://golang.org/doc/codewalk/sharemem/][使用通讯共享内存]]
+的代码之旅。
+
+想要开始编写 Web 应用，参阅
+[[http://vimeo.com/53221558][一个简单的编程环境]]
+([[http://talks.golang.org/2012/simple.slide][幻灯片]])
+并且阅读
+[[http://golang.org/doc/articles/wiki/][编写 Web 应用]] 的指南.
+
+[[http://golang.org/doc/codewalk/functions/][GO 中的一等公民函数]] 展示了有趣的函数类型。
+        
+[[http://blog.golang.org/][Go Blog]] 有着众多的关于 Go 的文章信息。
+
+[[http://www.mikespook.com/tag/golang/][mikespook 的博客]]有大量中文的关于 Go 的文章和翻译。
+
+开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
+        
+访问 [[http://golang.org][golang.org]] 了解更多内容。
+
+关于本项目（中文）的任何意见、建议，请在[[https://bitbucket.org/mikespook/go-tour-zh/issues][这里]]提交 Issues。

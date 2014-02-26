@@ -67,11 +67,13 @@ http://golang.org
 #appengine: 
 #appengine: 对于在 Playground 运行的程序的限制是：
 #appengine: 
-#appengine: - 除了部分例外，Playground 可以使用大部分的标准库；尤其是关于访问网络和文件系统。因此，在 Playground 中的程序与外部唯一的通讯方式是使用标准输出和标准错误输出。
+#appengine: - 在 Playground 中的程序与外部唯一的通讯方式是使用标准输出和标准错误输出。
 #appengine: - Playground 的时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。这使得根据可预见的输出来缓存程序变得容易。
-#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序是限制单一线程运行（但是可以有多个 goroutine）。
+#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序是限制单一线程运行（但是可以使用大量 goroutine）。
 #appengine:
 #appengine: Playground 使用最后发布的 Go 的稳定版本。
+#appengine: 
+#appengine: 参阅“[[http://blog.golang.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
 #appengine: 
 #appengine: .play prog/tour/sandbox.go
 
