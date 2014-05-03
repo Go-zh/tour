@@ -1,105 +1,104 @@
-Methods and interfaces
-This lesson covers methods and interfaces, the constructs that define objects and their behavior.
+方法和接口
+本课包含了方法和接口，可以用它们来定义对象和其行为。
 
-The Go Authors
+Go 作者组
 http://golang.org
 
-* Methods
+* 方法
 
-Go does not have classes. However, you can define methods on struct types.
+Go 没有类。然而，仍然可以在结构体类型上定义方法。
 
-The _method_receiver_ appears in its own argument list between the `func` keyword and the method name.
+_方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 .play prog/tour/methods.go
 
-* Methods continued
+* 方法（续）
 
-In fact, you can define a method on _any_ type you define in your package, not just structs.
+事实上，可以对包中的 _任意_ 类型定义任意方法，而不仅仅是针对结构体。
 
-You cannot define a method on a type from another package, or on a basic type.
+不能对来自其他包的类型或基础类型定义方法。
 
 .play prog/tour/methods-continued.go
 
-* Methods with pointer receivers
+* 接收者为指针的方法
 
-Methods can be associated with a named type or a pointer to a named type.
+方法可以与命名类型或命名类型的指针关联。
 
-We just saw two `Abs` methods. One on the `*Vertex` pointer type and the other on the `MyFloat` value type.
+刚刚看到的两个 `Abs` 方法。一个是在 `*Vertex` 指针类型上，而另一个在 `MyFloat` 值类型上。
+		有两个原因需要使用指针接收者。首先避免在每个方法调用中拷贝值（如果值类型是大的结构体的话会更有效率）。其次，方法可以修改接收者指向的值。
 
-There are two reasons to use a pointer receiver. First, to avoid copying the value on each method call (more efficient if the value type is a large struct). Second, so that the method can modify the value that its receiver points to.
+尝试修改 `Abs` 的定义，同时 `Scale` 方法使用 `Vertex` 代替 `*Vertex` 作为接收者。
 
-Try changing the declarations of the `Abs` and `Scale` methods to use `Vertex` as the receiver, instead of `*Vertex`.
+当 `v` 是 `Vertex` 的时候 `Scale` 方法没有任何作用。`Scale` 修改 `v`。当 `v` 是一个值（非指针），方法看到的是 `Vertex` 的副本，并且无法修改原始值。
 
-The `Scale` method has no effect when `v` is a `Vertex`. `Scale` mutates `v`. When `v` is a value (non-pointer) type, the method sees a copy of the `Vertex` and cannot mutate the original value.
-
-`Abs` works either way. It only reads `v`. It doesn't matter whether it is reading the original value (through a pointer) or a copy of that value.
+`Abs` 的工作方式是一样的。只不过，仅仅读取 `v`。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
 
 .play prog/tour/methods-with-pointer-receivers.go
 
-* Interfaces
+* 接口
 
-An interface type is defined by a set of methods.
+接口类型是由一组方法定义的集合。
 
-A value of interface type can hold any value that implements those methods.
+接口类型的值可以存放实现这些方法的任何值。
 
-*Note:* The code on the left fails to compile.	
+*注意：* 左边的代码会导致编译失败。	
 
-`Vertex` doesn't satisfy `Abser` because	
-the `Abs` method is defined only on `*Vertex`, not `Vertex`.
+由于 `Abs` 只定义在 `*Vertex` 上，而不是 `Vertex`。
+所以 `Vertex` 不满足 `Abser`。
 
 .play prog/tour/interfaces.go
 
-* Interfaces are satisfied implicitly
+* 隐式接口
 
-A type implements an interface by implementing the methods.
+类型通过实现那些方法来实现接口。
 
-_There_is_no_explicit_declaration_of_intent._
+_没有显式声明的必要。_
 
-Implicit interfaces decouple implementation packages from the packages that define the interfaces: neither depends on the other.
+隐式接口解藕了实现接口的包和定义接口的包：互不依赖。
 
-It also encourages the definition of precise interfaces, because you don't have to find every implementation and tag it with the new interface name.
+因此，也就无需在每一个实现上增加新的接口名称，这样同时也鼓励了明确的接口定义。
 
-[[http://golang.org/pkg/io/][Package io]] defines `Reader` and `Writer`; you don't have to.
+[[http://golang.org/pkg/io/][包 io]] 定义了 `Reader` 和 `Writer`；其实不一定要这么做。
 
 .play prog/tour/interfaces-are-satisfied-implicitly.go
 
-* Errors
+* 错误
 
-An error is anything that can describe itself as an error string. The idea is captured by the predefined, built-in interface type, `error`, with its single method, `Error`, returning a string:
+错误是可以用字符串描述自己的任何东西。主要思路是由预定义的内建接口类型 `error`，和方法 `Error`，返回字符串：
 
 	type error interface {
 		Error() string
 	}
 
-The `fmt` package's various print routines automatically know to call the method when asked to print an `error`.
+当用 `fmt` 包的多种不同的打印函数输出一个 `error` 时，会自动的调用该方法。
 
 .play prog/tour/errors.go
 
-* Exercise: Errors
+* 练习：错误
 
-Copy your `Sqrt` function from the earlier exercises and modify it to return an `error` value.
+从之前的练习中复制 `Sqrt` 函数，并修改使其返回 `error` 值。	  
 
-`Sqrt` should return a non-nil error value when given a negative number, as it doesn't support complex numbers.
-
-Create a new type
-
+`Sqrt` 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
+	
+创建一个新类型
+		
 	type ErrNegativeSqrt float64
 
-and make it an `error` by giving it a
+为其实现
 
 	func (e ErrNegativeSqrt) Error() string
 
-method such that `ErrNegativeSqrt(-2).Error()` returns `"cannot`Sqrt`negative`number:`-2"`.
+使其成为一个 `error`， 该方法就可以让 `ErrNegativeSqrt(-2).Error()` 返回 `"cannot Sqrt negative number: -2"`。
 
-*Note:* a call to `fmt.Print(e)` inside the `Error` method will send the program into an infinite loop. You can avoid this by converting `e` first: `fmt.Print(float64(e))`. Why?
+*注意：* 在 `Error` 方法内调用 `fmt.Print(e)` 将会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Print(float64(e))`。请思考这是为什么呢？
 
-Change your `Sqrt` function to return an `ErrNegativeSqrt` value when given a negative number.
+修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
 
 .play prog/tour/exercise-errors.go
 
-* Web servers
-
-[[http://golang.org/pkg/net/http/][Package http]] serves HTTP requests using any value that implements `http.Handler`:
+* Web 服务器
+	
+[[http://golang.org/pkg/net/http/][包 http]] 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
 
 	package http
 
@@ -107,19 +106,18 @@ Change your `Sqrt` function to return an `ErrNegativeSqrt` value when given a ne
 		ServeHTTP(w ResponseWriter, r *Request)
 	}
 
-In this example, the type `Hello` implements `http.Handler`.
+在这个例子中，类型 `Hello` 实现了 `http.Handler`。
 
-Visit [[http://localhost:4000/][http://localhost:4000/]] to see the greeting.
-
-#appengine: *Note:* This example won't run through the web-based tour user
-#appengine: interface. To try writing web servers you may want to
-#appengine: [[http://golang.org/doc/install/][Install Go]].
+访问 [[http://localhost:4000/][http://localhost:4000/]] 会看到来自程序的问候。
+	
+#appengine: *注意：* 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
+#appengine: web 服务器，可能需要[[http://golang.org/doc/install/][安装 Go]]。
 
 .play prog/tour/web-servers.go
 
-* Exercise: HTTP Handlers
+* 练习：HTTP 处理
 
-Implement the following types and define ServeHTTP methods on them. Register them to handle specific paths in your web server.
+实现下面的类型，并在其上定义 ServeHTTP 方法。在 web 服务器中注册它们来处理指定的路径。
 
 	type String string
 
@@ -129,17 +127,17 @@ Implement the following types and define ServeHTTP methods on them. Register the
 		Who      string
 	}
 
-For example, you should be able to register handlers using:
+例如，可以使用如下方式注册处理方法：
 
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
 .play prog/tour/exercise-http-handlers.go
 
-* Images
+* 图片
 
-[[http://golang.org/pkg/image/#Image][Package image]] defines the `Image` interface:
-
+[[http://golang.org/pkg/image/#Image][Package image]] 定义了 `Image` 接口：
+		
 	package image
 
 	type Image interface {
@@ -148,40 +146,40 @@ For example, you should be able to register handlers using:
 		At(x, y int) color.Color
 	}
 
-(See [[http://golang.org/pkg/image/#Image][the documentation]] for all the details.)
+（参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
 
-Also, `color.Color` and `color.Model` are interfaces, but we'll ignore that by using the predefined implementations `color.RGBA` and `color.RGBAModel`. These interfaces and types are specified by the [[http://golang.org/pkg/image/color/][image/color package]]
+同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
 
 .play prog/tour/images.go
 
-* Exercise: Images
+* 练习：图片
 
-Remember the picture generator you wrote earlier? Let's write another one, but this time it will return an implementation of `image.Image` instead of a slice of data.
+还记得之前编写的图片生成器吗？现在来另外编写一个，不过这次将会返回 `image.Image` 来代替 slice 的数据。
 
-Define your own `Image` type, implement [[http://golang.org/pkg/image/#Image][the necessary methods]], and call `pic.ShowImage`.
+自定义的 `Image` 类型，要实现[[http://golang.org/pkg/image/#Image][必要的方法]]，并且调用 `pic.ShowImage`。
 
-`Bounds` should return a `image.Rectangle`, like `image.Rect(0,`0,`w,`h)`.
+`Bounds` 应当返回一个 `image.Rectangle`，例如 `image.Rect(0, 0, w, h)`。
 
-`ColorModel` should return `color.RGBAModel`.
+`ColorModel` 应当返回 `image.RGBAModel`。
 
-`At` should return a color; the value `v` in the last picture generator corresponds to `color.RGBA{v,`v,`255,`255}` in this one.
+`At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBA{v, v, 255, 255}`。
 
 .play prog/tour/exercise-images.go
 
-* Exercise: Rot13 Reader
+* 练习：Rot13 读取器
 
-A common pattern is an [[http://golang.org/pkg/io/#Reader][io.Reader]] that wraps another `io.Reader`, modifying the stream in some way.
+一般的模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 包裹另一个 `io.Reader`，用某些途径修改特定的流。
 
-For example, the [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] function takes an `io.Reader` (a stream of gzipped data) and returns a `*gzip.Reader` that also implements `io.Reader` (a stream of the decompressed data).
+例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 函数输入一个 `io.Reader`（gzip 的数据流）并且返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压缩后的数据流）。
+		
+实现一个实现了 `io.Reader` 的 `rot13Reader`，用 [[http://en.wikipedia.org/wiki/ROT13][ROT13]] 修改数据流中的所有的字母进行密文替换。
 
-Implement a `rot13Reader` that implements `io.Reader` and reads from an `io.Reader`, modifying the stream by applying the [[http://en.wikipedia.org/wiki/ROT13][ROT13]] substitution cipher to all alphabetical characters.
-
-The `rot13Reader` type is provided for you.  Make it an `io.Reader` by implementing its `Read` method.
+`rot13Reader` 已经提供。通过实现其 `Read` 方法使得它匹配 `io.Reader`。
 
 .play prog/tour/exercise-rot-reader.go
 
-* Congratulations!
+* 恭喜！
 
-You finished this lesson!
+你已经完成了本课程！
 
-You can go back to the list of [[/list][modules]] to find what to learn next, or continue with the [[javascript:click('.next-page')][next lesson]].
+你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。

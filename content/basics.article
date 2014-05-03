@@ -1,177 +1,176 @@
-Packages, variables, and functions.
-Learn the basic components of any Go program.
+包、变量和函数。
+学习 Go 程序的基本组件。
 
-The Go Authors
+Go 作者组
 http://golang.org
 
 * Packages
 
-Every Go program is made up of packages.
+每个 Go 程序都是由包组成的。
 
-Programs start running in package `main`.
+程序运行的入口是包 `main`。
 
-This program is using the packages with import paths `"fmt"` and `"math/rand"`.
+这个程序使用并导入了包 `"fmt"` 和 `"math/rand"`。
 
-By convention, the package name is the same as the last element of the import path. For instance, the `"math/rand"` package comprises files that begin with the statement `package`rand`.
+按照惯例，包名与导入路径的最后一个目录一致。例如，`"math/rand"` 包由 `package`rand` 语句开始。
 
-#appengine: *Note:* the environment in which these programs are executed is
-#appengine: deterministic, so `rand.Intn` will always return the same number.
+#appengine: *注意：* 这个程序的运行环境是固定的，因此
+#appengine: `rand.Intn` 总是会返回相同的数字。
 #appengine:
-#appengine: (To see a different number, seed the number generator; see [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]].)
+#appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
 .play prog/tour/packages.go
 
-* Imports
+* 导入
 
-This code groups the imports into a parenthesized, "factored" import statement. You can also write multiple import statements, like:
+这个代码用圆括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
 
-	import "fmt"
-	import "math"
+    import "fmt"
+    import "math"
 
 .play prog/tour/imports.go
 
-* Exported names
+* 导出名
 
-After importing a package, you can refer to the names it exports.
+在导入了一个包之后，就可以用其导出的名称来调用它。
 
-In Go, a name is exported if it begins with a capital letter.
+在 Go 中，首字母大写的名称是被导出的。
 
-`Foo` is an exported name, as is `FOO`. The name `foo` is not exported.
+`Foo` 和 `FOO` 都是被导出的名称。名称 `foo` 是不会被导出的。
 
-Run the code. Then rename `math.pi` to `math.Pi` and try it again.
+执行代码。然后将 `math.pi` 改名为 `math.Pi` 再试着执行一下。
 
 .play prog/tour/exported-names.go
 
-* Functions
+* 函数
 
-A function can take zero or more arguments.
+函数可以没有参数或接受多个参数。
+        
+在这个例子中，`add` 接受两个 `int` 类型的参数。
+    
+注意类型在变量名 _之后_。
 
-In this example, `add` takes two parameters of type `int`.
-
-Notice that the type comes _after_ the variable name.
-
-(For more about why types look the way they do, see the [[http://golang.org/doc/articles/gos_declaration_syntax.html][article on Go's declaration syntax]].)
+（参考 [[http://golang.org/doc/articles/gos_declaration_syntax.html][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
 
 .play prog/tour/functions.go
 
-* Functions continued
+* 函数（续）
+        
+当两个或多个连续的函数命名参数是同一类型，则除了最后一个类型之外，其他都可以省略。
+        
+在这个例子中 ，
 
-When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
+    x int, y int
 
-In this example, we shortened
+被缩写为
 
-	x int, y int
-
-to
-
-	x, y int
+    x, y int
 
 .play prog/tour/functions-continued.go
 
-* Multiple results
+* 多值返回
 
-A function can return any number of results.
+函数可以返回任意数量的返回值。
 
-This function returns two strings.
+这个函数返回了两个字符串。
 
 .play prog/tour/multiple-results.go
 
-* Named results
+* 命名返回值
 
-Functions take parameters. In Go, functions can return multiple "result parameters", not just a single value. They can be named and act just like variables.
+函数接受参数。在 Go 中，函数可以返回多个“结果参数”，而不仅仅是一个值。它们可以像变量那样命名和使用。
 
-If the result parameters are named, a `return` statement without arguments returns the current values of the results.
+如果命名了返回值参数，一个没有参数的 `return` 语句，会将当前的值作为返回值返回。
 
 .play prog/tour/named-results.go
 
-* Variables
-
-The `var` statement declares a list of variables; as in function argument lists, the type is last.
+* 变量
+        
+`var` 语句定义了一个变量的列表；跟函数的参数列表一样，类型在后面。
 
 .play prog/tour/variables.go
 
-* Variables with initializers
+* 初始化变量
 
-A var declaration can include initializers, one per variable.
+变量定义可以包含初始值，每个变量对应一个。
 
-If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
+如果初始化是使用表达式，则可以省略类型；变量从初始值中获得类型。
 
 .play prog/tour/variables-with-initializers.go
 
-* Short variable declarations
+* 短声明变量
 
-Inside a function, the `:=` short assignment statement can be used in place of a `var` declaration with implicit type.
+在函数中，`:=` 简洁赋值语句在明确类型的地方，可以用于替代 `var` 定义。
 
-Outside a function, every construct begins with a keyword (`var`, `func`, and so on) and the `:=` construct is not available.
+函数外的每个语法块都必须以关键字开始（`var`、`func`、等等），`:=` 结构不能使用在函数外。
 
 .play prog/tour/short-variable-declarations.go
 
-* Basic types
+* 基本类型
 
-Go's basic types are
+Go 的基本类型有Basic types
 
-	bool
+    bool
 
-	string
+    string
 
-	int  int8  int16  int32  int64
-	uint uint8 uint16 uint32 uint64 uintptr
+    int  int8  int16  int32  int64
+    uint uint8 uint16 uint32 uint64 uintptr
 
-	byte // alias for uint8
+    byte // uint8 的别名
 
-	rune // alias for int32
-	     // represents a Unicode code point
+    rune // int32 的别名
+    // 代表一个Unicode码
 
-	float32 float64
+    float32 float64
 
-	complex64 complex128
+    complex64 complex128
 
 .play prog/tour/basic-types.go
 
-* Type conversions
+* 类型转换
 
-The expression `T(v)` converts the value `v` to the type `T`.
+表达式 `T(v)` 将值 `v` 转换为类型 `T`。
 
-Some numeric conversions:
+一些关于数值的转换：
 
 	var i int = 42
 	var f float64 = float64(i)
 	var u uint = uint(f)
 
-Or, put more simply:
+或者，更加简单的形式：
 
 	i := 42
 	f := float64(i)
 	u := uint(f)
 
-Unlike in C, in Go assignment between items of different type requires an
-explicit conversion.
-Try removing the `float64` or `int` conversions in the example and see what happens.
+与 C 不同的是 Go 的在不同类型之间的项目赋值时需要显式转换。
+试着移除例子中 `float64` 或 `int` 的转换看看会发生什么。
 
 .play prog/tour/type-conversions.go
 
-* Constants
+* 常量
 
-Constants are declared like variables, but with the `const` keyword.
+常量的定义与变量类似，只不过使用 `const` 关键字。
 
-Constants can be character, string, boolean, or numeric values.
+常量可以是字符、字符串、布尔或数字类型的值。
 
-Constants cannot be declared using the `:=` syntax.
+常量不能使用 `:=` 语法定义。
 
 .play prog/tour/constants.go
 
-* Numeric Constants
+* 数值常量
 
-Numeric constants are high-precision _values_.
+数值常量是高精度的 _值_。
 
-An untyped constant takes the type needed by its context.
+一个未指定类型的常量由上下文来决定其类型。
 
-Try printing `needInt(Big)` too.
+也尝试一下输出 `needInt(Big)` 吧。
 
 .play prog/tour/numeric-constants.go
 
-* Congratulations!
+* 恭喜！
 
-You finished this lesson!
+你已经完成了本课程！
 
-You can go back to the list of [[/list][modules]] to find what to learn next, or continue with the [[javascript:click('.next-page')][next lesson]].
+你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。

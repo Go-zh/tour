@@ -1,115 +1,113 @@
-Flow control statements: for, if, else, and switch
-Learn how to control the flow of your code with conditionals, loops, and switches.
+流程控制语句：for、if、else 和 switch
+学习如何用条件、循环和开关语句控制代码的流程。
 
-The Go Authors
+Go 作者组
 http://golang.org
 
-* For
+* for
 
-Go has only one looping construct, the `for` loop.
+Go 只有一种循环结构——`for` 循环。
 
-The basic `for` loop looks as it does in C or Java, except that the `(`)` are gone (they are not even optional) and the `{`}` are required.
+基本的 `for` 循环除了没有了 `( )` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中做的一样，而 `{ }` 是必须的。
 
 .play prog/tour/for.go
 
-* For continued
-
-As in C or Java, you can leave the pre and post statements empty.
+* for（续）
+        
+跟 C 或者 Java 中一样，可以让前置、后置语句为空。
 
 .play prog/tour/for-continued.go
 
-* For is Go's "while"
-
-At that point you can drop the semicolons: C's `while` is spelled `for` in Go.
+* for 是 Go 的 “while”
+        
+基于此可以省略分号：C 的 `while` 在 Go 中叫做 `for`。
 
 .play prog/tour/for-is-gos-while.go
 
-* Forever
+* 死循环
 
-If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
+如果省略了循环条件，循环就不会结束，因此可以用更简洁地形式表达死循环。
 
 .play prog/tour/forever.go
 
-* If
+* if
 
-The `if` statement looks as it does in C or Java, except that the `(`)` are gone and the `{`}` are required.
-
-(Sound familiar?)
+`if` 语句除了没有了 `( )` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中的一样，而 `{ }` 是必须的。
+        
+（耳熟吗？）
 
 .play prog/tour/if.go
 
-* If with a short statement
+* if 的便捷语句
 
-Like `for`, the `if` statement can start with a short statement to execute before the condition.
+跟 `for` 一样，`if` 语句可以在条件之前执行一个简单的语句。
 
-Variables declared by the statement are only in scope until the end of the `if`.
+由这个语句定义的变量的作用域仅在 `if` 范围之内。
 
-(Try using `v` in the last `return` statement.)
+（在最后的 `return` 语句处使用 `v` 看看。）
 
 .play prog/tour/if-with-a-short-statement.go
 
-* If and else
+* if 和 else
 
-Variables declared inside an `if` short statement are also available inside any of the `else` blocks.
+在 `if` 的便捷语句定义的变量同样可以在任何对应的 `else` 块中使用。
 
 .play prog/tour/if-and-else.go
 
-* Exercise: Loops and Functions
+* 练习：循环和函数
 
-As a simple way to play with functions and loops, implement the square root function using Newton's method.
+作为练习函数和循环的简单途径，用牛顿法实现开方函数。
 
-In this case, Newton's method is to approximate `Sqrt(x)` by picking a starting point _z_ and then repeating:
+在这个例子中，牛顿法是通过选择一个初始点 _z_ 然后重复这一过程求 `Sqrt(x)` 的近似值：
 
 .image /content/img/newton.png
 
-To begin with, just repeat that calculation 10 times and see how close you get to the answer for various values (1, 2, 3, ...).
+为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
+   然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 [[http://golang.org/pkg/math/#Sqrt][math.Sqrt] 接近吗？
 
-Next, change the loop condition to stop once the value has stopped changing (or only changes by a very small delta). See if that's more or fewer iterations. How close are you to the [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
+提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 
-Hint: to declare and initialize a floating point value, give it floating point syntax or use a conversion:
-
-	z := float64(1)
-	z := 1.0
+    z := float64(1)
+    z := 1.0
 
 .play prog/tour/exercise-loops-and-functions.go
 
-* Switch
+* switch
 
-You probably knew what `switch` was going to look like.
+一个结构体（`struct`）就是一个字段的集合。
 
-A case body breaks automatically, unless it ends with a `fallthrough` statement.
+除非以 `fallthrough` 语句结束，否则分支会自动终止。
 
 .play prog/tour/switch.go
 
-* Switch evaluation order
+* switch 的执行顺序
 
-Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
+switch 的条件从上到下的执行，当匹配成功的时候停止。
 
-(For example,
+（例如，
 
 	switch i {
 	case 0:
 	case f():
 	}
 
-does not call `f` if `i==0`.)
+当 `i==0` 时不会调用 `f`。）
 
-#appengine: *Note:* Time in the Go playground always appears to start at
-#appengine: 2009-11-10 23:00:00 UTC, a value whose significance is left as an
-#appengine: exercise for the reader.
+#appengine: 注意：Go playground 中的时间总是从 2009-11-10 23:00:00 UTC 开始，
+#appengine: 如何校验这个值作为一个练习留给读者完成。
 
 .play prog/tour/switch-evaluation-order.go
 
-* Switch with no condition
+* 没有条件的 switch
 
-Switch without a condition is the same as `switch`true`.
+没有条件的 switch 同 `switch true` 一样。
 
-This construct can be a clean way to write long if-then-else chains.
+这一构造使得可以用更清晰的形式来编写长的 if-then-else 链。
 
 .play prog/tour/switch-with-no-condition.go
 
-* Congratulations!
+* 恭喜！
 
-You finished this lesson!
+你已经完成了本课程！
 
-You can go back to the list of [[/list][modules]] to find what to learn next, or continue with the [[javascript:click('.next-page')][next lesson]].
+你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。

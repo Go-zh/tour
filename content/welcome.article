@@ -1,51 +1,48 @@
-Welcome!
-Learn how to use this tour: including how to navigate the different lessons and how to run code.
+欢迎！
+学习如何使用本指南：包括如何在不同的课程之间切换，以及如何运行代码。
 
-The Go Authors
+Go 作者组
 http://golang.org
 
 * Hello, 世界
 
-Welcome to a tour of the [[http://golang.org/][Go programming language]].
+欢迎来到[[http://golang.org/][Go 编程语言]]指南。
 
-The tour is divided into a list of modules that you can
-access by clicking on
-[[javascript:highlight(".logo")][A Tour of Go]] on the top left of the page.
+点击页面顶部左边的[[javascript:highlight(".logo")][Go 指南]]，
+可以访问该指南的模块列表。
 
-You can also a table of contents at any time clicking on the [[javascript:highlightAndClick(".nav")][menu]] on the top right of the page.
+任何时候，都可以通过点击页面顶部右边的[[javascript:highlightAndClick(".nav")][菜单]]打开内容清单。
 
-Throughout the tour you will find a series of slides and exercises for you
-to complete.
+在指南后有若干个练习需要读者完成。
 
-You can navigate through them using
+你可以使用
 
-- [[javascript:highlight(".prev-page")]["previous"]] or `PageUp` to go to the previous page,
+- [[javascript:highlight(".prev-page")]["上一页"]] 或 `PageUp` 键跳转到前一个页面，
 
-- [[javascript:highlight(".next-page")]["next"]] or `PageDown` to go to the next page.
+- [[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一个页面。
 
-The tour is interactive. Click the
-[[javascript:highlightAndClick("#run")][Run]] button now 
-(or type `shift-enter`) to compile and run the program on
-#appengine: a remote server.
-your computer.
-The result is displayed below the code.
+该指南可以进行交互。点击
+“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 Shift + Enter）可以在
+#appengine: 远程服务器上
+你的电脑上
+编译并执行程序。
+结果展示在代码的下面。
 
-These example programs demonstrate different aspects of Go. The programs in the tour are meant to be starting points for your own experimentation.
+这些例子程序展示了 Go 的各个方面。在指南中的程序可以成为你积累经验的开始。
 
-Edit the program and run it again.
+编辑程序并且再次执行它。
 
-Note that when you click on [[javascript:highlightAndClick("#format")][Format]] or `shift-space`
-the text in the editor is formatted using the
-[[http://golang.org/cmd/gofmt/][gofmt]] tool. You can switch on and off syntax highlighting
-the clicking on [[javascript:highlightAndClick(".syntax-checkbox")][syntax]] button.
+注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Shift - Space`
+时，编辑器中的文本会被 [[http://golang.org/cmd/gofmt/][gofmt]] 工具格式化。
+你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
-When you're ready to move on, click the [[javascript:highlightAndClick(".next-page")][right arrow]] below or type the `PageDown` key.
+如果你准备好了，请点击页面底部的[[javascript:highlightAndClick(".next-page")][右箭头]]或按 `PageDown` 键继续。
 
 .play prog/tour/hello.go
 
-* Go local
+* Go 本地化
 
-The tour is available in other languages:
+该指南也有其他语言版本：
 
 - [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
 - [[http://go-tour-ca.appspot.com/][Catalan — Català]]
@@ -57,31 +54,30 @@ The tour is available in other languages:
 - [[http://go-tour-ro.appspot.com/][Romanian - Română]]
 - [[http://go-tour-zh.appspot.com/][Chinese — 普通话]]
 
-Click the [[javascript:highlightAndClick(".next-page")]["next"]] button or type `PageDown` to continue.
+点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
 
-#appengine: * The Go Playground
+#appengine: * Go Playground
 #appengine: 
-#appengine: This tour is built atop the [[http://play.golang.org/][Go Playground]], a
-#appengine: web service that runs on [[http://golang.org/][golang.org]]'s servers.
+#appengine: 这个指南构建在 [[http://play.golang.org/][Go Playground]] 之上，这是一个运行在
+#appengine: [[http://golang.org/][golang.org]] 的服务器上的一个 Web 服务。
 #appengine: 
-#appengine: The service receives a Go program, compiles, links, and runs the program inside
-#appengine: a sandbox, then returns the output.
+#appengine: 服务接收 Go 程序的输入，且在沙盒里编译、链接和运行，
+#appengine: 然后返回输出。
 #appengine: 
-#appengine: There are limitations to the programs that can be run in the playground: 
+#appengine: 对于在 Playground 运行的程序的限制是：
 #appengine: 
-#appengine: - In the playground the time begins at 2009-11-10 23:00:00 UTC (determining the sigificance of this date is an exercise for the reader). This makes it easier to cache programs by giving them deterministic output.
+#appengine: - 在 Playground 中，时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。这使得根据可预见的输出来缓存程序变得容易。
 #appengine: 
-#appengine: - There are also limits on execution time and on CPU and memory usage, and the program is restricted to running in a single thread (but may use many goroutines).
+#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序是限制单一线程运行（但是可以有多个 goroutine）。
 #appengine: 
-#appengine: The playground uses the latest stable release of Go.
+#appengine: Playground 使用最后发布的 Go 的稳定版本。
 #appengine: 
-#appengine: Read "[[http://blog.golang.org/playground][Inside the Go Playground]]" to learn more.
+#appengine: 参阅“[[http://blog.golang.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
 #appengine: 
 #appengine: .play prog/tour/sandbox.go
 
-* Congratulations
+* 恭喜！
 
-You've finished the first module of the tour!
+你已经完成了本指南的第一部分！
 
-Now click on [[javascript:highlightAndClick(".logo")][A Tour of Go]] to find out what else
-you can learn about Go, or go directly to the [[javascript:click('.next-page')][next lesson]].
+现在点击[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。
