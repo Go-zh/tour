@@ -23,15 +23,15 @@ import (
 	"time"
 
 	"code.google.com/p/go.tools/playground/socket"
-
+	
 	// Imports so that go build/install automatically installs them.
-	_ "code.google.com/p/go-tour/pic"
-	_ "code.google.com/p/go-tour/tree"
-	_ "code.google.com/p/go-tour/wc"
+	_ "bitbucket.org/mikespook/go-tour-zh/pic"
+	_ "bitbucket.org/mikespook/go-tour-zh/tree"
+	_ "bitbucket.org/mikespook/go-tour-zh/wc"
 )
 
 const (
-	basePkg    = "code.google.com/p/go-tour/"
+	basePkg    = "bitbucket.org/mikespook/go-tour-zh/"
 	socketPath = "/socket"
 )
 
@@ -41,6 +41,7 @@ var (
 )
 
 var (
+
 	// GOPATH containing the tour packages
 	gopath = os.Getenv("GOPATH")
 
@@ -76,12 +77,12 @@ func findRoot() (string, error) {
 func main() {
 	flag.Parse()
 
+
 	// find and serve the go tour files
 	root, err := findRoot()
 	if err != nil {
 		log.Fatalf("Couldn't find tour files: %v", err)
 	}
-
 	log.Println("Serving content from", root)
 
 	host, port, err := net.SplitHostPort(*httpListen)
@@ -169,9 +170,10 @@ func init() {
 func environ() (env []string) {
 	for _, v := range os.Environ() {
 		if !strings.HasPrefix(v, "GOPATH=") {
-			env = append(env, v)
+		env = append(env, v)
 		}
 	}
+
 	env = append(env, "GOPATH="+gopath)
 	return
 }

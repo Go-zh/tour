@@ -7,17 +7,15 @@ import (
 )
 
 type Fetcher interface {
-	// Fetch returns the body of URL and
-	// a slice of URLs found on that page.
+	// Fetch 返回 URL 的 body 内容，并且将在这个页面上找到的 URL 放到一个 slice 中。
 	Fetch(url string) (body string, urls []string, err error)
 }
 
-// Crawl uses fetcher to recursively crawl
-// pages starting with url, to a maximum of depth.
+// Crawl 使用 fetcher 从某个 URL 开始递归的爬取页面，直到达到最大深度。
 func Crawl(url string, depth int, fetcher Fetcher) {
-	// TODO: Fetch URLs in parallel.
-	// TODO: Don't fetch the same URL twice.
-	// This implementation doesn't do either:
+	// TODO: 并行的抓取 URL。
+	// TODO: 不重复抓取页面。
+        // 下面并没有实现上面两种情况：
 	if depth <= 0 {
 		return
 	}
@@ -37,7 +35,7 @@ func main() {
 	Crawl("http://golang.org/", 4, fetcher)
 }
 
-// fakeFetcher is Fetcher that returns canned results.
+// fakeFetcher 是返回若干结果的 Fetcher。
 type fakeFetcher map[string]*fakeResult
 
 type fakeResult struct {
@@ -52,7 +50,7 @@ func (f fakeFetcher) Fetch(url string) (string, []string, error) {
 	return "", nil, fmt.Errorf("not found: %s", url)
 }
 
-// fetcher is a populated fakeFetcher.
+// fetcher 是填充后的 fakeFetcher。
 var fetcher = fakeFetcher{
 	"http://golang.org/": &fakeResult{
 		"The Go Programming Language",

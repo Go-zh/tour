@@ -23,7 +23,7 @@ type ReadWriter interface {
 func main() {
 	var w Writer
 
-	// os.Stdout implements Writer
+	// os.Stdout 实现了 Writer
 	w = os.Stdout
 
 	fmt.Fprintf(w, "hello, writer\n")
