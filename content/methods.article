@@ -10,15 +10,15 @@ Go 没有类。然而，仍然可以在结构体类型上定义方法。
 
 _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
-.play prog/tour/methods.go
+.play methods/methods.go
 
 * 方法（续）
 
-事实上，可以对包中的 _任意_ 类型定义任意方法，而不仅仅是针对结构体。
+你可以对包中的 _任意_ 类型定义任意方法，而不仅仅是针对结构体。
 
-不能对来自其他包的类型或基础类型定义方法。
+但是，不能对来自其他包的类型或基础类型定义方法。
 
-.play prog/tour/methods-continued.go
+.play methods/methods-continued.go
 
 * 接收者为指针的方法
 
@@ -33,7 +33,7 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 `Abs` 的工作方式是一样的。只不过，仅仅读取 `v`。所以读取的是原始值（通过指针）还是那个值的副本并没有关系。
 
-.play prog/tour/methods-with-pointer-receivers.go
+.play methods/methods-with-pointer-receivers.go
 
 * 接口
 
@@ -41,18 +41,16 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 接口类型的值可以存放实现这些方法的任何值。
 
-*注意：* 左边的代码会导致编译失败。	
+*注意：* 列子代码的 22 行存在一个错误。
+由于 `Abs` 只定义在 `*Vertex（指针类型）` 上，
+所以 `Vertex（值类型）` 不满足 `Abser`。
 
-由于 `Abs` 只定义在 `*Vertex` 上，而不是 `Vertex`。
-所以 `Vertex` 不满足 `Abser`。
-
-.play prog/tour/interfaces.go
+.play methods/interfaces.go
 
 * 隐式接口
 
 类型通过实现那些方法来实现接口。
-
-_没有显式声明的必要。_
+没有显式声明的必要；所以也就没有关键字“implements“。
 
 隐式接口解藕了实现接口的包和定义接口的包：互不依赖。
 
@@ -60,19 +58,53 @@ _没有显式声明的必要。_
 
 [[http://golang.org/pkg/io/][包 io]] 定义了 `Reader` 和 `Writer`；其实不一定要这么做。
 
-.play prog/tour/interfaces-are-satisfied-implicitly.go
+.play methods/interfaces-are-satisfied-implicitly.go
+
+* Stringers
+
+一个普遍存在的接口是 [[//golang.org/pkg/fmt/][`fmt`]] 包中定义的 [[//golang.org/pkg/fmt/#Stringer][`Stringer`]]。
+
+	type Stringer struct {
+		String() string
+	}
+
+`Stringer` 是一个可以用字符串描述自己的类型。`fmt`包
+（还有许多其他包）使用这个来进行输出。
+
+.play methods/stringer.go
+
+* 练习：Stringers
+
+让 `IPAddr` 类型实现 `fmt.Stringer` 以便用点分格式输出地址。
+
+例如，`IPAddr{1,`2,`3,`4}` 应当输出 `"1.2.3.4"`。
+
+.play methods/exercise-stringer.go
 
 * 错误
 
-错误是可以用字符串描述自己的任何东西。主要思路是由预定义的内建接口类型 `error`，和方法 `Error`，返回字符串：
+Go 程序使用 `error` 值来表示错误状态。 
+
+与 `fmt.Stringer` 类似，`error` 类型是一个内建接口：
 
 	type error interface {
 		Error() string
 	}
 
-当用 `fmt` 包的多种不同的打印函数输出一个 `error` 时，会自动的调用该方法。
+（与 `fmt.Stringer` 类似，`fmt` 包在输出时也会试图匹配 `error`。）
 
-.play prog/tour/errors.go
+通常函数会返回一个 `error` 值，调用的它的代码应当判断这个错误是否等于 `nil`，
+来进行错误处理。
+
+	i, err := strconv.Atoi("42")
+	if err != nil {
+		fmt.Printf("couldn't convert number: %v\n", err)
+	}
+	fmt.Println("Converted integer:", i)
+
+`error` 为 nil 时表示成功；非 nil 的 `error` 表示错误。
+
+.play methods/errors.go
 
 * 练习：错误
 
@@ -90,11 +122,55 @@ _没有显式声明的必要。_
 
 使其成为一个 `error`， 该方法就可以让 `ErrNegativeSqrt(-2).Error()` 返回 `"cannot Sqrt negative number: -2"`。
 
-*注意：* 在 `Error` 方法内调用 `fmt.Print(e)` 将会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Print(float64(e))`。请思考这是为什么呢？
+*注意：* 在 `Error` 方法内调用 `fmt.Sprint(e)` 将会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。请思考这是为什么呢？
 
 修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
 
-.play prog/tour/exercise-errors.go
+.play methods/exercise-errors.go
+
+* Readers
+
+`io` 包指定了 `io.Reader` 接口，
+它表示从数据流结尾读取。
+
+Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][许多实现]]，
+包括文件、网络连接、压缩、加密等等。
+
+`io.Reader` 接口有一个 `Read` 方法：
+
+	func (T) Read(b []byte) (n int, err error)
+
+`Read` 用数据填充指定的字节 slice，并且返回填充的字节数和错误信息。
+在遇到数据流结尾时，返回 `io.EOF` 错误。
+
+例子代码创建了一个
+[[//golang.org/pkg/strings/#Reader][`strings.Reader`]]。
+并且以每次 8 字节的速度读取它的输出。
+
+.play methods/reader.go
+
+* 练习：Reader
+
+实现一个 `Reader` 类型，它不断生成 ASCII 字符 `'A'` 的流。
+
+.play methods/exercise-reader.go
+
+* 练习：rot13Reader
+
+一个常见模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 
+包裹另一个 `io.Reader`，然后通过某种形式修改数据流。
+
+例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 
+函数接受 `io.Reader`（压缩的数据流）并且返回同样实现了 `io.Reader` 的 `*gzip.Reader`（解压缩后的数据流）。
+
+编写一个实现了 `io.Reader` 的 `rot13Reader`，
+并从一个 `io.Reader` 读取，
+利用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
+
+已经帮你构造了 `rot13Reader` 类型。
+通过实现 `Read` 方法使其匹配 `io.Reader`。
+
+.play methods/exercise-rot-reader.go
 
 * Web 服务器
 	
@@ -113,7 +189,7 @@ _没有显式声明的必要。_
 #appengine: *注意：* 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
 #appengine: web 服务器，可能需要[[http://golang.org/doc/install/][安装 Go]]。
 
-.play prog/tour/web-servers.go
+.play methods/web-servers.go
 
 * 练习：HTTP 处理
 
@@ -132,7 +208,11 @@ _没有显式声明的必要。_
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
-.play prog/tour/exercise-http-handlers.go
+#appengine: *注意：* 这个例子无法在基于 web 的用户界面下运行。
+#appengine: 为了尝试编写 web 服务，你可能需要
+#appengine: [[http://golang.org/doc/install/][安装 Go]]。
+
+.play methods/exercise-http-handlers.go
 
 * 图片
 
@@ -146,11 +226,15 @@ _没有显式声明的必要。_
 		At(x, y int) color.Color
 	}
 
+*注意*：`Bounds` 方法的 `Rectangle` 返回值实际上是一个
+[[http://golang.org/pkg/image/#Rectangle][`image.Rectangle`]]，
+其定义在 `image` 包中。
+
 （参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
 
-同样，`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
+`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
 
-.play prog/tour/images.go
+.play methods/images.go
 
 * 练习：图片
 
@@ -165,18 +249,6 @@ _没有显式声明的必要。_
 `At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBA{v, v, 255, 255}`。
 
 .play prog/tour/exercise-images.go
-
-* 练习：Rot13 读取器
-
-一般的模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 包裹另一个 `io.Reader`，用某些途径修改特定的流。
-
-例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 函数输入一个 `io.Reader`（gzip 的数据流）并且返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压缩后的数据流）。
-		
-实现一个实现了 `io.Reader` 的 `rot13Reader`，用 [[http://en.wikipedia.org/wiki/ROT13][ROT13]] 修改数据流中的所有的字母进行密文替换。
-
-`rot13Reader` 已经提供。通过实现其 `Read` 方法使得它匹配 `io.Reader`。
-
-.play prog/tour/exercise-rot-reader.go
 
 * 恭喜！
 

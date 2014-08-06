@@ -19,16 +19,20 @@ http://golang.org
 #appengine:
 #appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
-.play prog/tour/packages.go
+.play basics/packages.go
 
 * 导入
 
-这个代码用圆括号组合了导入，这是“factored”导入语句。同样可以编写多个导入语句，例如：
+这个代码用圆括号组合了导入，这是“打包”导入语句。
 
-    import "fmt"
-    import "math"
+同样可以编写多个导入语句，例如：
 
-.play prog/tour/imports.go
+	import "fmt"
+	import "math"
+
+不过使用打包的导入语句是更好的形式。
+
+.play basics/imports.go
 
 * 导出名
 
@@ -40,7 +44,7 @@ http://golang.org
 
 执行代码。然后将 `math.pi` 改名为 `math.Pi` 再试着执行一下。
 
-.play prog/tour/exported-names.go
+.play basics/exported-names.go
 
 * 函数
 
@@ -52,43 +56,53 @@ http://golang.org
 
 （参考 [[http://golang.org/doc/articles/gos_declaration_syntax.html][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
 
-.play prog/tour/functions.go
+.play basics/functions.go
 
 * 函数（续）
-        
+
 当两个或多个连续的函数命名参数是同一类型，则除了最后一个类型之外，其他都可以省略。
-        
+
 在这个例子中 ，
 
-    x int, y int
+	x int, y int
 
 被缩写为
 
-    x, y int
+	x, y int
 
-.play prog/tour/functions-continued.go
+.play basics/functions-continued.go
+
+	x, y int
+
+.play basics/functions-continued.go
 
 * 多值返回
 
 函数可以返回任意数量的返回值。
 
-这个函数返回了两个字符串。
+`swap` 函数返回了两个字符串。
 
-.play prog/tour/multiple-results.go
+.play basics/multiple-results.go
 
 * 命名返回值
 
-函数接受参数。在 Go 中，函数可以返回多个“结果参数”，而不仅仅是一个值。它们可以像变量那样命名和使用。
+Go 的返回值可以被命名，并且像变量那样使用。
 
-如果命名了返回值参数，一个没有参数的 `return` 语句，会将当前的值作为返回值返回。
+返回值的名称应当具有一定的意义，可以作为文档使用。
 
-.play prog/tour/named-results.go
+没有参数的 `return` 语句返回结果的当前值。也就是`直接`返回。
+
+直接返回语句仅应当用在像下面这样的短函数中。在长的函数中它们会影响代码的可读性。
+
+.play basics/named-results.go
 
 * 变量
-        
+
 `var` 语句定义了一个变量的列表；跟函数的参数列表一样，类型在后面。
 
-.play prog/tour/variables.go
+就像在这个例子中看到的一样，`var` 语句可以定义在包或函数级别。
+
+.play basics/variables.go
 
 * 初始化变量
 
@@ -96,37 +110,51 @@ http://golang.org
 
 如果初始化是使用表达式，则可以省略类型；变量从初始值中获得类型。
 
-.play prog/tour/variables-with-initializers.go
+.play basics/variables-with-initializers.go
 
 * 短声明变量
 
 在函数中，`:=` 简洁赋值语句在明确类型的地方，可以用于替代 `var` 定义。
 
-函数外的每个语法块都必须以关键字开始（`var`、`func`、等等），`:=` 结构不能使用在函数外。
+函数外的每个语句都必须以关键字开始（`var`、`func`、等等），`:=` 结构不能使用在函数外。
 
-.play prog/tour/short-variable-declarations.go
+.play basics/short-variable-declarations.go
 
 * 基本类型
 
 Go 的基本类型有Basic types
 
-    bool
+	bool
 
-    string
+	string
 
-    int  int8  int16  int32  int64
-    uint uint8 uint16 uint32 uint64 uintptr
+	int  int8  int16  int32  int64
+	uint uint8 uint16 uint32 uint64 uintptr
 
-    byte // uint8 的别名
+	byte // uint8 的别名
 
-    rune // int32 的别名
-    // 代表一个Unicode码
+	rune // int32 的别名
+	     // 代表一个Unicode码
 
-    float32 float64
+	float32 float64
 
-    complex64 complex128
+	complex64 complex128
 
-.play prog/tour/basic-types.go
+这个例子演示了具有不同类型的变量。
+同时与导入语句一样，变量的定义“打包”在一个语法块中。
+
+.play basics/basic-types.go
+
+* 零值
+
+变量在定义时没有明确的初始化时会赋值为_零值_。
+
+零值是：
+- 数值类型为 `0`，
+- 布尔类型为 `false`，
+- 字符串为 `""`（空字符串）。
+
+.play basics/zero.go
 
 * 类型转换
 
@@ -147,7 +175,27 @@ Go 的基本类型有Basic types
 与 C 不同的是 Go 的在不同类型之间的项目赋值时需要显式转换。
 试着移除例子中 `float64` 或 `int` 的转换看看会发生什么。
 
-.play prog/tour/type-conversions.go
+.play basics/type-conversions.go
+
+* 类型推导
+
+在定义一个变量但不指定其类型时（使用没有类型的 `var` 或 `:=` 语句），
+变量的类型由右值推导得出。
+
+当右值定义了类型时，新变量的类型与其相同：
+
+	var i int
+	j := i // j 也是一个 int
+
+But when the right hand side contains an untyped numeric constant, the new variable may be an `int`, `float64`, or `complex128` depending on the precision of the constant:
+
+	i := 42           // int
+	f := 3.142        // float64
+	g := 0.867 + 0.5i // complex128
+
+Try changing the initial value of `v` in the example code and observe how its type is affected.
+
+.play basics/type-inference.go
 
 * 常量
 
@@ -157,7 +205,7 @@ Go 的基本类型有Basic types
 
 常量不能使用 `:=` 语法定义。
 
-.play prog/tour/constants.go
+.play basics/constants.go
 
 * 数值常量
 
@@ -167,7 +215,7 @@ Go 的基本类型有Basic types
 
 也尝试一下输出 `needInt(Big)` 吧。
 
-.play prog/tour/numeric-constants.go
+.play basics/numeric-constants.go
 
 * 恭喜！
 

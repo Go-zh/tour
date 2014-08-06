@@ -8,7 +8,7 @@ http://golang.org
 
 _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
-    go f(x, y, z)
+	go f(x, y, z)
 
 开启一个新的 goroutine 执行
 
@@ -18,24 +18,24 @@ _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
 goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
 
-.play prog/tour/goroutines.go
+.play concurrency/goroutines.go
 
 * channel
 
 channel 是有类型的管道，可以用 channel 操作符 `<-` 对其发送或者接收值。
 
-    ch <- v    // 将 v 送入 channel ch。
-    v := <-ch  // 从 ch 接收，并且赋值给 v。
+	ch <- v    // 将 v 送入 channel ch。
+	v := <-ch  // 从 ch 接收，并且赋值给 v。
 
 （“箭头”就是数据流的方向。）
 
 和 map 与 slice 一样，channel 使用前必须创建：
 
-    ch := make(chan int)
+	ch := make(chan int)
 
 默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
 
-.play prog/tour/channels.go
+.play concurrency/channels.go
 
 * 缓冲 channel
 
@@ -47,7 +47,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 修改例子使得缓冲区被填满，然后看看会发生什么。
 
-.play prog/tour/buffered-channels.go
+.play concurrency/buffered-channels.go
 
 * range 和 close
 
@@ -58,19 +58,19 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 之后 `ok` 会被设置为 `false`。
 
 循环 `for i := range c` 会不断从 channel 接收值，直到它被关闭。
-        
+
 *注意：* 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
 *还要注意：* channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 `range`。
 
-.play prog/tour/range-and-close.go
+.play concurrency/range-and-close.go
 
 * select
-        
+
 `select` 语句使得一个 goroutine 在多个通讯操作上等待。
 
 `select` 会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个条件分支。当多个都准备好的时候，会随机选择一个。
 
-.play prog/tour/select.go
+.play concurrency/select.go
 
 * 默认选择
 
@@ -78,14 +78,14 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 为了非阻塞的发送或者接收，可使用 `default` 分支：
 
-    select {
-    case i := <-c:
-    	// 使用 i
-    default:
-	// 从 c 读取会阻塞
-    }
-        
-.play prog/tour/default-selection.go
+	select {
+	case i := <-c:
+		// 使用 i
+	default:
+		// 从 c 读取会阻塞
+	}
+
+.play concurrency/default-selection.go
 
 * 练习：等价二叉树
 
@@ -97,11 +97,11 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 这个例子使用了 `tree` 包，定义了类型：
 
-    type Tree struct {
-        Left  *Tree
-        Value int
-        Right *Tree
-    }
+	type Tree struct {
+		Left  *Tree
+		Value int
+		Right *Tree
+	}
 
 * 练习：等价二叉树
 
@@ -122,7 +122,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 `Same(tree.New(1), tree.New(1))` 应当返回 true，而 `Same(tree.New(1), tree.New(2))` 应当返回 false。
 
-.play prog/tour/exercise-equivalent-binary-trees.go
+.play concurrency/exercise-equivalent-binary-trees.go
 
 * 练习：Web 爬虫
 
@@ -130,7 +130,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 修改 `Crawl` 函数来并行的抓取 URLs，并且保证不重复。
 
-.play prog/tour/exercise-web-crawler.go
+.play concurrency/exercise-web-crawler.go
 
 * Where to Go from here...
 

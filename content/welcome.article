@@ -11,7 +11,7 @@ http://golang.org
 点击页面顶部左边的[[javascript:highlight(".logo")][Go 指南]]，
 可以访问该指南的模块列表。
 
-任何时候，都可以通过点击页面顶部右边的[[javascript:highlightAndClick(".nav")][菜单]]打开内容清单。
+任何时候，都可以通过点击页面顶部右边的[[javascript:highlightAndClick(".nav")][菜单]]浏览内容清单。
 
 在指南后有若干个练习需要读者完成。
 
@@ -32,13 +32,13 @@ http://golang.org
 
 编辑程序并且再次执行它。
 
-注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Shift - Space`
+注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Ctrl - Enter`
 时，编辑器中的文本会被 [[http://golang.org/cmd/gofmt/][gofmt]] 工具格式化。
 你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
 如果你准备好了，请点击页面底部的[[javascript:highlightAndClick(".next-page")][右箭头]]或按 `PageDown` 键继续。
 
-.play prog/tour/hello.go
+.play welcome/hello.go
 
 * Go 本地化
 
@@ -52,7 +52,8 @@ http://golang.org
 - [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
 - [[http://go-tour-kr.appspot.com/][Korean — 한국어]]
 - [[http://go-tour-ro.appspot.com/][Romanian - Română]]
-- [[http://go-tour-zh.appspot.com/][Chinese — 普通话]]
+- [[http://go-tour-zh.appspot.com/][Simplified Chinese — 中文（简体）]]
+- [[http://go-tour-zh-tw.appspot.com/][Traditional Chinese — 中文（繁體）]]
 
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
 
@@ -74,7 +75,7 @@ http://golang.org
 #appengine: 
 #appengine: 参阅“[[http://blog.golang.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
 #appengine: 
-#appengine: .play prog/tour/sandbox.go
+#appengine: .play welcome/sandbox.go
 
 * 恭喜！
 

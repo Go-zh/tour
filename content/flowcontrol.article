@@ -10,33 +10,33 @@ Go 只有一种循环结构——`for` 循环。
 
 基本的 `for` 循环除了没有了 `( )` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中做的一样，而 `{ }` 是必须的。
 
-.play prog/tour/for.go
+.play flowcontrol/for.go
 
 * for（续）
-        
+
 跟 C 或者 Java 中一样，可以让前置、后置语句为空。
 
-.play prog/tour/for-continued.go
+.play flowcontrol/for-continued.go
 
 * for 是 Go 的 “while”
-        
+
 基于此可以省略分号：C 的 `while` 在 Go 中叫做 `for`。
 
-.play prog/tour/for-is-gos-while.go
+.play flowcontrol/for-is-gos-while.go
 
 * 死循环
 
 如果省略了循环条件，循环就不会结束，因此可以用更简洁地形式表达死循环。
 
-.play prog/tour/forever.go
+.play flowcontrol/forever.go
 
 * if
 
 `if` 语句除了没有了 `( )` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中的一样，而 `{ }` 是必须的。
-        
+
 （耳熟吗？）
 
-.play prog/tour/if.go
+.play flowcontrol/if.go
 
 * if 的便捷语句
 
@@ -46,13 +46,13 @@ Go 只有一种循环结构——`for` 循环。
 
 （在最后的 `return` 语句处使用 `v` 看看。）
 
-.play prog/tour/if-with-a-short-statement.go
+.play flowcontrol/if-with-a-short-statement.go
 
 * if 和 else
 
 在 `if` 的便捷语句定义的变量同样可以在任何对应的 `else` 块中使用。
 
-.play prog/tour/if-and-else.go
+.play flowcontrol/if-and-else.go
 
 * 练习：循环和函数
 
@@ -63,14 +63,14 @@ Go 只有一种循环结构——`for` 循环。
 .image /content/img/newton.png
 
 为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
-   然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 [[http://golang.org/pkg/math/#Sqrt][math.Sqrt] 接近吗？
+然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 [[http://golang.org/pkg/math/#Sqrt][math.Sqrt] 接近吗？
 
 提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 
-    z := float64(1)
-    z := 1.0
+	z := float64(1)
+	z := 1.0
 
-.play prog/tour/exercise-loops-and-functions.go
+.play flowcontrol/exercise-loops-and-functions.go
 
 * switch
 
@@ -78,7 +78,7 @@ Go 只有一种循环结构——`for` 循环。
 
 除非以 `fallthrough` 语句结束，否则分支会自动终止。
 
-.play prog/tour/switch.go
+.play flowcontrol/switch.go
 
 * switch 的执行顺序
 
@@ -96,7 +96,7 @@ switch 的条件从上到下的执行，当匹配成功的时候停止。
 #appengine: 注意：Go playground 中的时间总是从 2009-11-10 23:00:00 UTC 开始，
 #appengine: 如何校验这个值作为一个练习留给读者完成。
 
-.play prog/tour/switch-evaluation-order.go
+.play flowcontrol/switch-evaluation-order.go
 
 * 没有条件的 switch
 
@@ -104,7 +104,24 @@ switch 的条件从上到下的执行，当匹配成功的时候停止。
 
 这一构造使得可以用更清晰的形式来编写长的 if-then-else 链。
 
-.play prog/tour/switch-with-no-condition.go
+.play flowcontrol/switch-with-no-condition.go
+
+* defer
+
+defer 语句会延迟函数的执行直到上层函数返回。
+
+延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用。
+
+.play flowcontrol/defer.go
+
+* defer 栈
+
+延迟的函数调用被压入一个栈中。当函数返回时，
+会按照后进先出的顺序调用被延迟的函数调用。
+
+阅读[[http://blog.golang.org/defer-panic-and-recover][博文]]了解更多关于 defer 语句的信息。
+
+.play flowcontrol/defer-multi.go
 
 * 恭喜！
 
