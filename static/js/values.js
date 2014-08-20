@@ -31,8 +31,8 @@ value('tableOfContents', [{
 
 // translation
 value('translation', {
-    'off': 'off',
-    'on': 'on',
+    'off': '关闭',
+    'on': '开启',
     'syntax': '语法高亮',
     'lineno': '行号',
     'reset': '重置',

@@ -191,10 +191,10 @@ ul {
     background: #fff;
 }
 .menu-button[syntax-checkbox]:after {
-    content:' off';
+    content:' - 关';
 }
 .menu-button[syntax-checkbox].active:after {
-    content:' on';
+    content:' - 开';
 }
 #right-side a {
     color: #375eab;

@@ -34,9 +34,9 @@
                     <div class="relative-content">
                         <!--div id="file-menu" ng-controller="OutputCtrl"-->
                         <div id="file-menu">
-                            <a class="menu-button" id="run" ng-click="run()">Run</a>
-                            <a class="menu-button" id="format" ng-click="format()">Format</a>
-                            <a syntax-checkbox ng-class="{active: editor.syntax}" class="menu-button syntax-checkbox">Syntax</a>
+                            <a class="menu-button" id="run" ng-click="run()">运行</a>
+                            <a class="menu-button" id="format" ng-click="format()">格式化</a>
+                            <a syntax-checkbox ng-class="{active: editor.syntax}" class="menu-button syntax-checkbox">语法高亮</a>
                         </div>
 
                         <div class="output" ng-repeat="f in toc.lessons[lessonId].Pages[curPage-1].Files" ng-class="{active: $index==curFile}" ng-bind-html-unsafe="f.Output">
