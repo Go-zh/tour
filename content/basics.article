@@ -4,7 +4,7 @@
 Go 作者组
 http://golang.org
 
-* Packages
+* 包
 
 每个 Go 程序都是由包组成的。
 
@@ -187,13 +187,14 @@ Go 的基本类型有Basic types
 	var i int
 	j := i // j 也是一个 int
 
-But when the right hand side contains an untyped numeric constant, the new variable may be an `int`, `float64`, or `complex128` depending on the precision of the constant:
+但是当右边包含了未指名类型的数字常量时，新的变量就可能是 `int`、`float64` 或 `complex128`。
+这取决于常量的精度：
 
 	i := 42           // int
 	f := 3.142        // float64
 	g := 0.867 + 0.5i // complex128
 
-Try changing the initial value of `v` in the example code and observe how its type is affected.
+尝试修改演示代码中 `v` 的初始值，并观察这是如何影响其类型的。
 
 .play basics/type-inference.go
 

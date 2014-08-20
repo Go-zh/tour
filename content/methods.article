@@ -248,7 +248,7 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 
 `At` 应当返回一个颜色；在这个例子里，在最后一个图片生成器的值 `v` 匹配 `color.RGBA{v, v, 255, 255}`。
 
-.play prog/tour/exercise-images.go
+.play methods/exercise-images.go
 
 * 恭喜！
 

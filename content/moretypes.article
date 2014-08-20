@@ -1,6 +1,6 @@
 复杂类型： struct、slice 和 map。
 学习如何基于已有类型定义新的类型：本课涵盖了结构体、数组、slice 和 map。
- 
+
 Go 作者组
 http://golang.org
 
