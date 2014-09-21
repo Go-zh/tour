@@ -10,12 +10,21 @@
 angular.module('tour.controllers', []).
 
 // Navigation controller
-controller('EditorCtrl', ['$scope', '$routeParams', '$location', 'toc', 'i18n', 'run', 'fmt', 'editor',
-    function($scope, $routeParams, $location, toc, i18n, run, fmt, editor) {
+controller('EditorCtrl', ['$scope', '$routeParams', '$location', 'toc', 'i18n', 'run', 'fmt', 'editor', 'analytics', 'storage',
+    function($scope, $routeParams, $location, toc, i18n, run, fmt, editor, analytics, storage) {
         var lessons = [];
         toc.lessons.then(function(v) {
             lessons = v;
             $scope.gotoPage($scope.curPage);
+
+            // Store changes on the current file to local storage.
+            $scope.$watch(function() {
+                var f = file();
+                return f && f.Content;
+            }, function(val) {
+                var key = $scope.lessonId + '.' + ($scope.curPage - 1) + '.' + $scope.curFile;
+                storage.set(key, val);
+            });
         });
 
         $scope.toc = toc;
@@ -43,6 +52,7 @@ controller('EditorCtrl', ['$scope', '$routeParams', '$location', 'toc', 'i18n', 
             }
             $location.path('/' + l + '/' + page);
             $scope.openFile($scope.curFile);
+            analytics.trackView();
         };
         $scope.openFile = function(file) {
             $scope.curFile = file;
@@ -83,6 +93,10 @@ controller('EditorCtrl', ['$scope', '$routeParams', '$location', 'toc', 'i18n', 
                 function(error) {
                     log('stderr', error);
                 });
+        };
+
+        $scope.reset = function() {
+            file().Content = file().OrigContent;
         };
     }
 ]);

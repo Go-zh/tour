@@ -8,6 +8,16 @@
 
 angular.module('tour.services', []).
 
+// Google Analytics
+factory('analytics', ['$window',
+    function(win) {
+        var track = win.trackPageview || (function() {});
+        return {
+            trackView: track
+        };
+    }
+]).
+
 // Internationalization
 factory('i18n', ['translation',
     function(translation) {
@@ -50,13 +60,36 @@ factory('fmt', ['$http',
     }
 ]).
 
-// Editor context service, kept through the whole app.
-factory('editor', ['$window',
+// Local storage, persistent to page refreshing.
+factory('storage', ['$window',
     function(win) {
+        if (win.localStorage) {
+            return {
+                get: function(key) {
+                    return win.localStorage.getItem(key);
+                },
+                set: function(key, val) {
+                    win.localStorage.setItem(key, val);
+                }
+            };
+        }
+        return {
+            get: function() {
+                return null;
+            },
+            set: function() {}
+        };
+    }
+]).
+
+// Editor context service, kept through the whole app.
+factory('editor', ['$window', 'storage',
+    function(win, storage) {
         var ctx = {
-            syntax: false,
+            syntax: storage.get('syntax') === 'true',
             toggleSyntax: function() {
                 ctx.syntax = !ctx.syntax;
+                storage.set('syntax', ctx.syntax);
                 ctx.paint();
             },
             paint: function() {
@@ -81,8 +114,8 @@ factory('editor', ['$window',
 ]).
 
 // Table of contents management and navigation
-factory('toc', ['$http', '$q', '$log', 'tableOfContents',
-    function($http, $q, $log, tableOfContents) {
+factory('toc', ['$http', '$q', '$log', 'tableOfContents', 'storage',
+    function($http, $q, $log, tableOfContents, storage) {
         var modules = tableOfContents;
 
         var lessons = {};
@@ -122,6 +155,18 @@ factory('toc', ['$http', '$q', '$log', 'tableOfContents',
                         var lesson = lessons[lessonName];
                         lesson.module = module;
                         module.lesson[lessonName] = lesson;
+
+                        // replace file contents with locally stored copies.
+                        for (var p = 0; p < lesson.Pages.length; p++) {
+                            var page = lesson.Pages[p];
+                            for (var f = 0; f < page.Files.length; f++) {
+                                page.Files[f].OrigContent = page.Files[f].Content;
+                                var val = storage.get(lessonName + '.' + p + '.' + f);
+                                if (val !== null) {
+                                    page.Files[f].Content = val;
+                                }
+                            }
+                        }
                     }
                 }
                 moduleQ.resolve(modules);
