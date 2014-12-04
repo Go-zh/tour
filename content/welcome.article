@@ -69,7 +69,7 @@ http://golang.org
 #appengine: 
 #appengine: - 在 Playground 中，时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。这使得根据可预见的输出来缓存程序变得容易。
 #appengine: 
-#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序是限制单一线程运行（但是可以有多个 goroutine）。
+#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
 #appengine: 
 #appengine: Playground 使用最后发布的 Go 的稳定版本。
 #appengine: 
