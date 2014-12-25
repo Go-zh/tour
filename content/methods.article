@@ -64,7 +64,7 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 一个普遍存在的接口是 [[//golang.org/pkg/fmt/][`fmt`]] 包中定义的 [[//golang.org/pkg/fmt/#Stringer][`Stringer`]]。
 
-	type Stringer struct {
+	type Stringer interface {
 		String() string
 	}
 
