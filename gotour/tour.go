@@ -2,10 +2,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package main // import "golang.org/x/tour/gotour"
+package main
 
 import (
 	"bytes"
+	"compress/gzip"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -17,8 +18,8 @@ import (
 	"strings"
 	"time"
 
-	"golang.org/x/tools/godoc/static"
-	"golang.org/x/tools/present"
+	"github.com/Go-zh/tools/godoc/static"
+	"github.com/Go-zh/tools/present"
 )
 
 var (
@@ -266,11 +267,24 @@ func initScript(root string) error {
 		}
 	}
 
+	var gzBuf bytes.Buffer
+	gz, err := gzip.NewWriterLevel(&gzBuf, gzip.BestCompression)
+	if err != nil {
+		return err
+	}
+	gz.Write(b.Bytes())
+	gz.Close()
+
 	http.HandleFunc("/script.js", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-type", "application/javascript")
 		// Set expiration time in one week.
 		w.Header().Set("Cache-control", "max-age=604800")
-		http.ServeContent(w, r, "", modTime, bytes.NewReader(b.Bytes()))
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+			http.ServeContent(w, r, "", modTime, bytes.NewReader(b.Bytes()))
+		} else {
+			w.Header().Set("Content-Encoding", "gzip")
+			http.ServeContent(w, r, "", modTime, bytes.NewReader(gzBuf.Bytes()))
+		}
 	})
 
 	return nil

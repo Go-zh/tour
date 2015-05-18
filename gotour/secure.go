@@ -2,48 +2,63 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// +build appengine
+// +build secure
 
 package main
 
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"io"
+	"log"
 	"net/http"
+	"path/filepath"
 	"strings"
-
-	"appengine"
 
 	_ "github.com/Go-zh/tools/playground"
 )
 
 const runUrl = "http://golang.org/compile"
 
-func init() {
+var (
+	basePath = flag.String("base", "..", "base path of tour")
+	httpAddr = flag.String("http", "127.0.0.1:8083", "HTTP service address (e.g., '127.0.0.1:8083')")
+)
+
+func main() {
+	flag.Parse()
+
 	http.HandleFunc("/lesson/", lessonHandler)
 	http.HandleFunc("/", rootHandler)
 
-	if err := initTour(".", "HTTPTransport"); err != nil {
-		panic(err)
+	// Keep these static file handlers in sync with ../app.yaml.
+	static := http.FileServer(http.Dir(*basePath))
+	http.Handle("/content/img/", static)
+	http.Handle("/static/", static)
+	imgDir := filepath.Join(*basePath, "static", "img")
+	http.Handle("/favicon.ico", http.FileServer(http.Dir(imgDir)))
+
+	if err := initTour(*basePath, "HTTPTransport"); err != nil {
+		log.Fatal(err)
 	}
+
+	log.Fatal(http.ListenAndServe(*httpAddr, nil))
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
 	if err := renderUI(w); err != nil {
-		c.Criticalf("UI render: %v", err)
+		log.Printf("UI render: %v", err)
 	}
 }
 
 func lessonHandler(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
 	lesson := strings.TrimPrefix(r.URL.Path, "/lesson/")
 	if err := writeLesson(lesson, w); err != nil {
 		if err == lessonNotFound {
 			http.NotFound(w, r)
 		} else {
-			c.Criticalf("tour render: %v", err)
+			log.Printf("tour render: %v", err)
 		}
 	}
 }
