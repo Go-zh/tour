@@ -63,7 +63,7 @@ Go 只有一种循环结构——`for` 循环。
 .image /content/img/newton.png
 
 为了做到这个，只需要重复计算 10 次，并且观察不同的值（1，2，3，……）是如何逐步逼近结果的。
-然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 [[http://golang.org/pkg/math/#Sqrt][math.Sqrt] 接近吗？
+然后，修改循环条件，使得当值停止改变（或改变非常小）的时候退出循环。观察迭代次数是否变化。结果与 [[https://go-zh.org/pkg/math/#Sqrt][math.Sqrt] 接近吗？
 
 提示：定义并初始化一个浮点值，向其提供一个浮点语法或使用转换：
 
@@ -119,7 +119,7 @@ defer 语句会延迟函数的执行直到上层函数返回。
 延迟的函数调用被压入一个栈中。当函数返回时，
 会按照后进先出的顺序调用被延迟的函数调用。
 
-阅读[[http://blog.golang.org/defer-panic-and-recover][博文]]了解更多关于 defer 语句的信息。
+阅读[[http://blog.go-zh.org/defer-panic-and-recover][博文]]了解更多关于 defer 语句的信息。
 
 .play flowcontrol/defer-multi.go
 

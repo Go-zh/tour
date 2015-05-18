@@ -56,13 +56,13 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 因此，也就无需在每一个实现上增加新的接口名称，这样同时也鼓励了明确的接口定义。
 
-[[http://golang.org/pkg/io/][包 io]] 定义了 `Reader` 和 `Writer`；其实不一定要这么做。
+[[https://go-zh.org/pkg/io/][包 io]] 定义了 `Reader` 和 `Writer`；其实不一定要这么做。
 
 .play methods/interfaces-are-satisfied-implicitly.go
 
 * Stringers
 
-一个普遍存在的接口是 [[//golang.org/pkg/fmt/][`fmt`]] 包中定义的 [[//golang.org/pkg/fmt/#Stringer][`Stringer`]]。
+一个普遍存在的接口是 [[https://go-zh.org/pkg/fmt/][`fmt`]] 包中定义的 [[https://go-zh.org/pkg/fmt/#Stringer][`Stringer`]]。
 
 	type Stringer interface {
 		String() string
@@ -133,7 +133,7 @@ Go 程序使用 `error` 值来表示错误状态。
 `io` 包指定了 `io.Reader` 接口，
 它表示从数据流结尾读取。
 
-Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][许多实现]]，
+Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][许多实现]]，
 包括文件、网络连接、压缩、加密等等。
 
 `io.Reader` 接口有一个 `Read` 方法：
@@ -144,7 +144,7 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 在遇到数据流结尾时，返回 `io.EOF` 错误。
 
 例子代码创建了一个
-[[//golang.org/pkg/strings/#Reader][`strings.Reader`]]。
+[[https://go-zh.org/pkg/strings/#Reader][`strings.Reader`]]。
 并且以每次 8 字节的速度读取它的输出。
 
 .play methods/reader.go
@@ -157,10 +157,10 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 
 * 练习：rot13Reader
 
-一个常见模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 
+一个常见模式是 [[https://go-zh.org/pkg/io/#Reader][io.Reader]] 
 包裹另一个 `io.Reader`，然后通过某种形式修改数据流。
 
-例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 
+例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 
 函数接受 `io.Reader`（压缩的数据流）并且返回同样实现了 `io.Reader` 的 `*gzip.Reader`（解压缩后的数据流）。
 
 编写一个实现了 `io.Reader` 的 `rot13Reader`，
@@ -174,7 +174,7 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 
 * Web 服务器
 	
-[[http://golang.org/pkg/net/http/][包 http]] 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
+[[https://go-zh.org/pkg/net/http/][包 http]] 通过任何实现了 `http.Handler` 的值来响应 HTTP 请求：
 
 	package http
 
@@ -187,7 +187,7 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 访问 [[http://localhost:4000/][http://localhost:4000/]] 会看到来自程序的问候。
 	
 #appengine: *注意：* 这个例子无法在基于 web 的指南用户界面运行。为了尝试编写 
-#appengine: web 服务器，可能需要[[http://golang.org/doc/install/][安装 Go]]。
+#appengine: web 服务器，可能需要[[https://go-zh.org/doc/install/][安装 Go]]。
 
 .play methods/web-servers.go
 
@@ -210,13 +210,13 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 
 #appengine: *注意：* 这个例子无法在基于 web 的用户界面下运行。
 #appengine: 为了尝试编写 web 服务，你可能需要
-#appengine: [[http://golang.org/doc/install/][安装 Go]]。
+#appengine: [[https://go-zh.org/doc/install/][安装 Go]]。
 
 .play methods/exercise-http-handlers.go
 
 * 图片
 
-[[http://golang.org/pkg/image/#Image][Package image]] 定义了 `Image` 接口：
+[[https://go-zh.org/pkg/image/#Image][Package image]] 定义了 `Image` 接口：
 		
 	package image
 
@@ -227,12 +227,12 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 	}
 
 *注意*：`Bounds` 方法的 `Rectangle` 返回值实际上是一个
-[[http://golang.org/pkg/image/#Rectangle][`image.Rectangle`]]，
+[[https://go-zh.org/pkg/image/#Rectangle][`image.Rectangle`]]，
 其定义在 `image` 包中。
 
-（参阅[[http://golang.org/pkg/image/#Image][文档]]了解全部信息。）
+（参阅[[https://go-zh.org/pkg/image/#Image][文档]]了解全部信息。）
 
-`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[http://golang.org/pkg/image/color/][image/color 包]]定义。
+`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][image/color 包]]定义。
 
 .play methods/images.go
 
@@ -240,7 +240,7 @@ Go 标准库包含了这个接口的[[http://golang.org/search?q=Read#Global][�
 
 还记得之前编写的图片生成器吗？现在来另外编写一个，不过这次将会返回 `image.Image` 来代替 slice 的数据。
 
-自定义的 `Image` 类型，要实现[[http://golang.org/pkg/image/#Image][必要的方法]]，并且调用 `pic.ShowImage`。
+自定义的 `Image` 类型，要实现[[https://go-zh.org/pkg/image/#Image][必要的方法]]，并且调用 `pic.ShowImage`。
 
 `Bounds` 应当返回一个 `image.Rectangle`，例如 `image.Rect(0, 0, w, h)`。
 

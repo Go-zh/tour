@@ -8,16 +8,16 @@ http://golang.org
 
 每个 Go 程序都是由包组成的。
 
-程序运行的入口是包 `main`。
+程序运行的入口是包 `main` 。
 
-这个程序使用并导入了包 `"fmt"` 和 `"math/rand"`。
+这个程序使用并导入了包 `"fmt"` 和 `"math/rand"` 。
 
 按照惯例，包名与导入路径的最后一个目录一致。例如，`"math/rand"` 包由 `package`rand` 语句开始。
 
 #appengine: *注意：* 这个程序的运行环境是固定的，因此
 #appengine: `rand.Intn` 总是会返回相同的数字。
 #appengine:
-#appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
+#appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
 .play basics/packages.go
 
@@ -50,11 +50,11 @@ http://golang.org
 
 函数可以没有参数或接受多个参数。
 
-在这个例子中，`add` 接受两个 `int` 类型的参数。
+在这个例子中， `add` 接受两个 `int` 类型的参数。
 
-注意类型在变量名 _之后_。
+注意类型在变量名 _之后_ 。
 
-（参考 [[http://golang.org/doc/articles/gos_declaration_syntax.html][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
+（参考 [[http://blog.go-zh.org/gos-declaration-syntax][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
 
 .play basics/functions.go
 

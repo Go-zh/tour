@@ -6,7 +6,7 @@ http://golang.org
 
 * Hello, 世界
 
-欢迎来到[[http://golang.org/][Go 编程语言]]指南。
+欢迎来到[[https://go-zh.org/][Go 编程语言]]指南。
 
 点击页面顶部左边的[[javascript:highlight(".logo")][Go 指南]]，
 可以访问该指南的模块列表。
@@ -33,7 +33,7 @@ http://golang.org
 编辑程序并且再次执行它。
 
 注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Ctrl - Enter`
-时，编辑器中的文本会被 [[http://golang.org/cmd/gofmt/][gofmt]] 工具格式化。
+时，编辑器中的文本会被 [[https://go-zh.org/cmd/gofmt/][gofmt]] 工具格式化。
 你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
 如果你准备好了，请点击页面底部的[[javascript:highlightAndClick(".next-page")][右箭头]]或按 `PageDown` 键继续。
@@ -75,7 +75,7 @@ http://golang.org
 #appengine: 
 #appengine: Playground 使用最后发布的 Go 的稳定版本。
 #appengine: 
-#appengine: 参阅“[[http://blog.golang.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
+#appengine: 参阅“[[http://blog.go-zh.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
 #appengine: 
 #appengine: .play welcome/sandbox.go
 
