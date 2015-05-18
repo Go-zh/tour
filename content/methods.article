@@ -85,7 +85,7 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 Go 程序使用 `error` 值来表示错误状态。 
 
-与 `fmt.Stringer` 类似，`error` 类型是一个内建接口：
+与 `fmt.Stringer` 类似， `error` 类型是一个内建接口：
 
 	type error interface {
 		Error() string

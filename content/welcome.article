@@ -46,13 +46,15 @@ http://golang.org
 
 - [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
 - [[http://go-tour-ca.appspot.com/][Catalan — Català]]
+- [[http://go-tour-de.appspot.com/][German — Deutsch]]
 - [[http://go-tour-es.appspot.com/][Spanish — Español]]
-- [[http://go-tour-fr.appspot.com/][French - Français]]
+- [[http://go-tour-fr.appspot.com/][French — Français]]
+- [[http://go-tour-ita.appspot.com/][Italian — Italiano]]
 - [[http://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
 - [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
 - [[http://go-tour-kr.appspot.com/][Korean — 한국어]]
-- [[http://go-tour-ro.appspot.com/][Romanian - Română]]
-- [[http://go-tour-zh.appspot.com/][Simplified Chinese — 中文（简体）]]
+- [[http://go-tour-ro.appspot.com/][Romanian — Română]]
+- [[http://tour.go-zh.org/][Simplified Chinese — 中文（简体）]]
 - [[http://go-tour-zh-tw.appspot.com/][Traditional Chinese — 中文（繁體）]]
 
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
@@ -67,7 +69,7 @@ http://golang.org
 #appengine: 
 #appengine: 对于在 Playground 运行的程序的限制是：
 #appengine: 
-#appengine: - 在 Playground 中，时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。这使得根据可预见的输出来缓存程序变得容易。
+#appengine: - 在 Playground 中，时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。给程序赋确定性的输出使得缓存程序的输出变得容易。
 #appengine: 
 #appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
 #appengine: 

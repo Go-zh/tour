@@ -1,5 +1,5 @@
-流程控制语句：for、if、else 和 switch
-学习如何用条件、循环和开关语句控制代码的流程。
+流程控制语句：for、if、else 、switch 和 defer
+学习如何用条件、循环、开关和推迟语句控制代码的流程。
 
 Go 作者组
 http://golang.org

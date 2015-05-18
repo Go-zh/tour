@@ -46,6 +46,13 @@ value('translation', {
     'next': '向后',
     'waiting': '等待远端服务器响应...',
     'errcomm': '与远端服务器通讯失败。',
+    'submit-feedback': '汇报页面上的问题',
+
+    // GitHub issue template: update repo and messaging when translating.
+    'github-repo': 'github.com/Go-zh/tour',
+    'issue-title': '[简单描述一下要汇报的问题]',
+    'issue-message': '请描述要汇报的问题，如果可能的话请附上源代码',
+    'context': '上下文',
 }).
 
 // Config for codemirror plugin
