@@ -22,7 +22,7 @@ http://golang.org
 - [[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一个页面。
 
 该指南可以进行交互。点击
-“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 Shift + Enter）可以在
+“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 `Shift+Enter`）可以在
 #appengine: 远程服务器上
 你的电脑上
 编译并执行程序。
@@ -32,7 +32,7 @@ http://golang.org
 
 编辑程序并且再次执行它。
 
-注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Ctrl - Enter`
+注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或按 `Ctrl-Enter`
 时，编辑器中的文本会被 [[https://go-zh.org/cmd/gofmt/][gofmt]] 工具格式化。
 你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
