@@ -72,10 +72,6 @@ http://golang.org
 
 .play basics/functions-continued.go
 
-	x, y int
-
-.play basics/functions-continued.go
-
 * 多值返回
 
 函数可以返回任意数量的返回值。
