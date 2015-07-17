@@ -208,7 +208,7 @@ ul {
 #file-menu .menu-button {
     float: right;
 }
-a#run, a#kill {
+#run, #kill {
     background-color: #375eab;
     color: #fff;
     width: 40px;
