@@ -227,6 +227,10 @@ map 的文法跟结构体文法相似，不过必须有键名。
 
 同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
 
+_Note_: if `elem` or `ok` have not yet been declared you could use a short declaration form:
+
+	elem, ok := m[key]
+
 .play moretypes/mutating-maps.go
 
 * 练习：map
