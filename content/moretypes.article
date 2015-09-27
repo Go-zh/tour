@@ -135,7 +135,7 @@ slice 的零值是 `nil`。
 
 	func append(s []T, vs ...T) []T
 
-`append` 的第一个参数 `s` 是一个类型为 `T` 的数组，其余类型为 `T` 的值将会添加到 slice。
+`append` 的第一个参数 `s` 是一个元素类型为 `T` 的 slice ，其余类型为 `T` 的值将会附加到该 slice 的末尾。
 
 `append` 的结果是一个包含原 slice 所有元素加上新添加的元素的 slice。
 
