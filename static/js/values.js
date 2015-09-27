@@ -25,7 +25,7 @@ value('tableOfContents', [{
 }, {
     'id': 'concurrency',
     'title': '并发',
-    'description': '<p>作为语言的核心部分，Go 提供了并发的特性。</p><p>这一部分概览了 goroutein 和 channel，以及如何使用它们来实现不同的并发模式。</p>',
+    'description': '<p>作为语言的核心部分，Go 提供了并发的特性。</p><p>这一部分概览了 goroutine 和 channel，以及如何使用它们来实现不同的并发模式。</p>',
     'lessons': ['concurrency']
 }]).
 
