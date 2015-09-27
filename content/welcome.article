@@ -75,6 +75,8 @@ https://go-zh.org
 #appengine: 
 #appengine: 	go get github.org/Go-zh/tour/gotour
 #appengine: 
+#appengine: - 在 Playground 中，时间总是从 UTC 2009年11月10日 23点整开始（了解这个时间的重要含义是留给读者的练习）。 这样给程序赋予确定性的输出也有利于缓存程序的输出。
+#appengine: 
 #appengine: 最后运行产生的 `gotour` 可执行文件。
 #appengine: 
 #appengine: 	cd $GOPATH/bin
