@@ -107,7 +107,7 @@ slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
 
 * 构造 slice
 
-slice 由函数 `make` 创建。这会分配一个零长度的数组并且返回一个 slice 指向这个数组：
+slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返回一个 slice 指向这个数组：
 
 	a := make([]int, 5)  // len(a)=5
 
