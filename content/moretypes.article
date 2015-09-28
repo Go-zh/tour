@@ -142,7 +142,7 @@ slice 的零值是 `nil` 。
 如果 `s` 的底层数组太小，而不能容纳所有值时，会分配一个更大的数组。
 返回的 slice 会指向这个新分配的数组。
 
-（了解更多关于 slice 的内容，参阅文章[[http://blog.go-zh.org/go-slices-usage-and-internals][Go 切片：用法和本质]]。）
+（了解更多关于 slice 的内容，参阅文章[[https://blog.go-zh.org/go-slices-usage-and-internals][Go 切片：用法和本质]]。）
 
 .play moretypes/append.go
 
@@ -164,7 +164,7 @@ slice 的零值是 `nil` 。
 
 实现 `Pic` 。它返回一个 slice 的长度 `dy` ，和 slice 中每个元素的长度的 8 位无符号整数 `dx` 。当执行这个程序，它会将整数转换为灰度（好吧，蓝度）图片进行展示。
 
-图片的实现已经完成。可能用到的函数包括 `(x+y)/2`、`x*y` 和 `x^y` （使用 [[https://go-zh.org/pkg/math/#Pow][`math.Pow`]] 计算最后的函数）。
+计算每个像素的灰度值的方法由你决定；几个有意思的选择包括 `(x+y)/2`、`x*y` 和 `x^y` 。
 
 （需要使用循环来分配 `[][]uint8` 中的每个 `[]uint8` 。）
 
@@ -213,6 +213,10 @@ map 的文法跟结构体文法相似，不过必须有键名。
 如果 `key` 在 `m` 中， `ok` 为 `true`。否则， `ok` 为 `false`，并且 `elem` 是 map 的元素类型的零值。
 
 同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
+
+_Note_: if `elem` or `ok` have not yet been declared you could use a short declaration form:
+
+	elem, ok := m[key]
 
 .play moretypes/mutating-maps.go
 

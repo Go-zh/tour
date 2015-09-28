@@ -13,8 +13,8 @@ directive('onpageup', function() {
     return function(scope, elm, attrs) {
         elm.attr('tabindex', 0);
         elm.keyup(function(evt) {
-            var key = evt.key || evt.keyCode;
-            if (key == 33) {
+            var key = evt.which || evt.keyCode;
+            if (key == 33 && !evt.ctrlKey) {
                 scope.$apply(attrs.onpageup);
                 evt.preventDefault();
             }
@@ -27,8 +27,8 @@ directive('onpagedown', function() {
     return function(scope, elm, attrs) {
         elm.attr('tabindex', 0);
         elm.keyup(function(evt) {
-            var key = evt.key || evt.keyCode;
-            if (key == 34) {
+            var key = evt.which || evt.keyCode;
+            if (key == 34 && !evt.ctrlKey) {
                 scope.$apply(attrs.onpagedown);
                 evt.preventDefault();
             }
@@ -210,6 +210,7 @@ directive('feedbackButton', ['i18n', function(i18n) {
                 var context = window.location.pathname === '/list'
                     ? '/list'
                     : '/' + scope.params.lessonId + '/' + scope.params.pageNumber;
+	        context = window.location.protocol + '//' + window.location.host + context;
                 var title = i18n.l('issue-title');
                 var body = i18n.l('context') + ': '+ context + '\n\n'+ i18n.l('issue-message');
                 var url = 'https://' + i18n.l('github-repo') + '/issues/new'

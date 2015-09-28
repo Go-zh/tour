@@ -208,11 +208,13 @@ ul {
 #file-menu .menu-button {
     float: right;
 }
-#run {
+#run, #kill {
     background-color: #375eab;
     color: #fff;
+    width: 40px;
+    text-align: center;
 }
-#run:hover:not(:active) {
+#run:hover:not(:active), #kill:hover:not(:active) {
     background-color: #fff;
     color: #375eab;
 }
@@ -462,7 +464,7 @@ ul {
     top: 0;
     bottom: 0;
     left: 0;
-    right: 10; /* avoid covering the TOC scroller */
+    right: 10px; /* avoid covering the TOC scroller */
     background: rgba(0, 0, 0, 0);
 }
 .toc * {

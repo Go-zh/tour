@@ -54,7 +54,7 @@ http://golang.org
 
 注意类型在变量名 _之后_ 。
 
-（参考 [[http://blog.go-zh.org/gos-declaration-syntax][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
+（参考 [[https://blog.go-zh.org/gos-declaration-syntax][这篇关于 Go 语法定义的文章]]了解类型以这种形式出现的原因。）
 
 .play basics/functions.go
 
@@ -139,6 +139,9 @@ Go 的基本类型有Basic types
 这个例子演示了具有不同类型的变量。
 同时与导入语句一样，变量的定义“打包”在一个语法块中。
 
+The `int`, `uint`, and `uintptr` types are usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems.
+When you need an integer value you should use `int` unless you have a specific reason to use a sized or unsigned integer type.
+
 .play basics/basic-types.go
 
 * 零值
@@ -176,8 +179,8 @@ Go 的基本类型有Basic types
 
 * 类型推导
 
-在定义一个变量但不指定其类型时（使用没有类型的 `var` 或 `:=` 语句），
-变量的类型由右值推导得出。
+在定义一个变量却并不显式指定其类型时（使用 `:=` 语法或者 `var`=` 表达式语法），
+变量的类型由（等号）右侧的值推导得出。
 
 当右值定义了类型时，新变量的类型与其相同：
 
