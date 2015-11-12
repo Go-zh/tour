@@ -117,7 +117,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
     go Walk(tree.New(1), ch)
 
 然后从 channel 中读取并且打印 10 个值。应当是值 1，2，3，...，10。
-
+    
 *3.* 用 `Walk` 实现 `Same` 函数来检测是否 `t1` 和 `t2` 存储了相同的值。
 
 *4.* 测试 `Same` 函数。
@@ -147,7 +147,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 它包含了参考、指南、视频等等更多资料。
 
 了解如何组织 Go 代码并在其上工作，参阅 [[http://www.youtube.com/watch?v=XCsL89YtqCs][这个视频]]，或者阅读 [[https://go-zh.org/doc/code.html][如何编写 Go 代码]]。
-
+        
 在标准库上需要帮助的话，参考 [[https://go-zh.org/pkg/][包手册]]。语言本身的帮助，阅读 [[https://go-zh.org/ref/spec][语言规范]]是件令人愉快的事情。
 
 进一步探索 Go 的并发模型，参阅
@@ -167,13 +167,13 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 [[https://go-zh.org/doc/articles/wiki/][编写 Web 应用]] 的指南.
 
 [[https://go-zh.org/doc/codewalk/functions/][GO 中的一等公民函数]] 展示了有趣的函数类型。
-
+        
 [[http://blog.go-zh.org/][Go Blog]] 有着众多的关于 Go 的文章信息。
 
 [[http://www.mikespook.com/tag/golang/][mikespook 的博客]]有大量中文的关于 Go 的文章和翻译。
 
 开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
-
+        
 访问 [[https://go-zh.org][go-zh.org]] 了解更多内容。
 
 关于本项目（中文）的任何意见、建议，请在[[https://github.com/Go-zh/tour/issues/new][这里]]提交 Issues。
