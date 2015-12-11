@@ -1,40 +1,39 @@
 欢迎！
-学习如何使用本指南：包括如何在不同的课程之间切换，以及如何运行代码。
+学习使用本指南：包括如何在不同的课程间切换以及运行代码。
 
-Go 作者组
-http://golang.org
+Go 作者组编写，Go-zh 小组翻译。
+https://go-zh.org
 
 * Hello, 世界
 
-欢迎来到[[https://go-zh.org/][Go 编程语言]]指南。
+欢迎来到 [[https://go-zh.org/][Go 编程语言]]指南。
 
-点击页面顶部左边的[[javascript:highlight(".logo")][Go 指南]]，
-可以访问该指南的模块列表。
+点击页面左上角的 [[javascript:highlight(".logo")][Go 指南]]
+可以访问本指南的模块列表。
 
-任何时候，都可以通过点击页面顶部右边的[[javascript:highlightAndClick(".nav")][菜单]]浏览内容清单。
+你可以随时点击页面右上角的[[javascript:highlightAndClick(".nav")][菜单]]来浏览内容列表。
 
-在指南后有若干个练习需要读者完成。
+本指南由一系列幻灯片贯穿始终，其中有一些练习需要你来完成。
 
-你可以使用
+你可以
 
-- [[javascript:highlight(".prev-page")]["上一页"]] 或 `PageUp` 键跳转到前一个页面，
+- 按[[javascript:highlight(".prev-page")]["上一页"]] 或 `PageUp` 键跳转到上一页，
 
-- [[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一个页面。
+- 按[[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一页。
 
-该指南可以进行交互。点击
-“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 Shift + Enter）可以在
+本指南可以进行交互。点击
+“[[javascript:highlightAndClick("#run")][运行]]” 按钮（或按 Shift + Enter）可以在
 #appengine: 远程服务器上
 你的电脑上
-编译并执行程序。
-结果展示在代码的下面。
+编译并执行程序。运行结果会显示在代码下面。
 
-这些例子程序展示了 Go 的各个方面。在指南中的程序可以成为你积累经验的开始。
+本指南中的示例程序展示了 Go 的各个方面，它们可以成为你积累经验的开始。
 
-编辑程序并且再次执行它。
+编辑程序并再次执行它。
 
-注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或`Ctrl - Enter`
+注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或按下 `Ctrl - Enter`
 时，编辑器中的文本会被 [[https://go-zh.org/cmd/gofmt/][gofmt]] 工具格式化。
-你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
+你可以点击 [[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
 如果你准备好了，请点击页面底部的[[javascript:highlightAndClick(".next-page")][右箭头]]或按 `PageDown` 键继续。
 
@@ -42,7 +41,7 @@ http://golang.org
 
 * Go 本地化
 
-该指南也有其他语言版本：
+本指南也有其它语言的版本：
 
 - [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
 - [[http://go-tour-ca.appspot.com/][Catalan — Català]]
@@ -59,23 +58,40 @@ http://golang.org
 
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
 
-#appengine: * Go Playground
+#appengine: * Go 离线版
 #appengine: 
-#appengine: 这个指南构建在 [[http://play.golang.org/][Go Playground]] 之上，这是一个运行在
-#appengine: [[http://golang.org/][golang.org]] 的服务器上的一个 Web 服务。
+#appengine: 本指南也可作为独立的程序使用，这样你无需访问互联网就能运行它。
 #appengine: 
-#appengine: 服务接收 Go 程序的输入，且在沙盒里编译、链接和运行，
-#appengine: 然后返回输出。
+#appengine: 独立版的指南更快，因为它会在你的机器上构建并运行代码示例。
 #appengine: 
-#appengine: 对于在 Playground 运行的程序的限制是：
+#appengine: 要在本地运行此教程，首先你需要[[http://golang.org/doc/install/][安装 Go]]，
+#appengine: 然后用[[http://go-zh.org/cmd/go/][go get]]来安装
+#appengine: [[http://go-zh.org/x/tour/][gotour]]:
 #appengine: 
-#appengine: - 在 Playground 中，时间从 2009-11-10 23:00:00 UTC（了解这个日期的重要含义是留给读者的练习）。给程序赋确定性的输出使得缓存程序的输出变得容易。
+#appengine: 	go get github.org/Go-zh/tour/gotour
 #appengine: 
-#appengine: - 对于运行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
+#appengine: 最后运行产生的 `gotour` 可执行文件。
 #appengine: 
-#appengine: Playground 使用最后发布的 Go 的稳定版本。
+#appengine: 	cd $GOPATH/bin
+#appengine: 	./gotour
+
+#appengine: * Go 练习场
 #appengine: 
-#appengine: 参阅“[[http://blog.go-zh.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
+#appengine: 本指南构建在[[http://play.golang.org/][Go 练习场]]上，它是一个运行在
+#appengine: [[http://golang.org/][golang.org]] 服务器上的一个 Web 服务。
+#appengine: 
+#appengine: 该服务会接收一个 Go 程序，然后在沙盒中编译、链接并运行它，
+#appengine: 最后返回输出。
+#appengine: 
+#appengine: 在练习场中运行的程序有一些限制：
+#appengine: 
+#appengine: - 练习场中的时间始于 2009-11-10 23:00:00 UTC（了解这个日期的含义是留给读者的练习）。赋予程序确定的输出能让缓存程序更加容易。
+#appengine: 
+#appengine: - 程序的执行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
+#appengine: 
+#appengine: 练习场使用最新发布的 Go 的稳定版本。
+#appengine: 
+#appengine: 参阅“[[http://blog.go-zh.org/playground][Go 练习场的内部机制（英文）]]”了解更多信息。
 #appengine: 
 #appengine: .play welcome/sandbox.go
 
@@ -83,4 +99,4 @@ http://golang.org
 
 你已经完成了本指南的第一部分！
 
-现在点击[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。
+现在点击[[/list][模块]]列表看看接下来要学些什么。你也可以继续[[javascript:click('.next-page')][后面的课程]]。
