@@ -1,8 +1,8 @@
 流程控制语句：for、if、else 、switch 和 defer
 学习如何用条件、循环、开关和推迟语句控制代码的流程。
 
-Go 作者组
-https://golang.org
+Go 作者组编写，Go-zh 小组翻译。
+https://go-zh.org
 
 * for
 
