@@ -1,8 +1,8 @@
 并发
 Go 将并发作为语言的核心构成。本课将对其进行介绍，并提供了一些示例来展示如何使用它们。
 
-Go 作者组
-http://golang.org
+Go 作者组编写，Go-zh 小组翻译。
+https://go-zh.org
 
 * goroutine
 
