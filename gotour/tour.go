@@ -7,6 +7,8 @@ package main
 import (
 	"bytes"
 	"compress/gzip"
+	"crypto/sha1"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -97,6 +99,7 @@ func initLessons(tmpl *template.Template, content string) error {
 type File struct {
 	Name    string
 	Content string
+	Hash    string
 }
 
 // Page defines the JSON form of a tour lesson page.
@@ -146,6 +149,8 @@ func parseLesson(tmpl *template.Template, path string) ([]byte, error) {
 			f := &p.Files[i]
 			f.Name = c.FileName
 			f.Content = string(c.Raw)
+			hash := sha1.Sum(c.Raw)
+			f.Hash = base64.StdEncoding.EncodeToString(hash[:])
 		}
 	}
 

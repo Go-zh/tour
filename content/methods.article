@@ -2,7 +2,7 @@
 本课包含了方法和接口，可以用它们来定义对象和其行为。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * 方法
 
@@ -99,6 +99,7 @@ Go 程序使用 `error` 值来表示错误状态。
 	i, err := strconv.Atoi("42")
 	if err != nil {
 		fmt.Printf("couldn't convert number: %v\n", err)
+		return
 	}
 	fmt.Println("Converted integer:", i)
 
@@ -165,7 +166,7 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 
 编写一个实现了 `io.Reader` 的 `rot13Reader`，
 并从一个 `io.Reader` 读取，
-利用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
+利用 [[https://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
 
 已经帮你构造了 `rot13Reader` 类型。
 通过实现 `Read` 方法使其匹配 `io.Reader`。
@@ -208,6 +209,10 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
+在启动你的 http 服务器后，你将能够访问：
+[[http://localhost:4000/string][http://localhost:4000/string]] 和
+[[http://localhost:4000/struct][http://localhost:4000/struct]].
+
 #appengine: *注意：* 这个例子无法在基于 web 的用户界面下运行。
 #appengine: 为了尝试编写 web 服务，你可能需要
 #appengine: [[https://go-zh.org/doc/install/][安装 Go]]。
@@ -232,7 +237,7 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 
 （参阅[[https://go-zh.org/pkg/image/#Image][文档]]了解全部信息。）
 
-`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][image/color 包]]定义。
+`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][`image/color` 包]]定义。
 
 .play methods/images.go
 

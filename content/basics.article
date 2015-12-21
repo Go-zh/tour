@@ -2,7 +2,7 @@
 学习 Go 程序的基本组件。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * 包
 
@@ -14,10 +14,10 @@ http://golang.org
 
 按照惯例，包名与导入路径的最后一个目录一致。例如，`"math/rand"` 包由 `package`rand` 语句开始。
 
-#appengine: *注意：* 这个程序的运行环境是固定的，因此
-#appengine: `rand.Intn` 总是会返回相同的数字。
+#appengine: *注意：* 这个程序的运行环境是确定性的，因此
+#appengine: `rand.Intn` 每次都会返回相同的数字。
 #appengine:
-#appengine: （为了得到不同的数字，需要生成不同的种子数，参阅 [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
+#appengine: （为了得到不同的随机数，需要提供一个随机数种子，参阅 [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
 .play basics/packages.go
 
@@ -36,13 +36,15 @@ http://golang.org
 
 * 导出名
 
-在导入了一个包之后，就可以用其导出的名称来调用它。
-
 在 Go 中，首字母大写的名称是被导出的。
+
+在导入包之后，你只能访问包所导出的名字，任何未导出的名字是不能被包外的代码访问的。
 
 `Foo` 和 `FOO` 都是被导出的名称。名称 `foo` 是不会被导出的。
 
-执行代码。然后将 `math.pi` 改名为 `math.Pi` 再试着执行一下。
+执行代码，注意编译器报的错误。
+
+然后将 `math.pi` 改名为 `math.Pi` 再试着执行一下。
 
 .play basics/exported-names.go
 
@@ -82,11 +84,11 @@ http://golang.org
 
 * 命名返回值
 
-Go 的返回值可以被命名，并且像变量那样使用。
+Go 的返回值可以被命名，并且就像在函数体开头声明的变量那样使用。
 
 返回值的名称应当具有一定的意义，可以作为文档使用。
 
-没有参数的 `return` 语句返回结果的当前值。也就是`直接`返回。
+没有参数的 `return` 语句返回各个返回变量的当前值。这种用法被称作“裸”返回。
 
 直接返回语句仅应当用在像下面这样的短函数中。在长的函数中它们会影响代码的可读性。
 
@@ -215,6 +217,8 @@ When you need an integer value you should use `int` unless you have a specific r
 一个未指定类型的常量由上下文来决定其类型。
 
 也尝试一下输出 `needInt(Big)` 吧。
+
+(An `int` can store at maximum a 64-bit integer, and sometimes less.)
 
 .play basics/numeric-constants.go
 

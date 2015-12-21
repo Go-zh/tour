@@ -2,7 +2,7 @@
 学习如何使用本指南：包括如何在不同的课程之间切换，以及如何运行代码。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * Hello, 世界
 
@@ -44,23 +44,41 @@ http://golang.org
 
 该指南也有其他语言版本：
 
-- [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
-- [[http://go-tour-ca.appspot.com/][Catalan — Català]]
-- [[http://go-tour-de.appspot.com/][German — Deutsch]]
-- [[http://go-tour-es.appspot.com/][Spanish — Español]]
-- [[http://go-tour-fr.appspot.com/][French — Français]]
-- [[http://go-tour-ita.appspot.com/][Italian — Italiano]]
-- [[http://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
-- [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
-- [[http://go-tour-kr.appspot.com/][Korean — 한국어]]
-- [[http://go-tour-ro.appspot.com/][Romanian — Română]]
-- [[http://tour.go-zh.org/][Simplified Chinese — 中文（简体）]]
-- [[http://go-tour-zh-tw.appspot.com/][Traditional Chinese — 中文（繁體）]]
-- [[http://go-tour-ua.appspot.com/][Ukrainian — Українська]]
-- [[http://go-tour-uz.appspot.com/][Uzbek — Ўзбекча]]
+- [[https://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
+- [[https://go-tour-ca.appspot.com/][Catalan — Català]]
+- [[https://go-tour-de.appspot.com/][German — Deutsch]]
+- [[https://go-tour-es.appspot.com/][Spanish — Español]]
+- [[https://go-tour-fr.appspot.com/][French — Français]]
+- [[https://go-tour-id2.appspot.com/][Indonesia — Bahasa]]
+- [[https://go-tour-ita.appspot.com/][Italian — Italiano]]
+- [[https://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
+- [[https://go-tour-jp.appspot.com/][Japanese — 日本語]]
+- [[https://go-tour-kr.appspot.com/][Korean — 한국어]]
+- [[https://go-tour-ro.appspot.com/][Romanian — Română]]
+- [[https://tour.go-zh.org/][Simplified Chinese — 中文（简体）]]
+- [[https://go-tour-zh-tw.appspot.com/][Traditional Chinese — 中文（繁體）]]
+- [[https://go-tour-ua.appspot.com/][Ukrainian — Українська]]
+- [[https://go-tour-uz.appspot.com/][Uzbek — Ўзбекча]]
 - [[http://tur.a.golang.org.tr/][Turkish - Türkçe]]
 
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
+
+#appengine: * 离线使用本指南
+#appengine:
+#appengine: 你可以离线使用本指南。
+#appengine: 
+#appengine: 离线使用时所有代码样例均在你的机器上编译和运行，所以速度会更快。
+#appengine: 
+#appengine: 要离线使用 Go 指南，请先在本地[[http://go-zh.org/doc/install/][安装 Go]]
+#appengine: 然后使用 [[http://go-zh.org/cmd/go/][go get]] 命令安装
+#appengine: [[http://github.com/Go-zh/tour/][gotour-zh]]:
+#appengine: 
+#appengine: 	go get github.com/Go-zh/tour/gotour
+#appengine: 
+#appengine: 然后运行得到的 gotour 程序就可以了：
+#appengine: 
+#appengine: 	cd $GOPATH/bin
+#appengine: 	./gotour
 
 #appengine: * Go Playground
 #appengine: 
@@ -78,7 +96,7 @@ http://golang.org
 #appengine: 
 #appengine: Playground 使用最后发布的 Go 的稳定版本。
 #appengine: 
-#appengine: 参阅“[[http://blog.go-zh.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
+#appengine: 参阅“[[https://blog.go-zh.org/playground][Go Playground 的内部机制（英文）]]”了解更多信息。
 #appengine: 
 #appengine: .play welcome/sandbox.go
 

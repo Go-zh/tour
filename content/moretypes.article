@@ -2,7 +2,7 @@
 学习如何基于已有类型定义新的类型：本课涵盖了结构体、数组、slice 和 map。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * 指针
 
@@ -83,7 +83,15 @@ Go 提供了更加便利的方式来使用数组。
 
 `[]T` 是一个元素类型为 `T` 的 slice。
 
+`len(s)` returns the length of slice `s`.
+
 .play moretypes/slices.go
+
+* slice 的 slice
+
+slice 可以包含任意的类型，包括另一个 slice。
+
+.play moretypes/slices-of-slice.go
 
 * 对 slice 切片
 
@@ -130,7 +138,7 @@ slice 的零值是 `nil` 。
 
 * 向 slice 添加元素
 
-向 slice 添加元素是一种常见的操作，因此 Go 提供了一个内建函数 `append` 。
+向 slice 的末尾添加元素是一种常见的操作，因此 Go 提供了一个内建函数 `append` 。
 内建函数的[[https://go-zh.org/pkg/builtin/#append][文档]]对 `append` 有详细介绍。
 
 	func append(s []T, vs ...T) []T
@@ -149,6 +157,9 @@ slice 的零值是 `nil` 。
 * range
 
 `for` 循环的 `range` 格式可以对 slice 或者 map 进行迭代循环。
+
+When ranging over a slice, two values are returned for each iteration.
+The first is the index, and the second is a copy of the element at that index.
 
 .play moretypes/range.go
 
@@ -176,7 +187,7 @@ slice 的零值是 `nil` 。
 
 map 映射键到值。
 
-map 在使用之前必须用 `make` 而不是 `new` 来创建；值为 `nil` 的 map 是空的，并且不能赋值。
+map 在使用之前必须用 `make` 来创建；值为 `nil` 的 map 是空的，并且不能对其赋值。
 
 .play moretypes/maps.go
 
@@ -214,10 +225,6 @@ map 的文法跟结构体文法相似，不过必须有键名。
 
 同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
 
-_Note_: if `elem` or `ok` have not yet been declared you could use a short declaration form:
-
-	elem, ok := m[key]
-
 .play moretypes/mutating-maps.go
 
 * 练习：map
@@ -230,7 +237,7 @@ _Note_: if `elem` or `ok` have not yet been declared you could use a short decla
 
 * 函数值
 
-函数也是值。
+函数也是值。他们可以像其他值一样传递，比如，函数值可以作为函数的参数或者返回值。
 
 .play moretypes/function-values.go
 

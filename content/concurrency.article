@@ -2,7 +2,7 @@
 Go 将并发作为语言的核心构成。本课将对其进行介绍，并提供了一些示例来展示如何使用它们。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * goroutine
 
@@ -126,11 +126,35 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 .play concurrency/exercise-equivalent-binary-trees.go
 
+* sync.Mutex
+
+我们已经看到 `channel` 用来在各个 goroutine 间进行通信是非常合适的了。
+
+但是如果我们并不需要通信呢？比如说，如果我们只是想保证在每个时刻，只有一个 goroutine
+能访问一个共享的变量从而避免冲突？
+
+这里涉及的概念叫做 _互斥_，通常使用 _互斥锁_(mutex)_来提供这个限制。
+
+Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 类型及其两个方法：
+
+- `Lock`
+- `Unlock`
+
+我们可以通过在代码前调用 `Lock` 方法，在代码后调用 `Unlock` 方法来保证一段代码的互斥执行。
+参见 `Inc` 方法。
+
+我们也可以用 `defer` 语句来保证互斥锁一定会被解锁。参见 `Value` 方法。
+
+.play concurrency/mutex-counter.go
+
 * 练习：Web 爬虫
 
 在这个练习中，将会使用 Go 的并发特性来并行执行 web 爬虫。
 
 修改 `Crawl` 函数来并行的抓取 URLs，并且保证不重复。
+
+_Hint_: you can keep a cache of the URLs that have been fetched on a map, but maps alone are not
+safe for concurrent use!
 
 .play concurrency/exercise-web-crawler.go
 
@@ -175,5 +199,3 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
         
 访问 [[https://go-zh.org][go-zh.org]] 了解更多内容。
-
-关于本项目（中文）的任何意见、建议，请在[[https://github.com/Go-zh/tour/issues/new][这里]]提交 Issues。

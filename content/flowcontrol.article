@@ -2,19 +2,30 @@
 学习如何用条件、循环、开关和推迟语句控制代码的流程。
 
 Go 作者组
-http://golang.org
+https://golang.org
 
 * for
 
 Go 只有一种循环结构—— `for` 循环。
 
-基本的 `for` 循环除了没有了 `(`)` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中做的一样，而 `{`}` 是必须的。
+基本的 `for` 循环包含三个由分号分开的组成部分：
+
+- 初始化语句：在第一次循环执行前被执行
+- 循环条件表达式：每轮迭代开始前被求值
+- 后置语句：每轮迭代后被执行
+
+初始化语句一般是一个短变量声明，这里声明的变量仅在整个 `for` 循环语句可见。
+
+如果条件表达式的值变为 `false`，那么迭代将终止。
+
+_注意_：不像 C，Java，或者 Javascript 等其他语言，`for` 语句的三个组成部分
+并不需要用括号括起来，但循环体必须用 `{`}` 括起来。
 
 .play flowcontrol/for.go
 
 * for（续）
 
-跟 C 或者 Java 中一样，可以让前置、后置语句为空。
+循环初始化语句和后置语句都是可选的。
 
 .play flowcontrol/for-continued.go
 
@@ -32,15 +43,13 @@ Go 只有一种循环结构—— `for` 循环。
 
 * if
 
-`if` 语句除了没有了 `(`)` 之外（甚至强制不能使用它们），看起来跟 C 或者 Java 中的一样，而 `{`}` 是必须的。
-
-（耳熟吗？）
+就像 `for` 循环一样，Go 的 `if` 语句也不要求用 `(`)` 将条件括起来，同时， `{`}` 还是必须有的。
 
 .play flowcontrol/if.go
 
 * if 的便捷语句
 
-跟 `for` 一样， `if` 语句可以在条件之前执行一个简单的语句。
+跟 `for` 一样， `if` 语句可以在条件之前执行一个简单语句。
 
 由这个语句定义的变量的作用域仅在 `if` 范围之内。
 
@@ -51,6 +60,8 @@ Go 只有一种循环结构—— `for` 循环。
 * if 和 else
 
 在 `if` 的便捷语句定义的变量同样可以在任何对应的 `else` 块中使用。
+
+(Both calls to `pow` are executed and return before `main`'s call to `fmt.Println` begins.)
 
 .play flowcontrol/if-and-else.go
 
@@ -119,7 +130,7 @@ defer 语句会延迟函数的执行直到上层函数返回。
 延迟的函数调用被压入一个栈中。当函数返回时，
 会按照后进先出的顺序调用被延迟的函数调用。
 
-阅读[[http://blog.go-zh.org/defer-panic-and-recover][博文]]了解更多关于 defer 语句的信息。
+阅读[[http://blog.go-zh.org/defer-panic-and-recover][博文]]了解更多关于 `defer` 语句的信息。
 
 .play flowcontrol/defer-multi.go
 

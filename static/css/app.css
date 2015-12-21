@@ -16,8 +16,11 @@ html, body {
     outline: none;
 }
 a {
-    color: inherit;
+    color: #375eab;
     text-decoration: none;
+}
+a.logo, .toc a {
+    color: inherit;
 }
 h1, h2, h3, h4 {
     color: #333;
@@ -156,6 +159,7 @@ ul {
 /* Lesson viewer */
 .slide-content {
     padding: 16px;
+    background: #fff;
 }
 .module-bar {
     font-size: 1.5em;
@@ -164,7 +168,7 @@ ul {
     line-height: 24px;
     font-size: 24px;
 }
-#right-side .module-bar a {
+.module-bar a {
     color: #375eab;
     position: relative;
     font-weight: bold;
@@ -201,14 +205,10 @@ ul {
 .menu-button[syntax-checkbox].active:after {
     content:' - 开';
 }
-#right-side a {
-    color: #375eab;
-    text-decoration: none;
-}
 #file-menu .menu-button {
     float: right;
 }
-#run, #kill {
+a#run, a#kill {
     background-color: #375eab;
     color: #fff;
     width: 40px;
@@ -283,7 +283,7 @@ ul {
         right: 0px;
         bottom: 0px;
         overflow: hidden;
-        background: #fafafa;
+        background: #fff;
     }
     #left-side {
         position: absolute;
@@ -292,10 +292,12 @@ ul {
         left: 0;
         width: 50%;
         overflow: hidden;
+    }
+    .output {
         background-image: url(/static/img/gopher.png);
         background-repeat: no-repeat;
         background-position: bottom;
-        background-color: #fafafa;
+        background-color: #fff;
     }
     div[vertical-slide] {
         position: absolute;
@@ -316,7 +318,7 @@ ul {
         left: 50%;
         background: #fff;
     }
-    #right-side .slide-content {
+    .slide-content {
         position: absolute;
         left: 0;
         right: 0;
