@@ -61,7 +61,7 @@ _注意_：不像 C，Java，或者 Javascript 等其他语言，`for` 语句的
 
 在 `if` 的便捷语句定义的变量同样可以在任何对应的 `else` 块中使用。
 
-(Both calls to `pow` are executed and return before `main`'s call to `fmt.Println` begins.)
+（提示：两个 `pow` 调用都在 `main` 调用 `fmt.Println` 前执行完毕了。）
 
 .play flowcontrol/if-and-else.go
 
