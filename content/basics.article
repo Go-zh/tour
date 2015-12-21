@@ -14,7 +14,7 @@ https://golang.org
 
 按照惯例，包名与导入路径的最后一个目录一致。例如，`"math/rand"` 包由 `package`rand` 语句开始。
 
-#appengine: *注意：* 这个程序的运行环境是确定性的，因此
+#appengine: *注意*：这个程序的运行环境是确定性的，因此
 #appengine: `rand.Intn` 每次都会返回相同的数字。
 #appengine:
 #appengine: （为了得到不同的随机数，需要提供一个随机数种子，参阅 [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
@@ -141,8 +141,7 @@ Go 的基本类型有Basic types
 这个例子演示了具有不同类型的变量。
 同时与导入语句一样，变量的定义“打包”在一个语法块中。
 
-The `int`, `uint`, and `uintptr` types are usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems.
-When you need an integer value you should use `int` unless you have a specific reason to use a sized or unsigned integer type.
+`int`，`uint` 和 `uintptr` 类型在32位的系统上一般是32位，而在64位系统上是64位。当你需要使用一个整数类型时，你应该首选 `int`，仅当有特别的理由才使用定长整数类型或者无符号整数类型。
 
 .play basics/basic-types.go
 
@@ -218,7 +217,7 @@ When you need an integer value you should use `int` unless you have a specific r
 
 也尝试一下输出 `needInt(Big)` 吧。
 
-(An `int` can store at maximum a 64-bit integer, and sometimes less.)
+（`int` 可以存放最大64位的整数，根据平台不同有时会更少。）
 
 .play basics/numeric-constants.go
 
