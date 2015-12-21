@@ -83,7 +83,7 @@ Go 提供了更加便利的方式来使用数组。
 
 `[]T` 是一个元素类型为 `T` 的 slice。
 
-`len(s)` returns the length of slice `s`.
+`len(s)` 返回 slice s 的长度。
 
 .play moretypes/slices.go
 
@@ -158,8 +158,8 @@ slice 的零值是 `nil` 。
 
 `for` 循环的 `range` 格式可以对 slice 或者 map 进行迭代循环。
 
-When ranging over a slice, two values are returned for each iteration.
-The first is the index, and the second is a copy of the element at that index.
+当使用 `for` 循环遍历一个 slice 时，每次迭代 `range` 将返回两个值。
+第一个是当前下标（序号），第二个是该下标所对应元素的一个拷贝。
 
 .play moretypes/range.go
 
@@ -167,7 +167,7 @@ The first is the index, and the second is a copy of the element at that index.
 
 可以通过赋值给 `_` 来忽略序号和值。
 
-如果只需要索引值，去掉“ `,`value` ”的部分即可。
+如果只需要索引值，去掉 “ `,`value` ” 的部分即可。
 
 .play moretypes/range-continued.go
 
