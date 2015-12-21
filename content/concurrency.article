@@ -89,6 +89,8 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 * 练习：等价二叉树
 
+（本习题较长，将在 [[javascript:click('.next-page')][下一页]] 上继续。）
+
 可以用多种不同的二叉树的叶子节点存储相同的数列值。例如，这里有两个二叉树保存了序列 1，1，2，3，5，8，13。
 
 .image /content/img/tree.png
@@ -105,8 +107,6 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 * 练习：等价二叉树
 
-（本习题较长，将在 [[javascript:click('.next-page')][下一页]] 上继续。）
-
 *1.* 实现 `Walk` 函数。
 
 *2.* 测试 `Walk` 函数。
@@ -122,7 +122,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 *4.* 测试 `Same` 函数。
 
-`Same(tree.New(1), tree.New(1))` 应当返回 true，而 `Same(tree.New(1), tree.New(2))` 应当返回 false。
+`Same(tree.New(1),`tree.New(1))` 应当返回 `true`，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false`。
 
 .play concurrency/exercise-equivalent-binary-trees.go
 
@@ -153,8 +153,7 @@ Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 类
 
 修改 `Crawl` 函数来并行的抓取 URLs，并且保证不重复。
 
-_Hint_: you can keep a cache of the URLs that have been fetched on a map, but maps alone are not
-safe for concurrent use!
+_提示_：你可以用一个 map 来缓存已经获取的 URL，但是需要注意 map 本身并不是并发安全的！
 
 .play concurrency/exercise-web-crawler.go
 
