@@ -33,10 +33,10 @@ value('tableOfContents', [{
 value('translation', {
     'off': '关闭',
     'on': '开启',
-    'syntax': '语法高亮',
+    'syntax': '语法',
     'lineno': '行号',
     'reset': '重置',
-    'format': '格式化源代码',
+    'format': '格式化',
     'kill': '杀死进程',
     'run': '运行',
     'compile': '编译并运行',
