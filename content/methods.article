@@ -1,12 +1,12 @@
 方法和接口
-本课包含了方法和接口，可以用它们来定义对象和其行为。
+本节课包含了方法和接口，可以用它们来定义对象及其行为。
 
-Go 作者组
-https://golang.org
+Go 作者组编写，Go-zh 小组翻译。
+https://go-zh.org
 
 * 方法
 
-Go 没有类。然而，仍然可以在结构体类型上定义方法。
+Go 没有类。不过你可以为结构体类型定义方法。
 
 _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
@@ -14,20 +14,21 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 * 方法（续）
 
-你可以对包中的 _任意_ 类型定义任意方法，而不仅仅是针对结构体。
+不只是结构体，你还可以为自己包中的 _任何_ 类型声明任何方法，
 
-但是，不能对来自其他包的类型或基础类型定义方法。
+但是，不能为来自其它包的类型（包括内建类型）定义方法。
 
 .play methods/methods-continued.go
 
 * 接收者为指针的方法
 
-方法可以与命名类型或命名类型的指针关联。
+方法可以和已命名类型或已命名类型的指针关联。
 
-刚刚看到的两个 `Abs` 方法。一个是在 `*Vertex` 指针类型上，而另一个在 `MyFloat` 值类型上。
-		有两个原因需要使用指针接收者。首先避免在每个方法调用中拷贝值（如果值类型是大的结构体的话会更有效率）。其次，方法可以修改接收者指向的值。
+我们刚看到的两个 `Abs` 方法，一个与 `*Vertex` 指针类型关联，而另一个与 `MyFloat` 值类型关联。
 
-尝试修改 `Abs` 的定义，同时 `Scale` 方法使用 `Vertex` 代替 `*Vertex` 作为接收者。
+使用指针接收者的原因有二：首先可以避免在每个方法调用中拷贝值（若值的类型为大的结构体会更有效率）。其次，方法可以修改接收者指向的值。
+
+尝试修改 `Abs` 的定义，同时将 `Scale` 方法的接收者 `Vertex` 替换为 `*Vertex`。
 
 当 `v` 是 `Vertex` 的时候 `Scale` 方法没有任何作用。`Scale` 修改 `v`。当 `v` 是一个值（非指针），方法看到的是 `Vertex` 的副本，并且无法修改原始值。
 
@@ -41,9 +42,9 @@ _方法接收者_ 出现在 `func` 关键字和方法名之间的参数中。
 
 接口类型的值可以存放实现这些方法的任何值。
 
-*注意*： 列子代码的 22 行存在一个错误。
-由于 `Abs` 只定义在 `*Vertex`（指针类型）上，
-所以 `Vertex`（值类型）不满足 `Abser`。
+*注意：* 例子代码的 22 行存在一个错误。
+由于 `Abs` 只定义在 `*Vertex（指针类型）` 上，
+所以 `Vertex（值类型）` 不满足 `Abser`。
 
 .play methods/interfaces.go
 
@@ -99,7 +100,6 @@ Go 程序使用 `error` 值来表示错误状态。
 	i, err := strconv.Atoi("42")
 	if err != nil {
 		fmt.Printf("couldn't convert number: %v\n", err)
-		return
 	}
 	fmt.Println("Converted integer:", i)
 
@@ -109,9 +109,9 @@ Go 程序使用 `error` 值来表示错误状态。
 
 * 练习：错误
 
-从[[/flowcontrol/8][先前的练习]]中复制 `Sqrt` 函数，并修改使其返回 `error` 值。	  
+从之前的练习中复制 `Sqrt` 函数，并修改使其返回 `error` 值。	  
 
-由于不支持复数，当 `Sqrt` 接收到一个负数时，应当返回一个非 nil 的错误值。
+`Sqrt` 接收到一个负数时，应当返回一个非 nil 的错误值。复数同样也不被支持。
 	
 创建一个新类型
 		
@@ -166,7 +166,7 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 
 编写一个实现了 `io.Reader` 的 `rot13Reader`，
 并从一个 `io.Reader` 读取，
-利用 [[https://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
+利用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
 
 已经帮你构造了 `rot13Reader` 类型。
 通过实现 `Read` 方法使其匹配 `io.Reader`。
@@ -209,10 +209,6 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
-在启动你的 http 服务器后，你将能够访问：
-[[http://localhost:4000/string][http://localhost:4000/string]] 和
-[[http://localhost:4000/struct][http://localhost:4000/struct]].
-
 #appengine: *注意：* 这个例子无法在基于 web 的用户界面下运行。
 #appengine: 为了尝试编写 web 服务，你可能需要
 #appengine: [[https://go-zh.org/doc/install/][安装 Go]]。
@@ -237,7 +233,7 @@ Go 标准库包含了这个接口的[[https://go-zh.org/search?q=Read#Global][�
 
 （参阅[[https://go-zh.org/pkg/image/#Image][文档]]了解全部信息。）
 
-`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][`image/color` 包]]定义。
+`color.Color` 和 `color.Model` 也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][image/color 包]]定义。
 
 .play methods/images.go
 
