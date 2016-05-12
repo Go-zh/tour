@@ -1,8 +1,8 @@
 复杂类型： struct、slice 和 map。
 学习如何基于已有类型定义新的类型：本课涵盖了结构体、数组、slice 和 map。
 
-Go 作者组
-https://golang.org
+Go 作者组编写，Go-zh 小组翻译。
+https://go-zh.org
 
 * 指针
 
@@ -226,6 +226,10 @@ map 的文法跟结构体文法相似，不过必须有键名。
 如果 `key` 在 `m` 中， `ok` 为 `true`。否则， `ok` 为 `false`，并且 `elem` 是 map 的元素类型的零值。
 
 同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
+
+_Note_: if `elem` or `ok` have not yet been declared you could use a short declaration form:
+
+	elem, ok := m[key]
 
 .play moretypes/mutating-maps.go
 

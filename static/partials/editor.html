@@ -36,9 +36,9 @@
                         <!--div id="file-menu" ng-controller="OutputCtrl"-->
                         <div id="file-menu">
                             <a ng-show="job == null" class="menu-button" id="run" ng-click="run()">运行</a>
-                            <a ng-show="job != null" class="menu-button" id="kill" ng-click="kill()">强行终止运行</a>
-                            <a class="menu-button" id="format" ng-click="format()">格式化代码</a>
-                            <a class="menu-button" id="reset" ng-click="reset()">重置为初始状态</a>
+                            <a ng-show="job != null" class="menu-button" id="kill" ng-click="kill()">终止</a>
+                            <a class="menu-button" id="format" ng-click="format()">格式化</a>
+                            <a class="menu-button" id="reset" ng-click="reset()">重置</a>
                         </div>
 
                         <div class="output" ng-repeat="f in toc.lessons[lessonId].Pages[curPage-1].Files" ng-class="{active: $index==curFile}" ng-bind-html-unsafe="f.Output">
