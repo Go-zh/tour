@@ -1,10 +1,11 @@
-// +build OMIT
+// +build no-build OMIT
 
 package main
 
 import "fmt"
 
-// fibonacci 函数会返回一个返回 int 的函数。
+// fibonacci is a function that returns
+// a function that returns an int.
 func fibonacci() func() int {
 }
 

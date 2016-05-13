@@ -5,19 +5,19 @@ package main
 import "fmt"
 
 func main() {
-	var s []int
+	s := []int{2, 3, 5, 7, 11, 13}
 	printSlice(s)
 
-	// append works on nil slices.
-	s = append(s, 0)
+	// Slice the slice to give it zero length.
+	s = s[:0]
 	printSlice(s)
 
-	// The slice grows as needed.
-	s = append(s, 1)
+	// Extend its length.
+	s = s[:4]
 	printSlice(s)
 
-	// We can add more than one element at a time.
-	s = append(s, 2, 3, 4)
+	// Drop its first two values.
+	s = s[2:]
 	printSlice(s)
 }
 
