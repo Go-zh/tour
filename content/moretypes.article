@@ -1,5 +1,5 @@
-复杂类型： struct、slice 和 map。
-学习如何基于已有类型定义新的类型：本课涵盖了结构体、数组、slice 和 map。
+更多类型：struct、slice 和 映射。
+学习如何基于现有类型定义新的类型：本节课涵盖了结构体、数组、切片和映射。
 
 Go 作者组编写，Go-zh 小组翻译。
 https://go-zh.org
@@ -9,16 +9,16 @@ https://go-zh.org
 Go 具有指针。
 指针保存了变量的内存地址。
 
-类型 `*T` 是指向类型 `T` 的值的指针。其零值是 `nil` 。
+类型 `*T` 是指向 `T` 类型值的指针。其零值为 `nil` 。
 
 	var p *int
 
-`&` 符号会生成一个指向其作用对象的指针。
+`&` 操作符会生成一个指向其操作数的指针。
 
 	i := 42
 	p = &i
 
-`*` 符号表示指针指向的底层的值。
+`*` 操作符表示指针指向的底层值。
 
 	fmt.Println(*p) // 通过指针 p 读取 i
 	*p = 21         // 通过指针 p 设置 i
@@ -33,7 +33,7 @@ Go 具有指针。
 
 一个结构体（ `struct` ）就是一个字段的集合。
 
-（而 `type` 的含义跟其字面意思相符。）
+（而 `type` 声明就是定义类型的。）
 
 .play moretypes/structs.go
 
@@ -47,13 +47,14 @@ Go 具有指针。
 
 结构体字段可以通过结构体指针来访问。
 
-通过指针间接的访问是透明的。
+如果我们有一个指向结构体的指针 `p` ，那么可以通过 `(*p).X` 来访问其字段 `X`。
+不过这么写太啰嗦了，所以语言也允许我们使用隐式间接引用，直接写 `p.X` 就可以。
 
 .play moretypes/struct-pointers.go
 
 * 结构体文法
 
-结构体文法表示通过结构体字段的值作为列表来新分配一个结构体。
+结构体文法通过直接列出字段的值来新分配一个结构体。
 
 使用 `Name:` 语法可以仅列出部分字段。（字段名的顺序无关。）
 
@@ -61,65 +62,118 @@ Go 具有指针。
 
 .play moretypes/struct-literals.go
 
+
 * 数组
 
-类型 `[n]T` 是一个有 `n` 个类型为 `T` 的值的数组。
+类型 `[n]T` 表示拥有 `n` 个 `T` 类型的值的数组。
 
 表达式
 
 	var a [10]int
 
-定义变量 `a` 是一个有十个整数的数组。
+会将变量 `a` 声明为拥有有 10 个整数的数组。
 
 数组的长度是其类型的一部分，因此数组不能改变大小。
-这看起来是一个制约，但是请不要担心；
+这看起来是个限制，不过没关系，
 Go 提供了更加便利的方式来使用数组。
 
 .play moretypes/array.go
 
-* slice
 
-一个 slice 会指向一个序列的值，并且包含了长度信息。
+* 切片
 
-`[]T` 是一个元素类型为 `T` 的 slice。
+每个数组的大小都是固定的。
+而切片则为数组元素提供动态大小的、灵活的视角。
+在实践中，切片比数组更常用。
 
-`len(s)` 返回 slice s 的长度。
+类型 `[]T` 表示一个元素类型为 `T` 的切片。
+
+以下表达式为数组 `a` 的前五个元素创建了一个切片。
+
+	a[0:5]
+
 
 .play moretypes/slices.go
 
-* slice 的 slice
 
-slice 可以包含任意的类型，包括另一个 slice。
+* 切片就像数组的引用
 
-.play moretypes/slices-of-slice.go
+切片并不存储任何数据，
+它只是描述了底层数组中的一段。
 
-* 对 slice 切片
+更改切片的元素会修改其底层数组中对应的元素。
 
-slice 可以重新切片，创建一个新的 slice 值指向相同的数组。
+与它共享底层数组的切片都会观测到这些修改。
 
-表达式
 
-	s[lo:hi]
+* 切片文法
 
-表示从 `lo` 到 `hi-1` 的 slice 元素，含前端，不包含后端。因此
+切片文法类似于没有长度的数组文法。
 
-	s[lo:lo]
+这是一个数组文法：
 
-是空的，而
+	[3]bool{true, true, false}
 
-	s[lo:lo+1]
+下面这样则会创建一个和上面相同的数组，然后构建一个引用了它的切片：
 
-有一个元素。
+	[]bool{true, true, false}
 
-.play moretypes/slicing-slices.go
+.play moretypes/slice-literals.go
 
-* 构造 slice
 
-slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返回一个 slice 指向这个数组：
+* 切片的默认行为
+
+在进行切片时，你可以利用它的默认行为来忽略上下界。
+
+切片下界的默认值为 `0` ，上界则是该切片的长度。
+
+对于数组
+
+	var a [10]int
+
+来说，以下切片是等价的：
+
+	a[0:10]
+	a[:10]
+	a[0:]
+	a[:]
+
+.play moretypes/slice-bounds.go
+
+
+* 切片的长度与容量
+
+切片拥有 *长度* 和 *容量* 。
+
+切片的长度就是它所包含的元素个数。
+
+切片的容量是从它的第一个元素开始数，到其底层数组元素末尾的个数。
+
+切片 `s` 的长度和容量可通过表达式 `len(s)` 和 `cap(s)` 来获取。
+
+你可以通过重新切片来扩展一个切片，给它提供足够的容量。
+试着修改示例程序中的切片操作，向外扩展它的容量，看看会发生什么。
+
+.play moretypes/slice-len-cap.go
+
+* nil 切片
+
+切片的零值是 `nil` 。
+
+nil 切片的长度和容量为 0 且没有底层数组。
+
+.play moretypes/nil-slices.go
+
+
+* 用 make 创建切片
+
+切面可以用内建函数 `make` 来创建，这也是你创建动态数组的方式。
+
+`make` 函数会分配一个元素为零值的数组并返回一个引用了它的切片：
 
 	a := make([]int, 5)  // len(a)=5
 
-为了指定容量，可传递第三个参数到 `make`：
+要指定它的容量，需向 `make` 传入第三个参数：
 
 	b := make([]int, 0, 5) // len(b)=0, cap(b)=5
 
@@ -128,90 +182,91 @@ slice 由函数 `make` 创建。这会分配一个全是零值的数组并且返
 
 .play moretypes/making-slices.go
 
-* nil slice
+* 切片的切片
 
-slice 的零值是 `nil` 。
+切片可包含任何类型，甚至包括其它的切片。
 
-一个 nil 的 slice 的长度和容量是 0。
+.play moretypes/slices-of-slice.go
 
-.play moretypes/nil-slices.go
 
-* 向 slice 添加元素
+* 向切片追加元素
 
-向 slice 的末尾添加元素是一种常见的操作，因此 Go 提供了一个内建函数 `append` 。
-内建函数的[[https://go-zh.org/pkg/builtin/#append][文档]]对 `append` 有详细介绍。
+为切片追加新的元素是种常用的操作，为此 Go 提供了内建的 `append` 函数。
+内建函数的[[https://go-zh.org/pkg/builtin/#append][文档]]对此函数有详细的介绍。
 
 	func append(s []T, vs ...T) []T
 
-`append` 的第一个参数 `s` 是一个元素类型为 `T` 的 slice ，其余类型为 `T` 的值将会附加到该 slice 的末尾。
+`append` 的第一个参数 `s` 是一个元素类型为 `T` 的切片，
+其余类型为 `T` 的值将会追加到该切片的末尾。
 
-`append` 的结果是一个包含原 slice 所有元素加上新添加的元素的 slice。
+`append` 的结果是一个包含原切片所有元素加上新添加元素的切片。
 
-如果 `s` 的底层数组太小，而不能容纳所有值时，会分配一个更大的数组。
-返回的 slice 会指向这个新分配的数组。
+当 `s` 的底层数组太小，不足以容纳所有给定的值时，它就会分配一个更大的数组。
+返回的切片会指向这个新分配的数组。
 
-（了解更多关于 slice 的内容，参阅文章[[https://blog.go-zh.org/go-slices-usage-and-internals][Go 切片：用法和本质]]。）
+（要了解关于切片的更多内容，请阅读文章[[https://blog.go-zh.org/go-slices-usage-and-internals][Go 切片：用法和本质]]。）
 
 .play moretypes/append.go
 
 * range
 
-`for` 循环的 `range` 格式可以对 slice 或者 map 进行迭代循环。
+`for` 循环的 `range` 形式可遍历切片或映射。
 
-当使用 `for` 循环遍历一个 slice 时，每次迭代 `range` 将返回两个值。
-第一个是当前下标（序号），第二个是该下标所对应元素的一个拷贝。
+当使用 `for` 循环遍历切片时，每次迭代都会返回两个值。
+第一个值为当前元素的下标，第二个值为该下标所对应元素的一份副本。
 
 .play moretypes/range.go
 
 * range（续）
 
-可以通过赋值给 `_` 来忽略序号和值。
+可以将下标或值赋予 `_` 来忽略它。
 
-如果只需要索引值，去掉 “ `,`value` ” 的部分即可。
+若你只需要索引，去掉 `,`value` 的部分即可。
 
 .play moretypes/range-continued.go
 
-* 练习：slice
+* 练习：切片
 
-实现 `Pic` 。它返回一个长度为 `dy` 的 slice，其中每个元素是一个长度为 `dx`
-且元素类型为8位无符号整数的 slice。当你运行这个程序时，
-它会将每个整数作为对应像素的灰度值（好吧，其实是蓝度）并显示这个 slice 所对应的图像。
+实现 `Pic` 。它应当返回一个长度为 `dy` 的切片，其中每个元素是一个长度为 `dx`
+，元素类型为 `uint8` 的切片。当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像。
 
-计算每个像素的灰度值的方法由你决定；几个有意思的选择包括 `(x+y)/2`、`x*y` 和 `x^y` 。
+图像的选择由你来定。几个有趣的函数包括
+`(x+y)/2` 、`x*y` 、 `x^y` 、 `x*log(y)` 和 `x%(y+1)` 。
 
-（需要使用循环来分配 `[][]uint8` 中的每个 `[]uint8` 。）
-
-（使用 `uint8(intValue)` 来在类型之间进行转换。）
+（提示：需要使用循环来分配 `[][]uint8` 中的每个 `[]uint8` ；
+请使用 `uint8(intValue)` 在类型之间转换；你可能会用到 `math` 包中的函数。）
 
 .play moretypes/exercise-slices.go
 
-* map
+* 映射
 
-map 映射键到值。
+映射将键映射到值。
 
-map 在使用之前必须用 `make` 来创建；值为 `nil` 的 map 是空的，并且不能对其赋值。
+映射的零值为 `nil` 。`nil` 映射既没有键，也不能添加键。
 
-.play moretypes/maps.go
+`make` 函数会返回给定类型的映射，并将其初始化备用。
 
-* map 的文法
+.play moretypes/映射s.go
 
-map 的文法跟结构体文法相似，不过必须有键名。
+* 映射的文法
+
+映射的文法与结构体相似，不过必须有键名。
 
 .play moretypes/map-literals.go
 
-* map 的文法（续）
+* 映射的文法（续）
 
-如果顶级的类型只有类型名的话，可以在文法的元素中省略键名。
+若顶级类型只是一个类型名，你可以在文法的元素中省略它。
 
 .play moretypes/map-literals-continued.go
 
-* 修改 map
+* 修改映射
 
-在 map `m` 中插入或修改一个元素：
+在映射 `m` 中插入或修改元素：
 
 	m[key] = elem
 
-获得元素：
+获取元素：
 
 	elem = m[key]
 
@@ -219,23 +274,25 @@ map 的文法跟结构体文法相似，不过必须有键名。
 
 	delete(m, key)
 
-通过双赋值检测某个键存在：
+通过双赋值检测某个键是否存在：
 
 	elem, ok = m[key]
 
-如果 `key` 在 `m` 中， `ok` 为 `true`。否则， `ok` 为 `false`，并且 `elem` 是 map 的元素类型的零值。
+若 `key` 在 `m` 中， `ok` 为 `true` ；否则， `ok` 为 `false` 。
 
-同样的，当从 map 中读取某个不存在的键时，结果是 map 的元素类型的零值。
+若 `key` 不在映射中，那么 `elem` 是该映射元素类型的零值。
 
-_Note_: if `elem` or `ok` have not yet been declared you could use a short declaration form:
+同样的，当从 映射 中读取某个不存在的键时，结果是 映射 的元素类型的零值。
+
+*注* ：若 `elem` 或 `ok` 还未声明，你可以使用短变量声明：
 
 	elem, ok := m[key]
 
-.play moretypes/mutating-maps.go
+.play moretypes/mutating-mapss.go
 
-* 练习：map
+* 练习：映射
 
-实现 `WordCount`。它应当返回一个含有 `s` 中每个 “词” 个数的 map。函数 `wc.Test` 针对这个函数执行一个测试用例，并输出成功还是失败。
+实现 `WordCount` 。它应当返回一个映射，其中包含每个字符串 `s` 中“单词”的个数。函数 `wc.Test` 会对此函数执行一系列测试用例，并输出成功还是失败。
 
 你会发现 [[https://go-zh.org/pkg/strings/#Fields][strings.Fields]] 很有帮助。
 
@@ -243,24 +300,28 @@ _Note_: if `elem` or `ok` have not yet been declared you could use a short decla
 
 * 函数值
 
-函数也是值。他们可以像其他值一样传递，比如，函数值可以作为函数的参数或者返回值。
+函数也是值。它们可以像其它值一样传递。
+
+函数值可以用作函数的参数或返回值。
 
 .play moretypes/function-values.go
 
 * 函数的闭包
 
-Go 函数可以是一个闭包。闭包是一个函数值，它引用了函数体之外的变量。
-这个函数可以对这个引用的变量进行访问和赋值；换句话说这个函数被“绑定”在这个变量上。
+Go 函数可以是一个闭包。闭包是一个函数值，它引用了其函数体之外的变量。
+该函数可以访问并赋予其引用的变量的值，换句话说，该函数被“绑定”在了这些变量上。
 
-例如，函数 `adder` 返回一个闭包。每个返回的闭包都被绑定到其各自的 `sum` 变量上。
+例如，函数 `adder` 返回一个闭包。每个闭包都被绑定在其各自的 `sum` 变量上。
 
 .play moretypes/function-closures.go
 
 * 练习：斐波纳契闭包
 
-现在来通过函数做些有趣的事情。
+让我们用函数做些好玩的事情。
 
-实现一个 `fibonacci` 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数。
+实现一个 `fibonacci` 函数，它返回一个函数（闭包），
+该闭包返回一个[[https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97][斐波纳契数列]]
+`(0, 1, 1, 2, 3, 5, ...)` 。
 
 .play moretypes/exercise-fibonacci-closure.go
 
@@ -268,5 +329,5 @@ Go 函数可以是一个闭包。闭包是一个函数值，它引用了函数�
 
 你已经完成了本课程！
 
-你可以返回[[/list][模块]]列表看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。
+你可以返回[[/list][模块列表]]看看接下来学习什么，或者继续[[javascript:click('.next-page')][后面的课程]]。
 
