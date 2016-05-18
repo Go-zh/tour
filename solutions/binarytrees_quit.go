@@ -9,7 +9,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Go-zh/tour/tree"
+	"golang.org/x/tour/tree"
 )
 
 func walkImpl(t *tree.Tree, ch, quit chan int) {

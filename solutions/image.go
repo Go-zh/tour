@@ -10,7 +10,7 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/Go-zh/tour/pic"
+	"golang.org/x/tour/pic"
 )
 
 type Image struct {
