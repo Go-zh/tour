@@ -6,7 +6,7 @@
 
 package main
 
-import "golang.org/x/tour/pic"
+import "github.com/Go-zh/tour/pic"
 
 func Pic(dx, dy int) [][]uint8 {
 	p := make([][]uint8, dy)
