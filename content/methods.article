@@ -134,7 +134,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 *注意：* 示例代码的 22 行存在一个错误。
 由于 `Abs` 方法只为 `*Vertex` （指针类型）定义，
-因此 `Vertex`（值类型）并未实现 `Abser` 。
+因此 `Vertex` （值类型）并未实现 `Abser` 。
 
 .play methods/interfaces.go
 
@@ -342,9 +342,9 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 包装另一个 `io.Reader` ，然后通过某种方式修改其数据流。
 
 例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][`gzip.NewReader`]]
-函数接受一个 `io.Reader`（已压缩的数据流）并返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压后的数据流）。
+函数接受一个 `io.Reader` （已压缩的数据流）并返回一个同样实现了 `io.Reader` 的 `*gzip.Reader` （解压后的数据流）。
 
-编写一个实现了 `io.Reader` 并从另一个 `io.Reader` 中读取数据的 `rot13Reader`，
+编写一个实现了 `io.Reader` 并从另一个 `io.Reader` 中读取数据的 `rot13Reader` ，
 通过应用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
 
 `rot13Reader` 类型已经提供。实现 `Read` 方法以满足 `io.Reader` 。

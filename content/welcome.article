@@ -22,7 +22,7 @@ https://go-zh.org
 - 按[[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一页。
 
 该指南可以进行交互。点击
-“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 `Shift+Enter`）可以在
+“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 `Shift+Enter` ）可以在
 #appengine: 远程服务器上
 你的电脑上
 编译并执行程序。运行结果会显示在代码下面。

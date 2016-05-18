@@ -1,7 +1,7 @@
 《Go 语言之旅》是官方 Go Tour 的中文翻译版。
 要安装到本地，请先安装 Go，之后执行以下命令：
 
-	$ go get golang.org/x/tour/gotour
+	$ go get -u github.com/Go-zh/tour/gotour
 	$ cd $GOPATH/bin
 	$ ./gotour
 

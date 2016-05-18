@@ -14,7 +14,7 @@ _goroutine_ 是由 Go 运行时环境管理的轻量级线程。
 
 	f(x, y, z)
 
-`f`，`x`，`y` 和 `z` 是当前 goroutine 中定义的，但是在新的 goroutine 中运行 `f`。
+`f` ，`x` ，`y` 和 `z` 是当前 goroutine 中定义的，但是在新的 goroutine 中运行 `f` 。
 
 goroutine 在相同的地址空间中运行，因此访问共享内存必须进行同步。[[https://go-zh.org/pkg/sync/][`sync`]] 提供了这种可能，不过在 Go 中并不经常用到，因为有其他的办法。（在接下来的内容中会涉及到。）
 
@@ -59,12 +59,12 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 	v, ok := <-ch
 
-之后 `ok` 会被设置为 `false`。
+之后 `ok` 会被设置为 `false` 。
 
 循环 `for i := range c` 会不断从 channel 接收值，直到它被关闭。
 
 *注意：* 只有发送者才能关闭 channel，而不是接收者。向一个已经关闭的 channel 发送数据会引起 panic。
-*还要注意：* channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 `range`。
+*还要注意：* channel 与文件不同；通常情况下无需关闭它们。只有在需要告诉接收者没有更多的数据的时候才有必要进行关闭，例如中断一个 `range` 。
 
 .play concurrency/range-and-close.go
 
@@ -115,7 +115,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 *2.* 测试 `Walk` 函数。
 
-函数 `tree.New(k)` 构造了一个随机结构的二叉树，保存了值 `k`，`2k`，`3k`，...，`10k`。
+函数 `tree.New(k)` 构造了一个随机结构的二叉树，保存了值 `k` ，`2k` ，`3k` ，...，`10k` 。
 创建一个新的 channel `ch` 并且对其进行步进：
 
     go Walk(tree.New(1), ch)
@@ -126,7 +126,7 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 
 *4.* 测试 `Same` 函数。
 
-`Same(tree.New(1),`tree.New(1))` 应当返回 `true`，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false`。
+`Same(tree.New(1),`tree.New(1))` 应当返回 `true` ，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false` 。
 
 The documentation for `Tree` can be found [[https://godoc.org/golang.org/x/tour/tree#Tree][here]].
 
