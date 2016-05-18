@@ -147,8 +147,6 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 因此，也就无需在每一个实现上增加新的接口名称，这样同时也鼓励了明确的接口定义。
 
-.play methods/interfaces-are-satisfied-implicitly.go
-
 * 接口值
 
 在内部，接口值可以看做包含值和具体类型的元组：
@@ -181,7 +179,7 @@ nil 接口值既不保存值也不保存具体类型。
 
 * 空接口
 
-指定了零个方法的接口值被称为 *空接口：* 
+指定了零个方法的接口值被称为 *空接口：*
 
 	interface{}
 
@@ -264,7 +262,7 @@ nil 接口值既不保存值也不保存具体类型。
 
 * 错误
 
-Go 程序使用 `error` 值来表示错误状态。 
+Go 程序使用 `error` 值来表示错误状态。
 
 与 `fmt.Stringer` 类似， `error` 类型是一个内建接口：
 
@@ -340,10 +338,10 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 
 * 练习：rot13Reader
 
-有种常见的模式是一个 [[https://go-zh.org/pkg/io/#Reader][`io.Reader`]] 
+有种常见的模式是一个 [[https://go-zh.org/pkg/io/#Reader][`io.Reader`]]
 包装另一个 `io.Reader` ，然后通过某种方式修改其数据流。
 
-例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][`gzip.NewReader`]] 
+例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][`gzip.NewReader`]]
 函数接受一个 `io.Reader`（已压缩的数据流）并返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压后的数据流）。
 
 编写一个实现了 `io.Reader` 并从另一个 `io.Reader` 中读取数据的 `rot13Reader`，

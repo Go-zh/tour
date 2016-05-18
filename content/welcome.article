@@ -64,42 +64,47 @@ https://go-zh.org
 
 
 #appengine: * Go 离线版
-#appengine: 
+#appengine:
 #appengine: 本指南也可作为独立的程序使用，这样你无需访问互联网就能运行它。
-#appengine: 
+#appengine:
 #appengine: 独立版的指南更快，因为它会在你的机器上构建并运行代码示例。
-#appengine: 
+#appengine:
 #appengine: 要在本地运行此教程，首先你需要[[http://golang.org/doc/install/][安装 Go]]，
 #appengine: 然后用[[http://go-zh.org/cmd/go/][go get]]来安装
 #appengine: [[http://go-zh.org/x/tour/][gotour]]:
-#appengine: 
+#appengine:
 #appengine: 	go get github.org/Go-zh/tour/gotour
-#appengine: 
-#appengine: - 在 Playground 中，时间总是从 UTC 2009年11月10日 23点整开始（了解这个时间的重要含义是留给读者的练习）。 这样给程序赋予确定性的输出也有利于缓存程序的输出。
-#appengine: 
+#appengine:
 #appengine: 最后运行产生的 `gotour` 可执行文件。
-#appengine: 
-#appengine: 	cd $GOPATH/bin
-#appengine: 	./gotour
+#appengine:
+#appengine: 如果要运行本教程的英文版，首先请
+#appengine: [[http://golang.org/dl/][下载并安装 Go]]，
+#appengine: 接着从命令行启动教程：
+#appengine:
+#appengine: 	go tool tour
+#appengine:
+#appengine: 该程序会打开 Web 浏览器来显示本教程的本地英文版。
+#appengine:
+#appengine: 当然，你也可以继续在线学习本教程。
 
 #appengine: * Go 练习场
-#appengine: 
+#appengine:
 #appengine: 本指南构建在[[http://play.golang.org/][Go 练习场]]上，它是一个运行在
 #appengine: [[http://golang.org/][golang.org]] 服务器上的一个 Web 服务。
-#appengine: 
+#appengine:
 #appengine: 该服务会接收一个 Go 程序，然后在沙盒中编译、链接并运行它，
 #appengine: 最后返回输出。
-#appengine: 
+#appengine:
 #appengine: 在练习场中运行的程序有一些限制：
-#appengine: 
+#appengine:
 #appengine: - 练习场中的时间始于 2009-11-10 23:00:00 UTC（了解这个日期的含义是留给读者的练习）。赋予程序确定的输出能让缓存程序更加容易。
-#appengine: 
+#appengine:
 #appengine: - 程序的执行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
-#appengine: 
+#appengine:
 #appengine: 练习场使用最新发布的 Go 的稳定版本。
-#appengine: 
+#appengine:
 #appengine: 参阅“[[http://blog.go-zh.org/playground][Go 练习场的内部机制（英文）]]”了解更多信息。
-#appengine: 
+#appengine:
 #appengine: .play welcome/sandbox.go
 
 * 恭喜！

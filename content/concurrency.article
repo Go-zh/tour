@@ -35,6 +35,9 @@ channel 是有类型的管道，可以用 channel 操作符 `<-` 对其发送或
 
 默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
 
+The example code sums the numbers in a slice, distributing the work between two goroutines.
+Once both goroutines have completed their computation, it calculates the final result.
+
 .play concurrency/channels.go
 
 * 缓冲 channel
@@ -124,6 +127,8 @@ channel 可以是 _带缓冲的_。为 `make` 提供第二个参数作为缓冲�
 *4.* 测试 `Same` 函数。
 
 `Same(tree.New(1),`tree.New(1))` 应当返回 `true`，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false`。
+
+The documentation for `Tree` can be found [[https://godoc.org/golang.org/x/tour/tree#Tree][here]].
 
 .play concurrency/exercise-equivalent-binary-trees.go
 

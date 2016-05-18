@@ -61,8 +61,6 @@ Go 的 `if` 语句与 `for` 循环类似，表达式外无需小括号 `(`)` ，
 
 （在 `main` 的 `fmt.Println` 调用开始前，两次对 `pow` 的调用均已执行并返回。）
 
-（提示：两个 `pow` 调用都在 `main` 调用 `fmt.Println` 前执行完毕了。）
-
 .play flowcontrol/if-and-else.go
 
 * 练习：循环与函数

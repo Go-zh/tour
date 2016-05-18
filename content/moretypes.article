@@ -92,7 +92,6 @@ Go 提供了更加便利的方式来使用数组。
 
 	a[0:5]
 
-
 .play moretypes/slices.go
 
 
@@ -208,7 +207,8 @@ nil 切片的长度和容量为 0 且没有底层数组。
 
 .play moretypes/append.go
 
-* range
+
+* Range
 
 `for` 循环的 `range` 形式可遍历切片或映射。
 
