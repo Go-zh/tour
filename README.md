@@ -10,9 +10,9 @@
 这时请猛戳 @OlingCat 并督促其解决= =||）
 
 翻译贡献者名单：
-#224 @qiansen1386
-#206 @tiant167
-#198 @ybin
-#191 @anamewing
+	#224 @qiansen1386
+	#206 @tiant167
+	#198 @ybin
+	#191 @anamewing
 
 除特别声明外，go-tour 源码文件均采用 `LICENSE` 文件中BSD风格的授权许可分发。
