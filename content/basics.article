@@ -176,7 +176,7 @@ Go 的基本类型有
 	u := uint(f)
 
 与 C 不同的是，Go 在不同类型的项之间赋值时需要显式转换。
-试着移除例子中 `float64` 或 `int` 的转换看看会发生什么。
+试着移除例子中 `float64` 或 `uint` 的转换看看会发生什么。
 
 .play basics/type-conversions.go
 
