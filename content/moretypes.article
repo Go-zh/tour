@@ -104,6 +104,8 @@ Go 提供了更加便利的方式来使用数组。
 
 与它共享底层数组的切片都会观测到这些修改。
 
+.play moretypes/slices-pointers.go
+
 
 * 切片文法
 
