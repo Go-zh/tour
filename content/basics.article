@@ -15,8 +15,9 @@ https://go-zh.org
 按照约定，包名与导入路径的最后一个元素一致。例如，`"math/rand"` 包中的源码均以 `package`rand` 语句开始。
 
 #appengine: *注意：* 此程序的运行环境是固定的，因此 `rand.Intn` 总是会返回相同的数字。
-#appengine:
-#appengine: （要得到不同的数字，需为生成器提供不同的种子数，参见 [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
+#appengine: （要得到不同的数字，需为生成器提供不同的种子数，参见
+#appengine: [[https://go-zh.org/pkg/math/rand/#Seed][`rand.Seed`]]。
+#appengine: 练习场中的时间为常量，因此你需要用其它的值作为种子数。）
 
 .play basics/packages.go
 
