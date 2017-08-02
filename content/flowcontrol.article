@@ -30,7 +30,7 @@ Go 只有一种循环结构： `for` 循环。
 
 * for 是 Go 中的 “while”
 
-此时你可以去掉分号：C 的 `while` 在 Go 中叫做 `for` 。
+此时你可以去掉分号，因为 C 的 `while` 在 Go 中叫做 `for` 。
 
 .play flowcontrol/for-is-gos-while.go
 
