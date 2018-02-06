@@ -116,7 +116,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 *2.* 测试 `Walk` 函数。
 
-函数 `tree.New(k)` 用于构造一个随机结构的二叉树，它保存了值 `k` 、 `2k` 、 `3k` ... `10k` 。
+函数 `tree.New(k)` 用于构造一个随机结构的已排序二叉树，它保存了值 `k` 、 `2k` 、 `3k` ... `10k` 。
 
 创建一个新的信道 `ch` 并且对其进行步进：
 
@@ -176,31 +176,31 @@ _提示：_ 你可以用一个 map 来缓存已经获取的 URL，但是要注�
 开始。
 它包含了参考、指南、视频等等更多资料。
 
-了解如何组织 Go 代码并在其上工作，参阅 [[http://www.youtube.com/watch?v=XCsL89YtqCs][此视频]]，或者阅读 [[https://go-zh.org/doc/code.html][如何编写 Go 代码]]。
+了解如何组织 Go 代码并在其上工作，参阅 [[https://www.youtube.com/watch?v=XCsL89YtqCs][此视频]]，或者阅读 [[https://go-zh.org/doc/code.html][如何编写 Go 代码]]。
 
 如果你需要标准库方面的帮助，请参考 [[https://go-zh.org/pkg/][包手册]]。如果是语言本身的帮助，阅读[[https://go-zh.org/ref/spec][语言规范]]是件令人愉快的事情。
 
 进一步探索 Go 的并发模型，参阅
-[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]
-([[http://talks.go-zh.org/2012/concurrency.slide][幻灯片]])
+[[https://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]
+([[https://talks.go-zh.org/2012/concurrency.slide][幻灯片]])
 以及
 [[https://www.youtube.com/watch?v=QDDwwePbDtw][深入 Go 并发模型]]
-([[http://talks.go-zh.org/2013/advconc.slide][幻灯片]])
+([[https://talks.go-zh.org/2013/advconc.slide][幻灯片]])
 并阅读
 [[https://go-zh.org/doc/codewalk/sharemem/][通过通信共享内存]]
 的代码之旅。
 
 想要开始编写 Web 应用，请参阅
-[[http://vimeo.com/53221558][一个简单的编程环境]]
-([[http://talks.go-zh.org/2012/simple.slide][幻灯片]])
+[[https://vimeo.com/53221558][一个简单的编程环境]]
+([[https://talks.go-zh.org/2012/simple.slide][幻灯片]])
 并阅读
 [[https://go-zh.org/doc/articles/wiki/][编写 Web 应用]]的指南.
 
 [[https://go-zh.org/doc/codewalk/functions/][函数：Go 中的一等公民]]展示了有趣的函数类型。
 
-[[http://blog.go-zh.org/][Go 博客]] 有着众多关于 Go 的文章和信息。
+[[https://blog.go-zh.org/][Go 博客]] 有着众多关于 Go 的文章和信息。
 
-[[http://www.mikespook.com/tag/golang/][mikespook 的博客]]中有大量中文的关于 Go 的文章和翻译。
+[[https://www.mikespook.com/tag/golang/][mikespook 的博客]]中有大量中文的关于 Go 的文章和翻译。
 
 开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go 入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
 
