@@ -13,7 +13,7 @@ import (
 	"go/token"
 	"net/http"
 
-	"golang.org/x/tools/imports"
+	"github.com/Go-zh/tools/imports"
 )
 
 func init() {
