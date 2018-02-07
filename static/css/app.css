@@ -200,10 +200,10 @@ ul {
     background: #fff;
 }
 .menu-button[imports-checkbox]:after {
-    content: ' off';
+    content: ' - 关';
 }
 .menu-button[imports-checkbox].active:after {
-    content: ' on';
+    content: ' - 开';
 }
 .menu-button[syntax-checkbox]:after {
     content:' - 关';
