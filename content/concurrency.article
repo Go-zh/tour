@@ -6,7 +6,7 @@ https://go-zh.org
 
 * Go 程
 
-_Go 程_（goroutine）_ 是由 Go 运行时管理的轻量级线程。
+_Go 程（goroutine）_ 是由 Go 运行时管理的轻量级线程。
 
 	go f(x, y, z)
 
@@ -141,7 +141,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 但是如果我们并不需要通信呢？比如说，若我们只是想保证每次只有一个
 Go 程能够访问一个共享的变量，从而避免冲突？
 
-这里涉及的概念叫做 _互斥_（mutual_exclusion）_ ，我们通常使用 _互斥锁_（Mutex）_ 这一数据结构来提供这种机制。
+这里涉及的概念叫做 _互斥（mutual_exclusion）_ ，我们通常使用 _互斥锁（Mutex）_ 这一数据结构来提供这种机制。
 
 Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 互斥锁类型及其两个方法：
 
@@ -161,7 +161,7 @@ Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 互
 
 修改 `Crawl` 函数来并行地抓取 URL，并且保证不重复。
 
-_提示：_ 你可以用一个 map 来缓存已经获取的 URL，但是要注意 map 本身并不是并发安全的！
+_提示_： 你可以用一个 map 来缓存已经获取的 URL，但是要注意 map 本身并不是并发安全的！
 
 .play concurrency/exercise-web-crawler.go
 
