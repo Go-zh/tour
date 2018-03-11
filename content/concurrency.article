@@ -14,7 +14,7 @@ _Go 程（goroutine）_ 是由 Go 运行时管理的轻量级线程。
 
 	f(x, y, z)
 
-`f` 、 `x` 、 `y` 和 `z` 的求值发生在当前的 Go 程中，而 `f` 的执行发生在新的 Go 程中。
+`f`、`x`、`y` 和 `z` 的求值发生在当前的 Go 程中，而 `f` 的执行发生在新的 Go 程中。
 
 Go 程在相同的地址空间中运行，因此在访问共享的内存时必须进行同步。[[https://go-zh.org/pkg/sync/][`sync`]] 包提供了这种能力，不过在 Go 中并不经常用到，因为还有其它的办法（见下一页）。
 
@@ -35,14 +35,13 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 默认情况下，发送和接收操作在另一端准备好之前都会阻塞。这使得 Go 程可以在没有显式的锁或竞态变量的情况下进行同步。
 
-以下示例对切片中的数进行求和，将任务分配给两个 Go 程。
-一旦两个 Go 程完成了它们的计算，它就能算出最终的结果。
+以下示例对切片中的数进行求和，将任务分配给两个 Go 程。一旦两个 Go 程完成了它们的计算，它就能算出最终的结果。
 
 .play concurrency/channels.go
 
 * 带缓冲的信道
 
-信道可以是 _带缓冲的_ 。将缓冲长度作为第二个参数提供给 `make` 来初始化一个带缓冲的信道：
+信道可以是 _带缓冲的_。将缓冲长度作为第二个参数提供给 `make` 来初始化一个带缓冲的信道：
 
 	ch := make(chan int, 100)
 
@@ -58,7 +57,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 	v, ok := <-ch
 
-之后 `ok` 会被设置为 `false` 。
+之后 `ok` 会被设置为 `false`。
 
 循环 `for i := range c` 会不断从信道接收值，直到它被关闭。
 
@@ -93,7 +92,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 * 练习：等价二叉查找树
 
-不同二叉树的叶节点上可以保存相同的值序列。例如，以下两个二叉树都保存了序列 `1，1，2，3，5，8，13` 。
+不同二叉树的叶节点上可以保存相同的值序列。例如，以下两个二叉树都保存了序列 `1，1，2，3，5，8，13`。
 
 .image /content/img/tree.png
 
@@ -108,7 +107,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 		Right *Tree
 	}
 
-点击[[javascript:click('.next-page')][下一页]] 继续。
+点击[[javascript:click('.next-page')][下一页]]继续。
 
 * 练习：等价二叉查找树
 
@@ -116,19 +115,19 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 *2.* 测试 `Walk` 函数。
 
-函数 `tree.New(k)` 用于构造一个随机结构的已排序二叉查找树，它保存了值 `k` 、 `2k` 、 `3k` ... `10k` 。
+函数 `tree.New(k)` 用于构造一个随机结构的已排序二叉查找树，它保存了值 `k` 、 `2k` 、 `3k` ... `10k`。
 
 创建一个新的信道 `ch` 并且对其进行步进：
 
-    go Walk(tree.New(1), ch)
+	go Walk(tree.New(1), ch)
 
-然后从信道中读取并打印 10 个值。应当是数字 `1, 2, 3, ..., 10` 。
+然后从信道中读取并打印 10 个值。应当是数字 `1, 2, 3, ..., 10`。
 
 *3.* 用 `Walk` 实现 `Same` 函数来检测 `t1` 和 `t2` 是否存储了相同的值。
 
 *4.* 测试 `Same` 函数。
 
-`Same(tree.New(1),`tree.New(1))` 应当返回 `true` ，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false` 。
+`Same(tree.New(1),`tree.New(1))` 应当返回 `true`，而 `Same(tree.New(1),`tree.New(2))` 应当返回 `false`。
 
 `Tree` 的文档可在[[https://godoc.org/golang.org/x/tour/tree#Tree][这里]]找到。
 
@@ -138,8 +137,7 @@ Go 程在相同的地址空间中运行，因此在访问共享的内存时必�
 
 我们已经看到信道非常适合在各个 Go 程间进行通信。
 
-但是如果我们并不需要通信呢？比如说，若我们只是想保证每次只有一个
-Go 程能够访问一个共享的变量，从而避免冲突？
+但是如果我们并不需要通信呢？比如说，若我们只是想保证每次只有一个 Go 程能够访问一个共享的变量，从而避免冲突？
 
 这里涉及的概念叫做 _互斥（mutual_exclusion）_ ，我们通常使用 _互斥锁（Mutex）_ 这一数据结构来提供这种机制。
 
@@ -148,8 +146,7 @@ Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 互
 - `Lock`
 - `Unlock`
 
-我们可以通过在代码前调用 `Lock` 方法，在代码后调用 `Unlock` 方法来保证一段代码的互斥执行。
-参见 `Inc` 方法。
+我们可以通过在代码前调用 `Lock` 方法，在代码后调用 `Unlock` 方法来保证一段代码的互斥执行。参见 `Inc` 方法。
 
 我们也可以用 `defer` 语句来保证互斥锁一定会被解锁。参见 `Value` 方法。
 
@@ -161,47 +158,34 @@ Go 标准库中提供了 [[https://go-zh.org/pkg/sync/#Mutex][`sync.Mutex`]] 互
 
 修改 `Crawl` 函数来并行地抓取 URL，并且保证不重复。
 
-_提示_： 你可以用一个 map 来缓存已经获取的 URL，但是要注意 map 本身并不是并发安全的！
+_提示_：你可以用一个 map 来缓存已经获取的 URL，但是要注意 map 本身并不是并发安全的！
 
 .play concurrency/exercise-web-crawler.go
 
 * 接下来去哪？
 
-#appengine: 你可以从
-#appengine: [[https://go-zh.org/doc/install/][安装 Go]] 开始。
+#appengine: 你可以从[[https://go-zh.org/doc/install/][安装 Go]] 开始。
 
 #appengine: 一旦安装了 Go，
-[[https://go-zh.org/doc/][Go 文档]] 是一个极好的
+[[https://go-zh.org/doc/][Go 文档]]是一个极好的
 #appengine: 应当继续阅读的内容。
 开始。
 它包含了参考、指南、视频等等更多资料。
 
-了解如何组织 Go 代码并在其上工作，参阅 [[https://www.youtube.com/watch?v=XCsL89YtqCs][此视频]]，或者阅读 [[https://go-zh.org/doc/code.html][如何编写 Go 代码]]。
+了解如何组织 Go 代码并在其上工作，参阅[[https://www.youtube.com/watch?v=XCsL89YtqCs][此视频]]，或者阅读[[https://go-zh.org/doc/code.html][如何编写 Go 代码]]。
 
-如果你需要标准库方面的帮助，请参考 [[https://go-zh.org/pkg/][包手册]]。如果是语言本身的帮助，阅读[[https://go-zh.org/ref/spec][语言规范]]是件令人愉快的事情。
+如果你需要标准库方面的帮助，请参考[[https://go-zh.org/pkg/][包手册]]。如果是语言本身的帮助，阅读[[https://go-zh.org/ref/spec][语言规范]]是件令人愉快的事情。
 
-进一步探索 Go 的并发模型，参阅
-[[https://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]
-([[https://talks.go-zh.org/2012/concurrency.slide][幻灯片]])
-以及
-[[https://www.youtube.com/watch?v=QDDwwePbDtw][深入 Go 并发模型]]
-([[https://talks.go-zh.org/2013/advconc.slide][幻灯片]])
-并阅读
-[[https://go-zh.org/doc/codewalk/sharemem/][通过通信共享内存]]
-的代码之旅。
+进一步探索 Go 的并发模型，参阅 [[https://www.youtube.com/watch?v=f6kdp27TYZs][Go 并发模型]]([[https://talks.go-zh.org/2012/concurrency.slide][幻灯片]])以及[[https://www.youtube.com/watch?v=QDDwwePbDtw][深入 Go 并发模型]]([[https://talks.go-zh.org/2013/advconc.slide][幻灯片]])并阅读[[https://go-zh.org/doc/codewalk/sharemem/][通过通信共享内存]]的代码之旅。
 
-想要开始编写 Web 应用，请参阅
-[[https://vimeo.com/53221558][一个简单的编程环境]]
-([[https://talks.go-zh.org/2012/simple.slide][幻灯片]])
-并阅读
-[[https://go-zh.org/doc/articles/wiki/][编写 Web 应用]]的指南.
+想要开始编写 Web 应用，请参阅[[https://vimeo.com/53221558][一个简单的编程环境]]([[https://talks.go-zh.org/2012/simple.slide][幻灯片]])并阅读[[https://go-zh.org/doc/articles/wiki/][编写 Web 应用]]的指南。
 
 [[https://go-zh.org/doc/codewalk/functions/][函数：Go 中的一等公民]]展示了有趣的函数类型。
 
-[[https://blog.go-zh.org/][Go 博客]] 有着众多关于 Go 的文章和信息。
+[[https://blog.go-zh.org/][Go 博客]]有着众多关于 Go 的文章和信息。
 
 [[https://www.mikespook.com/tag/golang/][mikespook 的博客]]中有大量中文的关于 Go 的文章和翻译。
 
-开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]] 和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go 入门指南]] 能够帮助你更加深入的了解和学习 Go 语言。
+开源电子书 [[https://github.com/astaxie/build-web-application-with-golang][Go Web 编程]]和 [[https://github.com/Unknwon/the-way-to-go_ZH_CN][Go 入门指南]]能够帮助你更加深入的了解和学习 Go 语言。
 
 访问 [[https://go-zh.org][go-zh.org]] 了解更多内容。
