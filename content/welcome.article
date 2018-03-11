@@ -8,8 +8,7 @@ https://go-zh.org
 
 欢迎来到 [[https://go-zh.org/][Go 编程语言]]指南。
 
-点击页面左上角的 [[javascript:highlight(".logo")][Go 指南]]
-可以访问本指南的模块列表。
+点击页面左上角的 [[javascript:highlight(".logo")][Go 指南]]可以访问本指南的模块列表。
 
 你可以随时点击页面右上角的[[javascript:highlightAndClick(".nav")][菜单]]来浏览内容列表。
 
@@ -18,11 +17,9 @@ https://go-zh.org
 你可以
 
 - 按[[javascript:highlight(".prev-page")]["上一页"]] 或 `PageUp` 键跳转到上一页，
-
 - 按[[javascript:highlight(".next-page")]["下一页"]] 或 `PageDown` 键跳转到下一页。
 
-该指南可以进行交互。点击
-“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 `Shift+Enter` ）可以在
+该指南可以进行交互。点击“[[javascript:highlightAndClick("#run")][运行]]”按钮（或按 `Shift+Enter`）可以在
 #appengine: 远程服务器上
 你的电脑上
 编译并执行程序。运行结果会显示在代码下面。
@@ -31,9 +28,8 @@ https://go-zh.org
 
 编辑程序并再次执行它。
 
-注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或按 `Ctrl-Enter`
-时，编辑器中的文本会被 [[https://go-zh.org/cmd/gofmt/][gofmt]] 工具格式化。
-你可以点击 [[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
+注意当你点击[[javascript:highlightAndClick("#format")][格式化]]或按 `Ctrl-Enter` 时，编辑器中的文本会被 [[https://go-zh.org/cmd/gofmt/][gofmt]] 工具格式化。
+你可以点击[[javascript:highlightAndClick(".syntax-checkbox")][语法]]开启或关闭语法高亮。
 
 如果你准备好了，请点击页面底部的[[javascript:highlightAndClick(".next-page")][右箭头]]或按 `PageDown` 键继续。
 
@@ -62,7 +58,6 @@ https://go-zh.org
 - [[https://go-tour-ru-ru.appspot.com/][Russian - Русский]]
 
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
-
 
 #appengine: * Go 离线版
 #appengine:

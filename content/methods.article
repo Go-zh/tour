@@ -12,7 +12,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 方法接收者在它自己的参数列表内，位于 `func` 关键字和方法名之间。
 
-在此例中， `Abs` 方法拥有一个名为 `v` ，类型为 `Vertex` 的接收者。
+在此例中，`Abs` 方法拥有一个名为 `v`，类型为 `Vertex` 的接收者。
 
 .play methods/methods.go
 
@@ -28,10 +28,9 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 你也可以为非结构体类型声明方法。
 
-在此例中，我们看到了一个带 `Abs` 方法的数值类型 `MyFloat` 。
+在此例中，我们看到了一个带 `Abs` 方法的数值类型 `MyFloat`。
 
-你只能为在同一包内定义的类型的接收者声明方法，
-而不能为其它包内定义的类型（包括 `int` 之类的内建类型）的接收者声明方法。
+你只能为在同一包内定义的类型的接收者声明方法，而不能为其它包内定义的类型（包括 `int` 之类的内建类型）的接收者声明方法。
 
 （译注：就是接收者的类型定义和方法声明必须在同一包内；不能为内建类型声明方法。）
 
@@ -41,19 +40,15 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 你可以为指针接收者声明方法。
 
-这意味着对于某类型 `T` ，接收者的类型可以用 `*T` 的文法。
-（此外， `T` 不能是像 `*int` 这样的指针。）
+这意味着对于某类型 `T`，接收者的类型可以用 `*T` 的文法。（此外，`T` 不能是像 `*int` 这样的指针。）
 
 例如，这里为 `*Vertex` 定义了 `Scale` 方法。
 
-指针接收者的方法可以修改接收者指向的值（就像 `Scale` 在这做的）。
-由于方法经常需要修改它的接收者，指针接收者比值接收者更常用。
+指针接收者的方法可以修改接收者指向的值（就像 `Scale` 在这做的）。由于方法经常需要修改它的接收者，指针接收者比值接收者更常用。
 
-试着移除第 16 行 `Scale` 函数声明中的 `*` ，观察此程序的行为如何变化。
+试着移除第 16 行 `Scale` 函数声明中的 `*`，观察此程序的行为如何变化。
 
-若使用值接收者，那么 `Scale` 方法会对原始 `Vertex` 值的副本进行操作。
-（对于函数的其它参数也是如此。）
-`Scale` 方法必须用指针接受者来更改 `main` 函数中声明的 `Vertex` 的值。
+若使用值接收者，那么 `Scale` 方法会对原始 `Vertex` 值的副本进行操作。（对于函数的其它参数也是如此。）`Scale` 方法必须用指针接受者来更改 `main` 函数中声明的 `Vertex` 的值。
 
 .play methods/methods-pointers.go
 
@@ -61,9 +56,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 现在我们要把 `Abs` 和 `Scale` 方法重写为函数。
 
-同样，我们先试着移除掉第 16 的 `*` 。
-你能看出为什么程序的行为改变了吗？
-要怎样做才能让该示例顺利通过编译？
+同样，我们先试着移除掉第 16 的 `*`。你能看出为什么程序的行为改变了吗？要怎样做才能让该示例顺利通过编译？
 
 （若你不确定，继续往下看。）
 
@@ -84,8 +77,8 @@ Go 没有类。不过你可以为结构体类型定义方法。
 	p := &v
 	p.Scale(10) // OK
 
-对于语句 `v.Scale(5)` ，即便 `v` 是个值而非指针，带指针接收者的方法也能被直接调用。
-也就是说，由于 `Scale` 方法有一个指针接收者，为方便起见，Go 会将语句 `v.Scale(5)` 解释为 `(&v).Scale(5)` 。
+对于语句 `v.Scale(5)`，即便 `v` 是个值而非指针，带指针接收者的方法也能被直接调用。
+也就是说，由于 `Scale` 方法有一个指针接收者，为方便起见，Go 会将语句 `v.Scale(5)` 解释为 `(&v).Scale(5)`。
 
 .play methods/indirection.go
 
@@ -106,7 +99,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 	p := &v
 	fmt.Println(p.Abs()) // OK
 
-这种情况下，方法调用 `p.Abs()` 会被解释为 `(*p).Abs()` 。
+这种情况下，方法调用 `p.Abs()` 会被解释为 `(*p).Abs()`。
 
 .play methods/indirection-values.go
 
@@ -118,11 +111,9 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。
 
-在本例中， `Scale` 和 `Abs` 接收者的类型为 `*Vertex` ，即便 `Abs`
-并不需要修改其接收者。
+在本例中，`Scale` 和 `Abs` 接收者的类型为 `*Vertex`，即便 `Abs` 并不需要修改其接收者。
 
-通常来说，所有给定类型的方法都应该有值或指针接收者，但并不应该二者混用。
-（我们会在接下来几页中明白为什么。）
+通常来说，所有给定类型的方法都应该有值或指针接收者，但并不应该二者混用。（我们会在接下来几页中明白为什么。）
 
 .play methods/methods-with-pointer-receivers.go
 
@@ -132,16 +123,13 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 接口类型的值可以保存任何实现了这些方法的值。
 
-*注意：* 示例代码的 22 行存在一个错误。
-由于 `Abs` 方法只为 `*Vertex` （指针类型）定义，
-因此 `Vertex` （值类型）并未实现 `Abser` 。
+*注意：* 示例代码的 22 行存在一个错误。由于 `Abs` 方法只为 `*Vertex` （指针类型）定义，因此 `Vertex`（值类型）并未实现 `Abser`。
 
 .play methods/interfaces.go
 
 * 接口与隐式实现
 
-类型通过实现一个接口的所有方法来实现该接口。
-既然无需专门显式声明，也就没有“implements”关键字。
+类型通过实现一个接口的所有方法来实现该接口。既然无需专门显式声明，也就没有“implements”关键字。
 
 隐式接口从接口的实现中解耦了定义，这样接口的实现可以出现在任何包中，无需提前准备。
 
@@ -167,7 +155,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 在一些语言中，这会触发一个空指针异常，但在 Go 中通常会写一些方法来优雅地处理它（如本例中的 `M` 方法）。
 
-*注意：* 保存了 nil 具体值的接口其自身并不为 nil 。
+*注意：* 保存了 nil 具体值的接口其自身并不为 nil。
 
 .play methods/interface-values-with-nil.go
 
@@ -185,11 +173,9 @@ nil 接口值既不保存值也不保存具体类型。
 
 	interface{}
 
-空接口可保存任何类型的值。
-（因为每个类型都至少实现了零个方法。）
+空接口可保存任何类型的值。（因为每个类型都至少实现了零个方法。）
 
-空接口被用来处理未知类型的值。
-例如，`fmt.Print` 可接受类型为 `interface{}` 的任意数量的参数。
+空接口被用来处理未知类型的值。例如，`fmt.Print` 可接受类型为 `interface{}` 的任意数量的参数。
 
 .play methods/empty-interface.go
 
@@ -199,18 +185,17 @@ nil 接口值既不保存值也不保存具体类型。
 
 	t := i.(T)
 
-该语句断言接口值 `i` 保存了具体类型 `T` ，并将其底层类型为 `T` 的值赋予变量 `t` 。
+该语句断言接口值 `i` 保存了具体类型 `T`，并将其底层类型为 `T` 的值赋予变量 `t`。
 
 若 `i` 并未保存 `T` 类型的值，该语句就会触发一个恐慌。
 
-为了 *判断* 一个接口值是否保存了一个特定的类型，
-类型断言可返回两个值：其底层值以及一个报告断言是否成功的布尔值。
+为了 *判断* 一个接口值是否保存了一个特定的类型，类型断言可返回两个值：其底层值以及一个报告断言是否成功的布尔值。
 
 	t, ok := i.(T)
 
-若 `i` 保存了一个 `T` ，那么 `t` 将会是其底层值，而 `ok` 为 `true` 。
+若 `i` 保存了一个 `T`，那么 `t` 将会是其底层值，而 `ok` 为 `true`。
 
-否则， `ok` 将为 `false` 而 `t` 将为 `T` 类型的零值，程序并不会产生恐慌。
+否则，`ok` 将为 `false` 而 `t` 将为 `T` 类型的零值，程序并不会产生恐慌。
 
 请注意这种语法和读取一个映射时的相同之处。
 
@@ -232,12 +217,9 @@ nil 接口值既不保存值也不保存具体类型。
 		// 没有匹配，v 与 i 的类型相同
 	}
 
-类型选择中的声明与类型断言 `i.(T)` 的语法相同，只是具体类型 `T`
-被替换成了关键字 `type` 。
+类型选择中的声明与类型断言 `i.(T)` 的语法相同，只是具体类型 `T` 被替换成了关键字 `type`。
 
-此选择语句判断接口值 `i` 保存的值类型是 `T` 还是 `S` 。
-在 `T` 或 `S` 的情况下，变量 `v` 会分别按 `T` 或 `S` 类型保存 `i` 拥有的值。
-在默认（即没有匹配）的情况下，变量 `v` 与 `i` 的接口类型和值相同。
+此选择语句判断接口值 `i` 保存的值类型是 `T` 还是 `S`。在 `T` 或 `S` 的情况下，变量 `v` 会分别按 `T` 或 `S` 类型保存 `i` 拥有的值。在默认（即没有匹配）的情况下，变量 `v` 与 `i` 的接口类型和值相同。
 
 .play methods/type-switches.go
 
@@ -249,8 +231,7 @@ nil 接口值既不保存值也不保存具体类型。
 		String() string
 	}
 
-`Stringer` 是一个可以用字符串描述自己的类型。`fmt`
-包（还有很多包）都通过此接口来打印值。
+`Stringer` 是一个可以用字符串描述自己的类型。`fmt` 包（还有很多包）都通过此接口来打印值。
 
 .play methods/stringer.go
 
@@ -258,7 +239,7 @@ nil 接口值既不保存值也不保存具体类型。
 
 通过让 `IPAddr` 类型实现 `fmt.Stringer` 来打印点号分隔的地址。
 
-例如，`IPAddr{1,`2,`3,`4}` 应当打印为 `"1.2.3.4"` 。
+例如，`IPAddr{1,`2,`3,`4}` 应当打印为 `"1.2.3.4"`。
 
 .play methods/exercise-stringer.go
 
@@ -266,16 +247,15 @@ nil 接口值既不保存值也不保存具体类型。
 
 Go 程序使用 `error` 值来表示错误状态。
 
-与 `fmt.Stringer` 类似， `error` 类型是一个内建接口：
+与 `fmt.Stringer` 类似，`error` 类型是一个内建接口：
 
 	type error interface {
 		Error() string
 	}
 
-（与 `fmt.Stringer` 类似， `fmt` 包在打印值时也会满足 `error` 。）
+（与 `fmt.Stringer` 类似，`fmt` 包在打印值时也会满足 `error`。）
 
-通常函数会返回一个 `error` 值，调用的它的代码应当判断这个错误是否等于 `nil`
-来进行错误处理。
+通常函数会返回一个 `error` 值，调用的它的代码应当判断这个错误是否等于 `nil` 来进行错误处理。
 
 	i, err := strconv.Atoi("42")
 	if err != nil {
@@ -302,10 +282,9 @@ Go 程序使用 `error` 值来表示错误状态。
 
 	func (e ErrNegativeSqrt) Error() string
 
-方法使其拥有 `error` 值，通过 `ErrNegativeSqrt(-2).Error()` 调用该方法应返回
-`"cannot`Sqrt`negative`number:`-2"` 。
+方法使其拥有 `error` 值，通过 `ErrNegativeSqrt(-2).Error()` 调用该方法应返回 `"cannot`Sqrt`negative`number:`-2"`。
 
-*注意：* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))` 。这是为什么呢？
+*注意：* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。这是为什么呢？
 
 修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
 
@@ -313,22 +292,17 @@ Go 程序使用 `error` 值来表示错误状态。
 
 * Reader
 
-`io` 包指定了 `io.Reader` 接口，
-它表示从数据流的末尾进行读取。
+`io` 包指定了 `io.Reader` 接口，它表示从数据流的末尾进行读取。
 
-Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许多实现]]，
-包括文件、网络连接、压缩和加密等等。
+Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许多实现]]，包括文件、网络连接、压缩和加密等等。
 
 `io.Reader` 接口有一个 `Read` 方法：
 
 	func (T) Read(b []byte) (n int, err error)
 
-`Read` 用数据填充给定的字节切片并返回填充的字节数和错误值。
-在遇到数据流的结尾时，它会返回一个 `io.EOF` 错误。
+`Read` 用数据填充给定的字节切片并返回填充的字节数和错误值。在遇到数据流的结尾时，它会返回一个 `io.EOF` 错误。
 
-示例代码创建了一个
-[[https://go-zh.org/pkg/strings/#Reader][`strings.Reader`]]
-并以每次 8 字节的速度读取它的输出。
+示例代码创建了一个 [[https://go-zh.org/pkg/strings/#Reader][`strings.Reader`]] 并以每次 8 字节的速度读取它的输出。
 
 .play methods/reader.go
 
@@ -340,16 +314,13 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 
 * 练习：rot13Reader
 
-有种常见的模式是一个 [[https://go-zh.org/pkg/io/#Reader][`io.Reader`]]
-包装另一个 `io.Reader` ，然后通过某种方式修改其数据流。
+有种常见的模式是一个 [[https://go-zh.org/pkg/io/#Reader][`io.Reader`]] 包装另一个 `io.Reader`，然后通过某种方式修改其数据流。
 
-例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][`gzip.NewReader`]]
-函数接受一个 `io.Reader` （已压缩的数据流）并返回一个同样实现了 `io.Reader` 的 `*gzip.Reader` （解压后的数据流）。
+例如，[[https://go-zh.org/pkg/compress/gzip/#NewReader][`gzip.NewReader`]] 函数接受一个 `io.Reader`（已压缩的数据流）并返回一个同样实现了 `io.Reader` 的 `*gzip.Reader`（解压后的数据流）。
 
-编写一个实现了 `io.Reader` 并从另一个 `io.Reader` 中读取数据的 `rot13Reader` ，
-通过应用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
+编写一个实现了 `io.Reader` 并从另一个 `io.Reader` 中读取数据的 `rot13Reader`，通过应用 [[http://en.wikipedia.org/wiki/ROT13][rot13]] 代换密码对数据流进行修改。
 
-`rot13Reader` 类型已经提供。实现 `Read` 方法以满足 `io.Reader` 。
+`rot13Reader` 类型已经提供。实现 `Read` 方法以满足 `io.Reader`。
 
 .play methods/exercise-rot-reader.go
 
@@ -365,28 +336,25 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 		At(x, y int) color.Color
 	}
 
-*注意：* `Bounds` 方法的返回值 `Rectangle` 实际上是一个
-[[https://go-zh.org/pkg/image/#Rectangle][`image.Rectangle`]]，
-它在 `image` 包中声明。
+*注意：* `Bounds` 方法的返回值 `Rectangle` 实际上是一个 [[https://go-zh.org/pkg/image/#Rectangle][`image.Rectangle`]]，它在 `image` 包中声明。
 
 （请参阅[[https://go-zh.org/pkg/image/#Image][文档]]了解全部信息。）
 
-`color.Color` 和 `color.Model` 类型也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由[[https://go-zh.org/pkg/image/color/][`image/color`]]包定义。
+`color.Color` 和 `color.Model` 类型也是接口，但是通常因为直接使用预定义的实现 `image.RGBA` 和 `image.RGBAModel` 而被忽视了。这些接口和类型由 [[https://go-zh.org/pkg/image/color/][`image/color`]] 包定义。
 
 .play methods/images.go
 
 * 练习：图像
 
-还记得之前编写的图片生成器吗？我们再来编写另外一个，不过这次它将会返回一个
-`image.Image` 的实现而非一个数据切片。
+还记得之前编写的图片生成器吗？我们再来编写另外一个，不过这次它将会返回一个 `image.Image` 的实现而非一个数据切片。
 
-定义你自己的 `Image` 类型，实现[[https://go-zh.org/pkg/image/#Image][必要的方法]]并调用 `pic.ShowImage` 。
+定义你自己的 `Image` 类型，实现[[https://go-zh.org/pkg/image/#Image][必要的方法]]并调用 `pic.ShowImage`。
 
-`Bounds` 应当返回一个 `image.Rectangle` ，例如 `image.Rect(0, 0, w, h)` 。
+`Bounds` 应当返回一个 `image.Rectangle` ，例如 `image.Rect(0, 0, w, h)`。
 
-`ColorModel` 应当返回 `color.RGBAModel` 。
+`ColorModel` 应当返回 `color.RGBAModel`。
 
-`At` 应当返回一个颜色。上一个图片生成器的值 `v` 对应于此次的 `color.RGBA{v, v, 255, 255}` 。
+`At` 应当返回一个颜色。上一个图片生成器的值 `v` 对应于此次的 `color.RGBA{v, v, 255, 255}`。
 
 .play methods/exercise-images.go
 
