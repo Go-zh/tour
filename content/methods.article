@@ -350,11 +350,11 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 
 定义你自己的 `Image` 类型，实现[[https://go-zh.org/pkg/image/#Image][必要的方法]]并调用 `pic.ShowImage`。
 
-`Bounds` 应当返回一个 `image.Rectangle` ，例如 `image.Rect(0, 0, w, h)`。
+`Bounds` 应当返回一个 `image.Rectangle` ，例如 `image.Rect(0,`0,`w,`h)`。
 
 `ColorModel` 应当返回 `color.RGBAModel`。
 
-`At` 应当返回一个颜色。上一个图片生成器的值 `v` 对应于此次的 `color.RGBA{v, v, 255, 255}`。
+`At` 应当返回一个颜色。上一个图片生成器的值 `v` 对应于此次的 `color.RGBA{v,`v,`255,`255}`。
 
 .play methods/exercise-images.go
 
