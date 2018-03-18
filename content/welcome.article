@@ -69,7 +69,7 @@ https://go-zh.org
 #appengine: 然后用[[https://go-zh.org/cmd/go/][go get]]命令来安装
 #appengine: [[https://go-zh.org/x/tour/][gotour]]:
 #appengine:
-#appengine: 	go get github.org/Go-zh/tour/gotour
+#appengine: 	go get github.com/Go-zh/tour/gotour
 #appengine:
 #appengine: 最后运行产生的 `gotour` 可执行文件。
 #appengine:
