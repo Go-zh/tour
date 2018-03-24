@@ -166,8 +166,9 @@ _提示_：你可以用一个 map 来缓存已经获取的 URL，但是要注意
 
 #appengine: 你可以从[[https://go-zh.org/doc/install/][安装 Go]] 开始。
 
-#appengine: 一旦安装了 Go，
-[[https://go-zh.org/doc/][Go 文档]]是一个极好的
+#appengine: 一旦安装了 Go，Go
+Go
+[[https://go-zh.org/doc/][文档]]是一个极好的
 #appengine: 应当继续阅读的内容。
 开始。
 它包含了参考、指南、视频等等更多资料。
