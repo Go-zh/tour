@@ -284,7 +284,7 @@ Go 程序使用 `error` 值来表示错误状态。
 
 方法使其拥有 `error` 值，通过 `ErrNegativeSqrt(-2).Error()` 调用该方法应返回 `"cannot`Sqrt`negative`number:`-2"`。
 
-*修复:* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。这是为什么呢？
+*注意:* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。这是为什么呢？
 
 修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
 
