@@ -123,7 +123,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 接口类型的变量可以保存任何实现了这些方法的值。
 
-*注意：* 示例代码的 22 行存在一个错误。由于 `Abs` 方法只为 `*Vertex` （指针类型）定义，因此 `Vertex`（值类型）并未实现 `Abser`。
+*注意:* 示例代码的 22 行存在一个错误。由于 `Abs` 方法只为 `*Vertex` （指针类型）定义，因此 `Vertex`（值类型）并未实现 `Abser`。
 
 .play methods/interfaces.go
 
@@ -155,7 +155,7 @@ Go 没有类。不过你可以为结构体类型定义方法。
 
 在一些语言中，这会触发一个空指针异常，但在 Go 中通常会写一些方法来优雅地处理它（如本例中的 `M` 方法）。
 
-*注意：* 保存了 nil 具体值的接口其自身并不为 nil。
+*注意:* 保存了 nil 具体值的接口其自身并不为 nil。
 
 .play methods/interface-values-with-nil.go
 
@@ -284,7 +284,7 @@ Go 程序使用 `error` 值来表示错误状态。
 
 方法使其拥有 `error` 值，通过 `ErrNegativeSqrt(-2).Error()` 调用该方法应返回 `"cannot`Sqrt`negative`number:`-2"`。
 
-*注意：* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。这是为什么呢？
+*注意:* 在 `Error` 方法内调用 `fmt.Sprint(e)` 会让程序陷入死循环。可以通过先转换 `e` 来避免这个问题：`fmt.Sprint(float64(e))`。这是为什么呢？
 
 修改 `Sqrt` 函数，使其接受一个负数时，返回 `ErrNegativeSqrt` 值。
 
@@ -336,7 +336,7 @@ Go 标准库包含了该接口的[[https://go-zh.org/search?q=Read#Global][许�
 		At(x, y int) color.Color
 	}
 
-*注意：* `Bounds` 方法的返回值 `Rectangle` 实际上是一个 [[https://go-zh.org/pkg/image/#Rectangle][`image.Rectangle`]]，它在 `image` 包中声明。
+*注意:* `Bounds` 方法的返回值 `Rectangle` 实际上是一个 [[https://go-zh.org/pkg/image/#Rectangle][`image.Rectangle`]]，它在 `image` 包中声明。
 
 （请参阅[[https://go-zh.org/pkg/image/#Image][文档]]了解全部信息。）
 
