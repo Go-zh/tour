@@ -8,14 +8,14 @@ import (
 )
 
 func main() {
-	// Create a tic-tac-toe board.
+	// 创建一个井字板（经典游戏）
 	board := [][]string{
 		[]string{"_", "_", "_"},
 		[]string{"_", "_", "_"},
 		[]string{"_", "_", "_"},
 	}
 
-	// The players take turns.
+	// 两个玩家轮流打上 X 和 O
 	board[0][0] = "X"
 	board[2][2] = "O"
 	board[1][2] = "X"

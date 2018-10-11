@@ -1,6 +1,6 @@
-// Copyright 2016 The Go Authors.  All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
+// Go语言的作者2016年版权所有
+// 此源代码的使用受BSD风格的约束
+// 可以在LICENSE文件中找到的许可证
 
 package content
 
@@ -16,10 +16,9 @@ import (
 	"testing"
 )
 
-// Test that all the .go files inside the content file build
-// and execute (without checking for output correctness).
-// Files that contain the string "// +build no-build" are not built.
-// Files that contain the string "// +build no-run" are not executed.
+// 测试内容文件中的所有.go文件是否构建并执行（不检查输出正确性）
+// 不构建包含字符串 "// +build no-build" 的文件
+// 不执行包含字符串 "// +build no-run" 的文件
 func TestContent(t *testing.T) {
 	scratch, err := ioutil.TempDir("", "tour-content-test")
 	if err != nil {

@@ -9,10 +9,10 @@ type Vertex struct {
 }
 
 var (
-	v1 = Vertex{1, 2}  // has type Vertex
-	v2 = Vertex{X: 1}  // Y:0 is implicit
-	v3 = Vertex{}      // X:0 and Y:0
-	p  = &Vertex{1, 2} // has type *Vertex
+	v1 = Vertex{1, 2}  // 创建一个 Vertex 类型的结构体
+	v2 = Vertex{X: 1}  // Y:0 被隐式地赋予
+	v3 = Vertex{}      // X:0 Y:0
+	p  = &Vertex{1, 2} // 创建一个 *Vertex 类型的结构体（指针）
 )
 
 func main() {
