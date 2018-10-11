@@ -8,15 +8,15 @@ func main() {
 	var s []int
 	printSlice(s)
 
-	// append works on nil slices.
+	// 添加一个空切片
 	s = append(s, 0)
 	printSlice(s)
 
-	// The slice grows as needed.
+	// 这个切片会按需增长
 	s = append(s, 1)
 	printSlice(s)
 
-	// We can add more than one element at a time.
+	// 可以一次性添加多个元素
 	s = append(s, 2, 3, 4)
 	printSlice(s)
 }
