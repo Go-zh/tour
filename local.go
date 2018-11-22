@@ -26,9 +26,9 @@ import (
 
 	// Imports so that go build/install automatically installs them.
 	// For Go 1.5 and above, will use our vendored copy.
-	_ "github.com/Go-zh/tour/pic"
-	_ "github.com/Go-zh/tour/tree"
-	_ "github.com/Go-zh/tour/wc"
+	_ "golang.org/x/tour/pic"
+	_ "golang.org/x/tour/tree"
+	_ "golang.org/x/tour/wc"
 )
 
 const (
