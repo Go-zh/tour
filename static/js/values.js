@@ -9,7 +9,7 @@ angular.module('tour.values', []).
 // List of modules with description and lessons in it.
 value('tableOfContents', [{
     'id': 'mechanics',
-    'title': '指南的使用',
+    'title': '使用本指南',
     'description': '<p>欢迎来到 <a href="https://go-zh.org">Go 编程语言</a>指南。本指南涵盖了该语言的大部分重要特性，主要包括：</p>',
     'lessons': ['welcome']
 }, {
