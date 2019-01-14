@@ -17,13 +17,7 @@
 
 贡献方式应遵循与 Go 项目相同的流程：http://go-zh.org/doc/contribute.html
 
-要在本地运行 tour 服务，请执行
-
-```sh
-dev_appserver.py app.yaml
-```
-
-然后在你的浏览器中浏览 [http://localhost:8080/](http://localhost:8080)。
+要在本地测试 tour 服务，请参考 [Go App Engine 官方文档](https://cloud.google.com/appengine/docs/standard/go111/runtime)。
 
 ## 问题报告/发送补丁
 
