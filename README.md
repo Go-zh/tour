@@ -7,9 +7,9 @@
 
 要从源码安装本教程，首先请[设置一个工作空间](https://go-zh.org/doc/code.html)并执行
 
-	$ go get -u github.com/Go-zh/tour/gotour
+	$ go get -u github.com/Go-zh/tour
 
-这会在你工作空间的 `bin` 目录中创建一个可离线执行的 `gotour` 文件。
+这会在你工作空间的 `bin` 目录中创建一个可离线执行的 `tour` 文件。
 
 （如果安装过程中出现 `package` 或 `import` 字样的错误提示，那么说明依赖库的导入路径又挂了。这时请猛戳 @OlingCat 并督促其解决= =||）
 
