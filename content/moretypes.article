@@ -30,7 +30,7 @@ Go 拥有指针。指针保存了值的内存地址。
 
 * 结构体
 
-一个结构体（`struct`）就是一个字段的集合。
+一个结构体（`struct`）就是一组字段（field）。
 
 .play moretypes/structs.go
 
