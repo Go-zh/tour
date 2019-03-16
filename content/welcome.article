@@ -54,7 +54,7 @@ https://go-zh.org
 - [[https://go-tour-kr.appspot.com/][Korean — 한국어]]
 - [[https://go-tour-ro.appspot.com/][Romanian — Română]]
 - [[https://go-tour-ru-ru.appspot.com/][Russian - Русский]]
-- [[https://go-tour-es.appspot.com/][Spanish — Español]]
+- [[https://gotour-es.appspot.com/][Spanish — Español]]
 - [[https://go-tour-th.appspot.com/][Thai - ภาษาไทย]]
 - [[https://go-tour-turkish.appspot.com/][Turkish - Türkçe]]
 - [[https://go-tour-ua.appspot.com/][Ukrainian — Українська]]
@@ -63,36 +63,36 @@ https://go-zh.org
 点击[[javascript:highlightAndClick(".next-page")][“下一页”]]按钮或者按 `PageDown` 键继续。
 
 #appengine: * Go 离线版教程
-
+#appengine:
 #appengine: 本指南也可作为独立的程序使用，这样你无需访问互联网就能运行它。
-
+#appengine:
 #appengine: 独立的 tour 更快，它会在你自己的机器上构建并运行代码示例。
-
+#appengine:
 #appengine: 要在本地安装并运行此教程的中文版，请在命令行执行：
-
+#appengine:
 #appengine:   go get -u github.com/Go-zh/tour
 #appengine:   tour
 
 #appengine: 该程序会打开一个浏览器并显示你本地版本的教程。
-
+#appengine:
 #appengine: 当然，你也可以继续在线学习本教程。
-
+#appengine:
 #appengine: * Go 练习场
-
+#appengine:
 #appengine: 本指南构建在 [[https://play.golang.org/][Go 练习场]]上，它是一个运行在
 #appengine: [[https://golang.org/][golang.org]] 服务器上的一个 Web 服务。
-
+#appengine:
 #appengine: 该服务会接收一个 Go 程序，然后在沙盒中编译、链接并运行它，最后返回输出。
-
+#appengine:
 #appengine: 在练习场中运行的程序有一些限制：
-
+#appengine:
 #appengine: - 练习场中的时间始于 2009-11-10 23:00:00 UTC（此日期的含义留给读者自己去发现）。
 #appengine: 赋予程序确定的输出能让缓存程序更加容易。
-
+#appengine:
 #appengine: - 程序的执行时间、CPU 和内存的使用同样也有限制，并且程序不能访问外部网络中的主机。
-
+#appengine:
 #appengine: 练习场使用最新发布的 Go 的稳定版本。
-
+#appengine:
 #appengine: 参阅 [[https://blog.go-zh.org/playground][Go 练习场的内部机制]]了解更多信息。
 
 #appengine: .play welcome/sandbox.go

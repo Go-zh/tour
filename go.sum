@@ -1,0 +1,12 @@
+github.com/Go-zh/tools v0.0.0-20190316121337-122bff284a43 h1:bff/hNAs+FfxlS7uF24XRobZddjrixOZ/3KHzdkk4Kg=
+github.com/Go-zh/tools v0.0.0-20190316121337-122bff284a43/go.mod h1:7MEc479yUY4J0kMFx3boEBDkOrX643VQw62tuUPXejY=
+golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
+golang.org/x/net v0.0.0-20190311183353-d8887717615a/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=
+golang.org/x/net v0.0.0-20190313220215-9f648a60d977 h1:actzWV6iWn3GLqN8dZjzsB+CLt+gaV2+wsxroxiQI8I=
+golang.org/x/net v0.0.0-20190313220215-9f648a60d977/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=
+golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
+golang.org/x/tools v0.0.0-20190312164927-7b79afddac43/go.mod h1:LCzVGOaR6xXOjkQ3onu1FJEFr0SW1gC7cKk1uF8kGRs=
+golang.org/x/tools v0.0.0-20190315214010-f0bfdbff1f9c/go.mod h1:LCzVGOaR6xXOjkQ3onu1FJEFr0SW1gC7cKk1uF8kGRs=
+golang.org/x/tour v0.0.0-20190313211959-7de0bd1d74c6 h1:Lc7Ee4UuWUQKX4mkhJHgYIKyIzTmhEk8PZnvZ73gWuM=
+golang.org/x/tour v0.0.0-20190313211959-7de0bd1d74c6/go.mod h1:qMugOFWX59KzC8Nx7f2uvXxKxAqJfi1J6ZUHAWKnrRA=

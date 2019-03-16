@@ -215,7 +215,12 @@ nil 切片的长度和容量为 0 且没有底层数组。
 
 可以将下标或值赋予 `_` 来忽略它。
 
-若你只需要索引，去掉 `,` `value` 的部分即可。
+    for i, _ := range pow
+    for _, value := range pow
+
+若你只需要索引，忽略第二个变量即可。
+
+    for i := range pow
 
 .play moretypes/range-continued.go
 
