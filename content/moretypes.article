@@ -234,7 +234,7 @@ nil 切片的长度和容量为 0 且没有底层数组。
 
 .play moretypes/exercise-slices.go
 
-* 映射
+* 映射 (`map`)
 
 映射将键映射到值。
 
