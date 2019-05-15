@@ -45,6 +45,7 @@ https://go-zh.org
 - [[https://tour.go-zh.org/][Simplified Chinese — 中文（简体）]]
 - [[https://go-tour-zh-tw.appspot.com/][Traditional Chinese — 中文（繁體）]]
 - [[https://go-tour-cz.appspot.com/][Czech — Česky]]
+- [[https://tour.golang.org/][English]]
 - [[https://go-tour-fr.appspot.com/][French — Français]]
 - [[https://go-tour-de.appspot.com/][German — Deutsch]]
 - [[https://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
@@ -70,8 +71,8 @@ https://go-zh.org
 #appengine:
 #appengine: 要在本地安装并运行此教程的中文版，请在命令行执行：
 #appengine:
-#appengine:   go get -u github.com/Go-zh/tour
-#appengine:   tour
+#appengine:	go get -u github.com/Go-zh/tour
+#appengine:	tour
 
 #appengine: 该程序会打开一个浏览器并显示你本地版本的教程。
 #appengine:
