@@ -1,30 +1,28 @@
-# Go 语言之旅
+# Go language tour
 
-《Go 语言之旅》是官方 Go Tour 的中文翻译版。
-请访问 https://tour.go-zh.org/ 开始学习。
+"Go Language Tour" is the Chinese translation of the official Go Tour.
+Please visit https://tour.go-zh.org/ to start learning.
 
-## 下载/安装
+## Download and install
 
-要从源码安装本教程，首先请[设置一个工作空间](https://go-zh.org/doc/code.html)并执行
+To install this tutorial from the source code, first please [set up a workspace](https://go-zh.org/doc/code.html) and execute
 
 	$ go get -u github.com/Go-zh/tour
 
-这会在你工作空间的 `bin` 目录中创建一个可离线执行的 `tour` 文件。
+This will create a tour file that can be executed offline in the bin directory of your workspace.
+(If an error message of `package` or ʻimport` appears during the installation process, then the import path of the dependent library is down again. At this time, please poke @OlingCat and urge its solution ==||)
 
-（如果安装过程中出现 `package` 或 `import` 字样的错误提示，那么说明依赖库的导入路径又挂了。这时请猛戳 @OlingCat 并督促其解决= =||）
+## Contribution method
 
-## 贡献方式
+Contribution methods should follow the same process as the Go project: http://go-zh.org/doc/contribute.html
 
-贡献方式应遵循与 Go 项目相同的流程：http://go-zh.org/doc/contribute.html
+To test the tour service locally, please refer to [Go App Engine official document](https://cloud.google.com/appengine/docs/standard/go111/runtime).
 
-要在本地测试 tour 服务，请参考 [Go App Engine 官方文档](https://cloud.google.com/appengine/docs/standard/go111/runtime)。
+## Problem report/send patch
 
-## 问题报告/发送补丁
+The Chinese version of this tutorial is directly hosted on Github, please send a PR directly to submit changes.
+Please report issues on github.com/Go-zh/tour/issues.
 
-本教程中文版直接托管在 Github 上，提交更改请直接发送 PR。
+## License
 
-问题报告请在 github.com/Go-zh/tour/issues 上发起。
-
-## 授权许可
-
-除特别声明外，go-tour 源码文件均采用 BSD 风格的授权许可分发，许可内容见 `LICENSE` 文件。
+Unless otherwise stated, the go-tour source code files are distributed under a BSD-style license, and the license content is in the `LICENSE` file.
