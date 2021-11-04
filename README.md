@@ -5,7 +5,13 @@
 
 ## 下载/安装
 
-要从源码安装本教程，首先请[设置一个工作空间](https://go-zh.org/doc/code.html)并执行
+要从源码安装本教程，首先请[设置一个工作空间](https://go-zh.org/doc/code.html)。
+
+Go 1.17 及以上版本执行：
+
+	$ go install github.com/Go-zh/tour@latest
+
+Go 1.16 及以下版本执行：
 
 	$ go get -u github.com/Go-zh/tour
 
