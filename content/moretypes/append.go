@@ -8,7 +8,7 @@ func main() {
 	var s []int
 	printSlice(s)
 
-	// 添加一个空切片
+	// 可在空切片上追加
 	s = append(s, 0)
 	printSlice(s)
 
