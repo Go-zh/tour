@@ -257,7 +257,7 @@ Go 程序使用 `error` 值来表示错误状态。
 		Error() string
 	}
 
-（与 `fmt.Stringer` 类似，`fmt` 包在打印值时也会满足 `error`。）
+（与 `fmt.Stringer` 类似，`fmt` 包也会根据对 `error` 的实现来打印值。）
 
 通常函数会返回一个 `error` 值，调用它的代码应当判断这个错误是否等于 `nil` 来进行错误处理。
 
